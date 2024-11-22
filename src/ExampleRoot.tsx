@@ -1,11 +1,9 @@
-import "instruments/sentry";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import AppBuilderBase from "AppBuilderBase";
+import ExampleBase from "ExampleBase";
+import reportWebVitals from "reportWebVitals";
 import RootComponent from "shared/components/RootComponent";
 import { PlausibleTracker } from "instruments/plausible";
-import { setupWebVitalsTracking } from "instruments/webvitals";
-import { IComponentContext } from "shared/types/context/componentcontext";
 import { PARAMETER_TYPE, EXPORT_TYPE } from "@shapediver/viewer.session";
 import ExportButtonComponent from "shared/components/shapediver/exports/ExportButtonComponent";
 import ParameterBooleanComponent from "shared/components/shapediver/parameter/ParameterBooleanComponent";
@@ -14,6 +12,7 @@ import ParameterFileInputComponent from "shared/components/shapediver/parameter/
 import ParameterSelectComponent from "shared/components/shapediver/parameter/ParameterSelectComponent";
 import ParameterSliderComponent from "shared/components/shapediver/parameter/ParameterSliderComponent";
 import ParameterStringComponent from "shared/components/shapediver/parameter/ParameterStringComponent";
+import { IComponentContext } from "shared/types/context/componentcontext";
 import ViewportComponent from "webgi/components/ViewportComponent";
 
 const root = ReactDOM.createRoot(
@@ -51,9 +50,11 @@ root.render(
 		tracker={PlausibleTracker}
 		componentContext={components}
 	>
-		<AppBuilderBase/>
+		<ExampleBase/>
 	</RootComponent>
 );
 
-PlausibleTracker.trackPageview();
-setupWebVitalsTracking(PlausibleTracker);
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals(r => console.debug("reportWebVitals", r));
