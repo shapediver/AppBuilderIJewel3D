@@ -26,7 +26,6 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				appbuilder: resolve(__dirname, "index.html"),
-				example: resolve(__dirname, "example.html"),
 			},
 			output: {
 				manualChunks: {

@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import { CoreViewerApp, DirectionalLight, LoadingScreenPlugin, mobileAndTabletCheck } from "webgi";
+import { CoreViewerApp } from "webgi";
 import { devtoolsSettings } from "shared/store/storeSettings";
 import { IEventTracking } from "shared/types/eventTracking";
+import { createViewport } from "webgi/utils/createViewport";
 
 // #region Type aliases (1)
 
@@ -63,22 +64,7 @@ export const useWebGiStoreViewport = create<IWebGiStoreViewport>()(devtools((set
 		let viewport: CoreViewerApp|undefined = undefined;
 
 		try {
-			viewport = new CoreViewerApp({
-				canvas: dto.canvas,
-			});
-			// You can choose from various options when initializing the viewer. Please read more about them here: https://webgi.xyz/docs/api/classes/Viewer_Editor_Templates.CoreViewerApp#initialize
-			await viewport.initialize({ ground: false});
-
-			(viewport.getPlugin(LoadingScreenPlugin as any)! as any).showFileNames = false;
-			viewport.setEnvironmentMap("https://demo-assets.pixotronics.com/pixo/hdr/gem_2.hdr");
-			const light = new DirectionalLight(0xffffff, 2.5);
-			light.position.set(1, 1, 1);
-			viewport.scene.add(light);
-
-			// Check if the device is a mobile device
-			const isMobile = mobileAndTabletCheck();
-			// Set the render scale
-			viewport.renderer.renderScale = Math.min(isMobile ? 1.5 : 2, window.devicePixelRatio);
+			viewport = await createViewport(dto);
 		} catch (e: any) {
 			callbacks?.onError(e);
 		}
