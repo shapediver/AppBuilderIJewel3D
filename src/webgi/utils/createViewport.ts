@@ -17,7 +17,8 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 		// You can choose from various options when initializing the viewer. Please read more about them here: https://webgi.xyz/docs/api/classes/Viewer_Editor_Templates.CoreViewerApp#initialize
 		await viewport.initialize({ ground: false});
     
-		(viewport.getPlugin(LoadingScreenPlugin as any)! as any).showFileNames = false;
+		(viewport.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).showFileNames = false;
+		(viewport.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).filesElement.style.display = "none";
 		viewport.setEnvironmentMap("https://demo-assets.pixotronics.com/pixo/hdr/gem_2.hdr");
 		const light = new DirectionalLight(0xffffff, 2.5);
 		light.position.set(1, 1, 1);

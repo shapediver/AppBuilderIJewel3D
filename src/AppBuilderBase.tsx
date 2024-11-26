@@ -13,9 +13,10 @@ import NotificationWrapper from "shared/components/ui/NotificationWrapper";
 import { SessionUpdateCallbackHandler } from "shared/hooks/shapediver/viewer/useSessionUpdateCallback";
 import { useViewportId } from "shared/hooks/shapediver/viewer/useViewportId";
 import { useShapeDiverStoreSession } from "shared/store/useShapeDiverStoreSession";
-import { CoreViewerApp } from "webgi";
+import { CoreViewerApp, LoadingScreenPlugin } from "webgi";
 import { useWebGiStoreViewport } from "webgi/store/webgiViewportStore";
 import { processMaterialDatabase, processOutputs } from "webgi/utils/webGiProcessingUtils";
+import { addListener, EventResponseMapping, EVENTTYPE_TASK, IEvent, removeListener, TASK_TYPE } from "@shapediver/viewer.session";
 
 console.log(`ShapeDiver App Builder SDK v${packagejson.version}`);
 
@@ -39,10 +40,36 @@ export default function AppBuilderBase() {
 
 	useEffect(() => {
 		viewportRef.current = viewport;
+		if(!viewport) return;
+
+		const eventListenerTokenTaskStart = addListener(EVENTTYPE_TASK.TASK_START, (e: IEvent) => {
+			const event = e as EventResponseMapping[EVENTTYPE_TASK.TASK_START];
+			if(event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				(viewportRef.current!.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).show();
+			}
+		});
+		const eventListenerTokenTaskEnd = addListener(EVENTTYPE_TASK.TASK_END, (e: IEvent) => {
+			const event = e as EventResponseMapping[EVENTTYPE_TASK.TASK_END];
+			if(event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				(viewportRef.current!.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).hide();
+			}
+		});
+		const eventListenerTokenTaskCancel = addListener(EVENTTYPE_TASK.TASK_CANCEL, (e: IEvent) => {
+			const event = e as EventResponseMapping[EVENTTYPE_TASK.TASK_CANCEL];
+			if(event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				(viewportRef.current!.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).hide();
+			}
+		});
 
 		Object.values(sessions).forEach(sessionApi => {
 			if (sessionApi.updateCallback) sessionApi.updateCallback(sessionApi.node, sessionApi.node);
 		});
+
+		return () => {
+			removeListener(eventListenerTokenTaskStart);
+			removeListener(eventListenerTokenTaskEnd);
+			removeListener(eventListenerTokenTaskCancel);
+		};
 	}, [viewport]);
 
 	const callback = useCallback((newNode?: ShapeDiverViewerSession.ITreeNode) => {
