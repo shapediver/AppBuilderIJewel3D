@@ -7,6 +7,7 @@ const _models: Record<string, IModel[][]> = {};
 let _loadedOutputVersions: { [key: string]: string } = {};
 let _dynamicMaterialDatabase: { [key: string]: unknown } = {};
 let _loadedMaterialOutputVersion: string | undefined;
+let _initialFitToView = true;
 
 export const processMaterialDatabase = async (
 	sessionApi: ISessionApi
@@ -44,6 +45,9 @@ export const processOutputs = async (
 	viewport: CoreViewerApp | undefined,
 	sessionApi: ISessionApi
 ) => {
+	const parameters = new URLSearchParams(window.location.search);
+	const zoomTo = parameters.get("webgiZoomTo");
+
 	// iterate over all other outputs
 	for (const outputId in sessionApi.outputs) {
 		const outputApi = sessionApi.outputs[outputId];
@@ -62,7 +66,7 @@ export const processOutputs = async (
 			switch (item.format) {
 			case "gltf":
 			case "glb":
-				loadGlbContent(viewport, outputApi.name, outputApi.uid, item, i);
+				await loadGlbContent(viewport, outputApi.name, outputApi.uid, item, i);
 			}
 		}
 
@@ -70,6 +74,10 @@ export const processOutputs = async (
 		_loadedOutputVersions[outputId] = outputApi.version;
 	}
 
+	if((_initialFitToView && viewport) || (viewport && zoomTo === "true")) {
+		viewport.fitToView();
+		_initialFitToView = false;
+	}
 };
 
 /**
@@ -112,8 +120,6 @@ const loadGlbContent = async (
 
 	// // apply the material
 	await applyMaterial(viewport, ms);
-
-	return viewport.fitToView();
 };
 
 const applyMaterial = async (viewport: CoreViewerApp, ms: IModel) => {
