@@ -87,8 +87,8 @@ dependencies:
     specifier: ^10.0.0
     version: 10.0.0
   webgi:
-    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.19.tgz
-    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.19.tgz'
+    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz
+    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz'
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^10.0.0
     version: 10.0.0
   '@types/webgi':
-    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.19.tgz
-    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.19.tgz'
+    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz
+    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz'
   '@typescript-eslint/eslint-plugin':
     specifier: ^8.6.0
     version: 8.14.0(@typescript-eslint/parser@8.14.0)(eslint@8.57.1)(typescript@5.6.3)
@@ -14808,10 +14808,10 @@ packages:
       lil-gui: 0.17.0
     dev: false
 
-  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.19.tgz':
-    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.19.tgz}
+  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz':
+    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz}
     name: webgi
-    version: 0.9.19
+    version: 0.9.21
     dependencies:
       '@types/three': '@github.com/repalash/three-ts-types/releases/download/v0.153.1002/package.tgz'
       '@types/webxr': 0.5.20
@@ -14819,8 +14819,8 @@ packages:
       ts-browser-helpers: 0.14.2
     dev: false
 
-  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.19.tgz':
-    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.19.tgz}
+  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz':
+    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz}
     name: '@types/webgi'
-    version: 0.9.19
+    version: 0.9.21
     dev: true

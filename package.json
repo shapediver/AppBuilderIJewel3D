@@ -1,6 +1,6 @@
 {
-  "name": "shapediver-app-builder-webgi",
-  "version": "0.0.3",
+  "name": "shapediver-app-builder-ijewel3d",
+  "version": "0.0.4",
   "private": true,
   "type": "module",
   "homepage": "./",
@@ -48,7 +48,8 @@
     "publish-appbuilder-latest": "scripts/build-appbuilder.sh latest 1",
     "build-appbuilder-platform": "scripts/build-appbuilder-platform.sh $npm_package_version",
     "publish-appbuilder-platform": "scripts/build-appbuilder-platform.sh $npm_package_version 1",
-    "publish-appbuilder-platform-latest": "scripts/build-appbuilder-platform.sh latest 1"
+    "publish-appbuilder-platform-latest": "scripts/build-appbuilder-platform.sh latest 1",
+    "publish-all": "npm run publish-appbuilder && npm run publish-appbuilder-platform && npm run publish-appbuilder-latest && npm run publish-appbuilder-platform-latest"
   },
   "eslintConfig": {
     "extends": [

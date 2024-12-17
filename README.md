@@ -1,18 +1,18 @@
-# ShapeDiver App Builder - WebGi Version
+# ShapeDiver App Builder - iJewel3D Version
 
-This repository contains the code of the single page application (SPA) which serves as the frontend of [ShapeDiver App Builder](https://help.shapediver.com/doc/shapediver-app-builder) in a special version which uses [WebGi](https://webgi.xyz/). 
+This repository contains the code of the single page application (SPA) which serves as the frontend of [ShapeDiver App Builder](https://help.shapediver.com/doc/shapediver-app-builder) in a special version which uses [iJewel3D](https://www.ijewel3d.com/). 
 
 > [!NOTE] 
 > You can find the latest deployed version of this code here:
->   * Anonymous access (used for embedding of App Builder): [https://appbuilder.shapediver.com/v1/webgi/latest/](https://appbuilder.shapediver.com/v1/webgi/latest/)
->   * In-platform access (requires you to be logged in on the ShapeDiver platform): [https://www.shapediver.com/app/builder/v1/webgi/latest/](https://www.shapediver.com/app/builder/v1/webgi/latest/)
+>   * Anonymous access (used for embedding of App Builder): [https://appbuilder.shapediver.com/v1/ijewel3d/latest/](https://appbuilder.shapediver.com/v1/ijewel3d/latest/)
+>   * In-platform access (requires you to be logged in on the ShapeDiver platform): [https://www.shapediver.com/app/builder/v1/ijewel3d/latest/](https://www.shapediver.com/app/builder/v1/ijewel3d/latest/)
 >
 > Click one of these links to see instructions on how to load your model.
 > 
 > Specific versions of the App Builder can be accessed by replacing `latest` with a version string.  
 >
 > Example:
->   * [https://appbuilder.shapediver.com/v1/webgi/0.3.0-beta.31/](https://appbuilder.shapediver.com/v1/webgi/0.3.0-beta.31/)
+>   * [https://appbuilder.shapediver.com/v1/ijewel3d/0.3.0-beta.31/](https://appbuilder.shapediver.com/v1/ijewel3d/0.3.0-beta.31/)
 
 ## What is ShapeDiver?
 
@@ -28,20 +28,18 @@ Highlights of the App Builder SDK:
   * Easy to be extended by further types of widgets etc
   * Great starting point for custom web apps using ShapeDiver and React
 
-## What is WebGi?
+## What is iJewel3D?
 
-[WebGi](https://webgi.xyz/) is a JavaScript library that allows developers to embed high-fidelity, interactive 3D graphics into web applications. It simplifies the integration of 3D models into websites, enhancing user experience with photorealistic visuals and smooth interactivity. Built on top of [three.js](https://threejs.org/), WebGi ensures efficient and cross-platform rendering of 3D content across different devices and browsers. 
+[iJewel3D](https://www.ijewel3d.com/) is a 3D jewelry design software tailored for the jewelry industry. It allows jewelers, designers, and manufacturers to create intricate, high-quality jewelry designs using advanced CAD (Computer-Aided Design) tools. The software is known for its robust features that facilitate the modeling, visualization, and customization of jewelry pieces in three dimensions.
 
-WebGi is developed by [iJewel3d](https://iJewel3d.com/) (formerly known as Pixotronics). 
-
-## Why combine ShapeDiver with WebGi?
+## Why combine ShapeDiver with iJewel3D?
 
 ShapeDiver provides a multi-purpose 3D Viewer that offers extensive features for building interactive 3D configurators and web apps. For a complete overview of the ShapeDiver 3D Viewer, please refer to its [documentation](https://help.shapediver.com/doc/viewer). 
-Since the ShapeDiver 3D Viewer does not explicitly focus on rendering jewelry, and WebGi provides excellent results, we decided to provide this integration. Note that using WebGi with ShapeDiver requires a separate license. Please [contact us](https://www.shapediver.com/contact) for details. 
+Since the ShapeDiver 3D Viewer does not explicitly focus on rendering jewelry, and iJewel3D provides excellent results, we decided to provide this integration. Note that using iJewel3D with ShapeDiver requires a separate license. Please [contact us](https://www.shapediver.com/contact) for details. 
 
 ## Materials
 
-The material definitions used by ShapeDiver and WebGi are similar but different. Material properties assigned to geometry using ShapeDiver's material components in Grasshopper can not be used to define WebGi materials directly. Therefore this 
+The material definitions used by ShapeDiver and iJewel3D are similar but different. Material properties assigned to geometry using ShapeDiver's material components in Grasshopper can not be used to define iJewel3D materials directly. Therefore this 
 integration uses the following approach to assign materials to objects by material **name**: 
 
 #### 1. Assign material names in Grasshopper
@@ -51,27 +49,27 @@ integration uses the following approach to assign materials to objects by materi
 
 The display component saves the geometry, including its material assignments, to a glTF file, which is exposed on the [Geometry Backend API](https://help.shapediver.com/doc/understanding-the-geometry-backend-api) and loaded by the headless ShapeDiver 3D Viewer. 
 
-#### 2. Use WebGi materials from a database
-The [updateCallback](https://viewer.shapediver.com/v3/latest/api/interfaces/ISessionApi.html#updateCallback) of the session assigns WebGi materials to geometric objects based on the names of the materials you assigned to the objects in Grasshopper. For each object, it does the following: 
+#### 2. Use iJewel3D materials from a database
+The [updateCallback](https://viewer.shapediver.com/v3/latest/api/interfaces/ISessionApi.html#updateCallback) of the session assigns iJewel3D materials to geometric objects based on the names of the materials you assigned to the objects in Grasshopper. For each object, it does the following: 
 
-  * Check if the object is assigned to a material. If not, WebGi renders the objects using a default material.
+  * Check if the object is assigned to a material. If not, iJewel3D renders the objects using a default material.
   * Check if the object's material name is contained in the *dynamic material database*. If so, assign the material. 
   * Check if the object's material name is contained in the *static material database*. If so, assign the material. 
 
-### How to define WebGi materials
+### How to define iJewel3D materials
 
-You can create WebGi material definitions by using the [iJewel3d playground](https://playground.ijewel3d.com/). Use drag & drop to load a test model in format glTF or 3dm and edit the materials or assign new ones. Once you are done, export the material as a JSON by clicking on `Download pmat` (or `Download dmat` for gem stones) on the right-hand side of the UI while the object is selected. Copy your material definitions into one of the material databases and assign names to them.
+You can create iJewel3D material definitions by using the [iJewel3d playground](https://playground.ijewel3d.com/). Use drag & drop to load a test model in format glTF or 3dm and edit the materials or assign new ones. Once you are done, export the material as a JSON by clicking on `Download pmat` (or `Download dmat` for gem stones) on the right-hand side of the UI while the object is selected. Copy your material definitions into one of the material databases and assign names to them.
 
 ### Static material database
-The static material database allows to define materials statically, as part of the web application. You can find an example in [staticMaterialDatabase.ts](src\webgi\utils\staticMaterialDatabase.ts). The static material database is a dictionary mapping material names to WebGi material definitions.
+The static material database allows to define materials statically, as part of the web application. You can find an example in [staticMaterialDatabase.ts](src\webgi\utils\staticMaterialDatabase.ts). The static material database is a dictionary mapping material names to iJewel3D material definitions.
 
 ### Dynamic material database
-Optionally you can define a dynamic material database using your Grasshopper model. An example can be found in this Grasshopper model: [materials-json-test.ghx](Grasshopper/materials-json-test.ghx). The dynamic material database is a JSON dictionary mapping material names to WebGi material definitions. 
+Optionally you can define a dynamic material database using your Grasshopper model. An example can be found in this Grasshopper model: [materials-json-test.ghx](Grasshopper/materials-json-test.ghx). The dynamic material database is a JSON dictionary mapping material names to iJewel3D material definitions. 
 
 
 ### Notes about rendering diamonds
 
-WebGi offers caching and optimization possibilities that support rendering models using many gemstones. The caching happens by diamond material name. You can read more about this [here](https://webgi.xyz/docs/industries/jewellery#cachekey-and-normalmapres). These are the most important takeaways: 
+iJewel3D offers caching and optimization possibilities that support rendering models using many gemstones. The caching happens by diamond material name. You can read more about this [here](https://webgi.xyz/docs/industries/jewellery#cachekey-and-normalmapres). These are the most important takeaways: 
 
   * Use the same diamond material name for stones sharing the same geometry, even if they are placed in different locations of the scene. 
   * Use different material names for stones that are different from each other.

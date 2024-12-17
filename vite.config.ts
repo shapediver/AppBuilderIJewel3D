@@ -49,7 +49,7 @@ export default defineConfig({
 					shapediverViewerMisc: [
 						"@shapediver/viewer.utils.mime-type",
 					],
-					webGi: [
+					ijewel3d: [
 						"webgi"
 					],
 					utils: ["immer", "zustand", "zod", "uuid", "gl-matrix"],
