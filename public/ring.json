@@ -1,0 +1,12 @@
+{
+    "version": "1.0",
+    "sessions": [
+        {
+            "id": "default",
+            "_description": "Ring",
+            "_slug": "ijewel3d-ring-shopify",
+            "ticket": "bdbc405e2f901aade86937e11f7cc88d02795acf76baf31fa33b05f28ff708dc6da402b1324997139ef2023b2d99665e9241dbb1cb5fec79235cb52b8c1aa891c788689ecce3dbdd90e748a8ef4eb6813c71ae028da596ed1384f96a4b58e59a1324df13f5fc68-1ac393f7277d6698d6d65d0ef1be82c8",
+            "modelViewUrl": "https://sddev2.eu-central-1.shapediver.com"
+        }
+    ]
+}
