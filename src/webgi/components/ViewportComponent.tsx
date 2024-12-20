@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { MantineThemeComponent, useComputedColorScheme, useProps } from "@mantine/core";
 import { ViewportCreateDto } from "../store/webgiViewportStore";
 import { useViewport } from "../hooks/useViewport";
@@ -62,7 +62,33 @@ export default function ViewportComponent(props: Props) {
 	if (!_props.branding) 
 		_props.branding = brandingProps[scheme];
 
-	const { canvasRef, error } = useViewport(_props);
+	const { viewport, canvasRef, error } = useViewport(_props);
+
+	useEffect(() => {
+		// Ensure the element is available
+		if (!canvasRef.current || !viewport) return;
+
+		const handleResize = (entries: ResizeObserverEntry[]) => {
+			for (const entry of entries) {
+				if (entry.target === canvasRef.current) {
+					// The canvas has been resized
+					// You can do any additional logic here
+					console.debug("Canvas resized:", entry.contentRect);
+					viewport.fitToView();
+				}
+			}
+		};
+
+		// Create a new ResizeObserver instance
+		const observer = new ResizeObserver(handleResize);
+		observer.observe(canvasRef.current);
+
+		// Clean up when the component unmounts or ref changes
+		return () => {
+			observer.disconnect();
+		};
+	}, [viewport, canvasRef]);
+	
 
 	return (
 		error ? <AlertPage title="Error">{error.message}</AlertPage> :
