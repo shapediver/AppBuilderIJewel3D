@@ -87,8 +87,8 @@ dependencies:
     specifier: ^10.0.0
     version: 10.0.0
   webgi:
-    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz
-    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz'
+    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22-rc.1.tgz
+    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22-rc.1.tgz'
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -3295,32 +3295,32 @@ packages:
     dev: false
 
   /@shapediver/api.geometry-api-dto-v2@1.11.0:
-    resolution: {integrity: sha512-ZFnXknTdas5RLcASxgcJdUfgFqDDh+28HX+rgZm7Ix3wF96Ldv+rXjXUgAzknHXSCiS0nJ2qchRHWtKcKKbRRw==, tarball: https://registry.npmjs.org/@shapediver/api.geometry-api-dto-v2/-/api.geometry-api-dto-v2-1.11.0.tgz}
+    resolution: {integrity: sha512-ZFnXknTdas5RLcASxgcJdUfgFqDDh+28HX+rgZm7Ix3wF96Ldv+rXjXUgAzknHXSCiS0nJ2qchRHWtKcKKbRRw==}
     dev: false
 
   /@shapediver/api.geometry-api-dto-v2@1.23.0:
-    resolution: {integrity: sha512-mELsODkkiqV5RGxM0EbdkTDTcA5K2fowsb205CD3GP91wuQaOSJLTHHFqN/UjCnUmsTheKvtN/Vlwmuq2TjkdQ==, tarball: https://registry.npmjs.org/@shapediver/api.geometry-api-dto-v2/-/api.geometry-api-dto-v2-1.23.0.tgz}
+    resolution: {integrity: sha512-mELsODkkiqV5RGxM0EbdkTDTcA5K2fowsb205CD3GP91wuQaOSJLTHHFqN/UjCnUmsTheKvtN/Vlwmuq2TjkdQ==}
 
   /@shapediver/api.geometry-api-dto-v2@1.25.0:
-    resolution: {integrity: sha512-Qa51ZmT1Bdrkhwqy32x5mUGAImPAJ3xxP50QYaP3F5/nfvp1qNcM+5iYLhCsyEEcnQOmVn4He0VpLwicp2Uajw==, tarball: https://registry.npmjs.org/@shapediver/api.geometry-api-dto-v2/-/api.geometry-api-dto-v2-1.25.0.tgz}
+    resolution: {integrity: sha512-Qa51ZmT1Bdrkhwqy32x5mUGAImPAJ3xxP50QYaP3F5/nfvp1qNcM+5iYLhCsyEEcnQOmVn4He0VpLwicp2Uajw==}
     dev: false
 
   /@shapediver/api.platform-api-dto-v1@2.27.4:
-    resolution: {integrity: sha512-nzt6/XoxShoJvomW5sI4Z4h8i/1RrkF6QOcqml/k0mgz0tqA9LDuuQ4Q7T6nfuay4Q01LB2HJM12BMnFcNEtgQ==, tarball: https://registry.npmjs.org/@shapediver/api.platform-api-dto-v1/-/api.platform-api-dto-v1-2.27.4.tgz}
+    resolution: {integrity: sha512-nzt6/XoxShoJvomW5sI4Z4h8i/1RrkF6QOcqml/k0mgz0tqA9LDuuQ4Q7T6nfuay4Q01LB2HJM12BMnFcNEtgQ==}
     dependencies:
       '@types/q': 1.5.8
       chargebee-typescript: 2.16.0
     dev: false
 
   /@shapediver/sdk.geometry-api-sdk-core@1.5.0:
-    resolution: {integrity: sha512-REwRj/kj4SquLGbvjhm64kWrB4AgxGnKx2g8HQWA8BsZi/sYKgtJIyV6rWckvKy/gV9osz6Uoigwsc6k2tL1cA==, tarball: https://registry.npmjs.org/@shapediver/sdk.geometry-api-sdk-core/-/sdk.geometry-api-sdk-core-1.5.0.tgz}
+    resolution: {integrity: sha512-REwRj/kj4SquLGbvjhm64kWrB4AgxGnKx2g8HQWA8BsZi/sYKgtJIyV6rWckvKy/gV9osz6Uoigwsc6k2tL1cA==}
     dependencies:
       axios: 1.7.7
     transitivePeerDependencies:
       - debug
 
   /@shapediver/sdk.geometry-api-sdk-v2@1.12.2:
-    resolution: {integrity: sha512-CF9L1N5QFlbHvKKBcq/5L7MZWxZTAitcFfkOHTI6voogZxWBBT0EoLvwsbeHLTt1/rtkVVXG4anJLTCCEHkLKw==, tarball: https://registry.npmjs.org/@shapediver/sdk.geometry-api-sdk-v2/-/sdk.geometry-api-sdk-v2-1.12.2.tgz}
+    resolution: {integrity: sha512-CF9L1N5QFlbHvKKBcq/5L7MZWxZTAitcFfkOHTI6voogZxWBBT0EoLvwsbeHLTt1/rtkVVXG4anJLTCCEHkLKw==}
     dependencies:
       '@shapediver/api.geometry-api-dto-v2': 1.23.0
       '@shapediver/sdk.geometry-api-sdk-core': 1.5.0
@@ -3328,7 +3328,7 @@ packages:
       - debug
 
   /@shapediver/sdk.platform-api-sdk-v1@2.27.4:
-    resolution: {integrity: sha512-Qeb3NekLOeCdYlG+FVibyxRWO4XN3hKa+NMVrWuMctw+3qfJEYabrBmzY3oZ6q1BMvrZbHfCHjFWeiay6Bw04g==, tarball: https://registry.npmjs.org/@shapediver/sdk.platform-api-sdk-v1/-/sdk.platform-api-sdk-v1-2.27.4.tgz}
+    resolution: {integrity: sha512-Qeb3NekLOeCdYlG+FVibyxRWO4XN3hKa+NMVrWuMctw+3qfJEYabrBmzY3oZ6q1BMvrZbHfCHjFWeiay6Bw04g==}
     dependencies:
       '@shapediver/api.geometry-api-dto-v2': 1.11.0
       '@shapediver/api.platform-api-dto-v1': 2.27.4
@@ -3799,7 +3799,7 @@ packages:
       - debug
 
   /@shapediver/viewer.utils.mime-type@1.1.0:
-    resolution: {integrity: sha512-KssQEsaUYiLkMCtbW/vd0CxjmP/8REAUejKL+fvjOrp1Z98MED31wYPeVbOXstFOtrCOdhMGM6mFIN2I4DMzfw==, tarball: https://registry.npmjs.org/@shapediver/viewer.utils.mime-type/-/viewer.utils.mime-type-1.1.0.tgz}
+    resolution: {integrity: sha512-KssQEsaUYiLkMCtbW/vd0CxjmP/8REAUejKL+fvjOrp1Z98MED31wYPeVbOXstFOtrCOdhMGM6mFIN2I4DMzfw==}
 
   /@shapediver/viewer.viewport@3.6.0:
     resolution: {integrity: sha512-EKL9axBOPpvt/ItPjMecg2tqd+o0bd/k8MCsOGNKwXqLgmc1Tu0vONFO/JQr4iBNYtsc1qYQor6eYQAcBa8wzA==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.viewport/3.6.0/fc76787addfdc5a728c4336c5e2bfc5414242109}
@@ -13557,8 +13557,8 @@ packages:
       typescript: 5.6.3
     dev: true
 
-  /ts-browser-helpers@0.14.2:
-    resolution: {integrity: sha512-YAj98YRAl5uKWCBCh4pAHqJK/6tBcstIFa9Z9Q9SQTtzFSKKHo3TVHWdmC/fZxRIhuKthMmDHD5xb+qqb7a9xQ==}
+  /ts-browser-helpers@0.15.0:
+    resolution: {integrity: sha512-VDclsppLvn9IX3b8k9KvCqwIh1sWO5QDWAs2hWsV4yZzmRrBuHANiBWI8y3RK8adM7gVfpy5GetGNnfkfPddzA==}
     dependencies:
       '@types/wicg-file-system-access': 2020.9.8
     dev: false
@@ -14808,15 +14808,15 @@ packages:
       lil-gui: 0.17.0
     dev: false
 
-  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz':
-    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz}
+  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22-rc.1.tgz':
+    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22-rc.1.tgz}
     name: webgi
-    version: 0.9.21
+    version: 0.9.22-rc.1
     dependencies:
       '@types/three': '@github.com/repalash/three-ts-types/releases/download/v0.153.1002/package.tgz'
       '@types/webxr': 0.5.20
       '@types/wicg-file-system-access': 2020.9.8
-      ts-browser-helpers: 0.14.2
+      ts-browser-helpers: 0.15.0
     dev: false
 
   '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz':
