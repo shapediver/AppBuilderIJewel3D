@@ -87,8 +87,8 @@ dependencies:
     specifier: ^10.0.0
     version: 10.0.0
   webgi:
-    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz
-    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz'
+    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22.tgz
+    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22.tgz'
   zod:
     specifier: ^3.23.8
     version: 3.23.8
@@ -140,8 +140,8 @@ devDependencies:
     specifier: ^10.0.0
     version: 10.0.0
   '@types/webgi':
-    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz
-    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz'
+    specifier: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.22.tgz
+    version: '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.22.tgz'
   '@typescript-eslint/eslint-plugin':
     specifier: ^8.6.0
     version: 8.14.0(@typescript-eslint/parser@8.14.0)(eslint@8.57.1)(typescript@5.6.3)
@@ -13557,8 +13557,8 @@ packages:
       typescript: 5.6.3
     dev: true
 
-  /ts-browser-helpers@0.14.2:
-    resolution: {integrity: sha512-YAj98YRAl5uKWCBCh4pAHqJK/6tBcstIFa9Z9Q9SQTtzFSKKHo3TVHWdmC/fZxRIhuKthMmDHD5xb+qqb7a9xQ==}
+  /ts-browser-helpers@0.15.0:
+    resolution: {integrity: sha512-VDclsppLvn9IX3b8k9KvCqwIh1sWO5QDWAs2hWsV4yZzmRrBuHANiBWI8y3RK8adM7gVfpy5GetGNnfkfPddzA==}
     dependencies:
       '@types/wicg-file-system-access': 2020.9.8
     dev: false
@@ -14808,19 +14808,19 @@ packages:
       lil-gui: 0.17.0
     dev: false
 
-  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz':
-    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.21.tgz}
+  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22.tgz':
+    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-0.9.22.tgz}
     name: webgi
-    version: 0.9.21
+    version: 0.9.22
     dependencies:
       '@types/three': '@github.com/repalash/three-ts-types/releases/download/v0.153.1002/package.tgz'
       '@types/webxr': 0.5.20
       '@types/wicg-file-system-access': 2020.9.8
-      ts-browser-helpers: 0.14.2
+      ts-browser-helpers: 0.15.0
     dev: false
 
-  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz':
-    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.21.tgz}
+  '@storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.22.tgz':
+    resolution: {tarball: https://storage.googleapis.com/dist.pixotronics.com/webgi/runtime/bundle-types-0.9.22.tgz}
     name: '@types/webgi'
-    version: 0.9.21
+    version: 0.9.22
     dev: true

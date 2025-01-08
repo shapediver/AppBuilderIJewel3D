@@ -1,6 +1,6 @@
 import { ShapeDiverResponseOutputContent } from "@shapediver/sdk.geometry-api-sdk-v2";
 import { ISessionApi, SessionOutputData } from "@shapediver/viewer.session";
-import { CoreViewerApp, MathUtils, IModel, Mesh } from "webgi";
+import { CoreViewerApp, MathUtils, IModel, Mesh, Sphere } from "webgi";
 import { staticMaterialDatabase } from "./staticMaterialDatabase";
 
 const _models: Record<string, IModel[][]> = {};
@@ -72,6 +72,18 @@ export const processOutputs = async (
 
 		// store the version of the output
 		_loadedOutputVersions[outputId] = outputApi.version;
+	}
+
+	// scale the model to fit the viewport
+	if(viewport) {
+		// get the bounding sphere of the model
+		const modelBounds = viewport.scene.getModelBounds();
+		const boundingSphere = new Sphere();
+		modelBounds.getBoundingSphere(boundingSphere);
+		// set the right scalar for the model root
+		const scale = 4 / boundingSphere.radius;
+		viewport.scene.modelRoot.scale.setScalar(scale);
+		viewport.scene.setDirty();
 	}
 
 	if((_initialFitToView && viewport) || (viewport && zoomTo === "true")) {

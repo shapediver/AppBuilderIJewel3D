@@ -1,4 +1,4 @@
-import { CoreViewerApp, DiamondPlugin, DirectionalLight, LoadingScreenPlugin, mobileAndTabletCheck } from "webgi";
+import { AssetManagerPlugin, CoreViewerApp, DiamondPlugin, DirectionalLight, LoadingScreenPlugin, mobileAndTabletCheck } from "webgi";
 import { ViewportCreateDto } from "webgi/store/webgiViewportStore";
 
 export const createViewport = async (dto: ViewportCreateDto) => {
@@ -11,8 +11,11 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 	});
     
 	if(scene) {
+		viewport.addPluginSync(AssetManagerPlugin as any);
 		await viewport.initialize();
+		viewport.serializePluginsIgnored = [LoadingScreenPlugin.PluginType];
 		await viewport.load(scene);
+		viewport.serializePluginsIgnored = [];
 	} else {
 		// You can choose from various options when initializing the viewer. Please read more about them here: https://webgi.xyz/docs/api/classes/Viewer_Editor_Templates.CoreViewerApp#initialize
 		await viewport.initialize({ ground: false});
