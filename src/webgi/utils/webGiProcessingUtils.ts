@@ -76,12 +76,13 @@ export const processOutputs = async (
 
 	// scale the model to fit the viewport
 	if(viewport) {
+		viewport.scene.modelRoot.scale.setScalar(1);
 		// get the bounding sphere of the model
 		const modelBounds = viewport.scene.getModelBounds();
 		const boundingSphere = new Sphere();
 		modelBounds.getBoundingSphere(boundingSphere);
 		// set the right scalar for the model root
-		const scale = 4 / boundingSphere.radius;
+		const scale = 2 / boundingSphere.radius;
 		viewport.scene.modelRoot.scale.setScalar(scale);
 		viewport.scene.setDirty();
 	}

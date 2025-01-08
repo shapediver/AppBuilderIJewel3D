@@ -5,7 +5,8 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 	const parameters = new URLSearchParams(window.location.search);
 	const scene = parameters.get("webgiScene");
 	const key = parameters.get("webgiDiamondPlugin");
-
+	LoadingScreenPlugin.LS_DEFAULT_LOGO = "";
+	
 	const viewport = new CoreViewerApp({
 		canvas: dto.canvas,
 	});
@@ -13,9 +14,9 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 	if(scene) {
 		viewport.addPluginSync(AssetManagerPlugin as any);
 		await viewport.initialize();
-		viewport.serializePluginsIgnored = [LoadingScreenPlugin.PluginType];
+		(viewport.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).showFileNames = false;
+		(viewport.getPlugin(LoadingScreenPlugin as any)! as LoadingScreenPlugin).filesElement.style.display = "none";
 		await viewport.load(scene);
-		viewport.serializePluginsIgnored = [];
 	} else {
 		// You can choose from various options when initializing the viewer. Please read more about them here: https://webgi.xyz/docs/api/classes/Viewer_Editor_Templates.CoreViewerApp#initialize
 		await viewport.initialize({ ground: false});
