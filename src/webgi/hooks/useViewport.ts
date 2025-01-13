@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useShallow } from "zustand/react/shallow";
 import { useWebGiStoreViewport, ViewportCreateDto } from "../store/webgiViewportStore";
 import { useViewportId } from "shared/hooks/shapediver/viewer/useViewportId";
+import { useShapeDiverStoreViewportAccessFunctions } from "shared/store/useShapeDiverStoreViewportAccessFunctions";
+import { CanvasSnipperPlugin } from "webgi";
 
 /**
  * Hook for creating a viewport of the ShapeDiver 3D Viewer.
@@ -15,6 +17,7 @@ export function useViewport(props: ViewportCreateDto) {
 	const { createViewport, closeViewport } = useWebGiStoreViewport(
 		useShallow(state => ({ createViewport: state.createViewport, closeViewport: state.closeViewport }))
 	);
+	const { addViewportAccessFunctions, removeViewportAccessFunctions } = useShapeDiverStoreViewportAccessFunctions();
 	const [error, setError] = useState<Error | undefined>(undefined);
 	const promiseChain = useRef(Promise.resolve());
 	const canvasRef = useRef(null);
@@ -23,15 +26,33 @@ export function useViewport(props: ViewportCreateDto) {
 
 	useEffect(() => {
 		promiseChain.current = promiseChain.current.then(async () => {
-			await createViewport({
+			const viewport = await createViewport({
 				canvas: canvasRef.current!,
 				..._props
 			}, { onError: setError });
+
+			
+			if(viewport)
+				addViewportAccessFunctions(
+					_props.id, 
+					{
+						getScreenshot: async () => {
+							const snapshot = await (viewport.getPlugin(CanvasSnipperPlugin as any)! as CanvasSnipperPlugin).getDataUrl({
+								mimeType: "image/png",
+								displayPixelRatio: 2, // quality
+								waitForProgressive: true,
+							} as any);
+
+							return snapshot;
+						}
+					}
+				);
 		});
 
 		return () => {
 			promiseChain.current = promiseChain.current
-				.then(() => closeViewport(_props.id));
+				.then(() => closeViewport(_props.id))
+				.then(() => removeViewportAccessFunctions(_props.id));
 		};
 	}, [props.id]);
 
