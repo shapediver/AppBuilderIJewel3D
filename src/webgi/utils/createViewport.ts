@@ -1,4 +1,4 @@
-import { AssetManagerPlugin, CoreViewerApp, DiamondPlugin, DirectionalLight, LoadingScreenPlugin, mobileAndTabletCheck } from "webgi";
+import { AssetManagerPlugin, CanvasSnipperPlugin, CoreViewerApp, DiamondPlugin, DirectionalLight, LoadingScreenPlugin, mobileAndTabletCheck } from "webgi";
 import { ViewportCreateDto } from "webgi/store/webgiViewportStore";
 
 export const createViewport = async (dto: ViewportCreateDto) => {
@@ -10,6 +10,8 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 	const viewport = new CoreViewerApp({
 		canvas: dto.canvas,
 	});
+
+	viewport.addPluginSync(CanvasSnipperPlugin as any);
     
 	if(scene) {
 		viewport.addPluginSync(AssetManagerPlugin as any);
