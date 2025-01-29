@@ -175,6 +175,7 @@ const createMaterialFromDefinition = async (viewer: CoreViewerApp, child: Mesh<a
 		// Regarding the DiamondPlugin, please read more here: https://webgi.xyz/docs/industries/jewellery/index.html
 		const file = new File([JSON.stringify(definition)], child.material.name + ".dmat", { type: "application/json", });
 		const material = await viewer.load({ file: file, path: child.material.name + ".dmat" });
+		material.name = child.material.name;
 		(child as any).setMaterial(material);
 	} else if (materialType === "MeshStandardMaterial2") {
 		const file = new File([JSON.stringify(definition)], child.material.name + ".pmat", { type: "application/json", });
