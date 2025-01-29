@@ -1,10 +1,13 @@
 import React from "react";
-import { MantineThemeComponent, useComputedColorScheme, useProps } from "@mantine/core";
-import { ViewportCreateDto } from "../store/webgiViewportStore";
-import { useViewport } from "../hooks/useViewport";
-import AlertPage from "shared/pages/misc/AlertPage";
+import {
+	MantineThemeComponent,
+	useComputedColorScheme,
+	useProps,
+} from "@mantine/core";
+import {ViewportCreateDto} from "../store/webgiViewportStore";
+import {useViewport} from "../hooks/useViewport";
+import AlertPage from "@AppBuilderShared/pages/misc/AlertPage";
 import classes from "./ViewportComponent.module.css";
-
 
 interface Props extends ViewportCreateDto {
 	children?: React.ReactNode;
@@ -12,17 +15,17 @@ interface Props extends ViewportCreateDto {
 }
 
 interface ViewportBranding {
-	/** 
-	 * Optional URL to a logo to be displayed while the viewport is hidden. 
-	 * A default logo will be used if none is provided. 
+	/**
+	 * Optional URL to a logo to be displayed while the viewport is hidden.
+	 * A default logo will be used if none is provided.
 	 * Supply null to display no logo at all.
 	 */
-	logo?: string | null,
-	/** 
-	 * Optional background color to show while the viewport is hidden, can include alpha channel. 
+	logo?: string | null;
+	/**
+	 * Optional background color to show while the viewport is hidden, can include alpha channel.
 	 * A default color will be used if none is provided.
 	 */
-	backgroundColor?: string
+	backgroundColor?: string;
 }
 
 interface ViewportBrandingProps {
@@ -32,19 +35,25 @@ interface ViewportBrandingProps {
 	light: ViewportBranding;
 }
 
-type ViewportComponentThemePropsType = Partial<Omit<ViewportCreateDto, "canvas" | "id">>;
+type ViewportComponentThemePropsType = Partial<
+	Omit<ViewportCreateDto, "canvas" | "id">
+>;
 
-export function ViewportComponentThemeProps(props: ViewportComponentThemePropsType): MantineThemeComponent {
+export function ViewportComponentThemeProps(
+	props: ViewportComponentThemePropsType,
+): MantineThemeComponent {
 	return {
-		defaultProps: props
+		defaultProps: props,
 	};
 }
 
 type ViewportBrandingThemePropsType = Partial<ViewportBrandingProps>;
 
-export function ViewportBrandingThemeProps(props: ViewportBrandingThemePropsType): MantineThemeComponent {
+export function ViewportBrandingThemeProps(
+	props: ViewportBrandingThemePropsType,
+): MantineThemeComponent {
 	return {
-		defaultProps: props
+		defaultProps: props,
 	};
 }
 
@@ -54,21 +63,25 @@ export function ViewportBrandingThemeProps(props: ViewportBrandingThemePropsType
  * @returns
  */
 export default function ViewportComponent(props: Props) {
-	const { children = <></>, className = "", ...rest } = props;
+	const {children = <></>, className = "", ...rest} = props;
 	const _props = useProps("ViewportComponent", {}, rest);
 
-	const brandingProps = useProps("ViewportBranding", {}, {}) as ViewportBrandingProps;
+	const brandingProps = useProps(
+		"ViewportBranding",
+		{},
+		{},
+	) as ViewportBrandingProps;
 	const scheme = useComputedColorScheme();
-	if (!_props.branding) 
-		_props.branding = brandingProps[scheme];
+	if (!_props.branding) _props.branding = brandingProps[scheme];
 
-	const { canvasRef, error } = useViewport(_props);
+	const {canvasRef, error} = useViewport(_props);
 
-	return (
-		error ? <AlertPage title="Error">{error.message}</AlertPage> :
-			<div className={`${classes.container} ${className}`}>
-				<canvas className={`${classes.canvas}`} ref={canvasRef} />
-				{children}
-			</div>
+	return error ? (
+		<AlertPage title="Error">{error.message}</AlertPage>
+	) : (
+		<div className={`${classes.container} ${className}`}>
+			<canvas className={`${classes.canvas}`} ref={canvasRef} />
+			{children}
+		</div>
 	);
 }

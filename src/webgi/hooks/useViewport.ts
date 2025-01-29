@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { useShallow } from "zustand/react/shallow";
-import { useWebGiStoreViewport, ViewportCreateDto } from "../store/webgiViewportStore";
-import { useViewportId } from "shared/hooks/shapediver/viewer/useViewportId";
-import { useShapeDiverStoreViewportAccessFunctions } from "shared/store/useShapeDiverStoreViewportAccessFunctions";
-import { CanvasSnipperPlugin } from "webgi";
+import {useEffect, useRef, useState} from "react";
+import {useShallow} from "zustand/react/shallow";
+import {
+	useWebGiStoreViewport,
+	ViewportCreateDto,
+} from "../store/webgiViewportStore";
+import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
+import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/store/useShapeDiverStoreViewportAccessFunctions";
+import {CanvasSnipperPlugin} from "webgi";
 
 /**
  * Hook for creating a viewport of the ShapeDiver 3D Viewer.
@@ -14,39 +17,46 @@ import { CanvasSnipperPlugin } from "webgi";
  * @returns
  */
 export function useViewport(props: ViewportCreateDto) {
-	const { createViewport, closeViewport } = useWebGiStoreViewport(
-		useShallow(state => ({ createViewport: state.createViewport, closeViewport: state.closeViewport }))
+	const {createViewport, closeViewport} = useWebGiStoreViewport(
+		useShallow((state) => ({
+			createViewport: state.createViewport,
+			closeViewport: state.closeViewport,
+		})),
 	);
-	const { addViewportAccessFunctions, removeViewportAccessFunctions } = useShapeDiverStoreViewportAccessFunctions();
+	const {addViewportAccessFunctions, removeViewportAccessFunctions} =
+		useShapeDiverStoreViewportAccessFunctions();
 	const [error, setError] = useState<Error | undefined>(undefined);
 	const promiseChain = useRef(Promise.resolve());
 	const canvasRef = useRef(null);
-	const { viewportId: defaultViewportId } = useViewportId();
-	const _props = { ...props, id: props.id ?? defaultViewportId };
+	const {viewportId: defaultViewportId} = useViewportId();
+	const _props = {...props, id: props.id ?? defaultViewportId};
 
 	useEffect(() => {
 		promiseChain.current = promiseChain.current.then(async () => {
-			const viewport = await createViewport({
-				canvas: canvasRef.current!,
-				..._props
-			}, { onError: setError });
+			const viewport = await createViewport(
+				{
+					canvas: canvasRef.current!,
+					..._props,
+				},
+				{onError: setError},
+			);
 
-			
-			if(viewport)
-				addViewportAccessFunctions(
-					_props.id, 
-					{
-						getScreenshot: async () => {
-							const snapshot = await (viewport.getPlugin(CanvasSnipperPlugin as any)! as CanvasSnipperPlugin).getDataUrl({
-								mimeType: "image/png",
-								displayPixelRatio: 2, // quality
-								waitForProgressive: true,
-							} as any);
+			if (viewport)
+				addViewportAccessFunctions(_props.id, {
+					getScreenshot: async () => {
+						const snapshot = await (
+							viewport.getPlugin(
+								CanvasSnipperPlugin as any,
+							)! as CanvasSnipperPlugin
+						).getDataUrl({
+							mimeType: "image/png",
+							displayPixelRatio: 2, // quality
+							waitForProgressive: true,
+						} as any);
 
-							return snapshot;
-						}
-					}
-				);
+						return snapshot;
+					},
+				});
 		});
 
 		return () => {
@@ -58,6 +68,6 @@ export function useViewport(props: ViewportCreateDto) {
 
 	return {
 		canvasRef,
-		error
+		error,
 	};
 }

@@ -5,6 +5,7 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 import svgrPlugin from "vite-plugin-svgr";
 import { resolve } from "path";
 import { CONFIG } from "./sentryconfig";
+import path from "path";
 
 const plugins = [react(), viteTsconfigPaths(), svgrPlugin()];
 if (CONFIG.SENTRY_ORG && CONFIG.SENTRY_PROJECT) {
@@ -65,4 +66,10 @@ export default defineConfig({
 		},
 		sourcemap: true
 	},
+	resolve: {
+		alias: {
+			"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
+			"~": path.resolve(__dirname, "./src"),
+		},
+	}
 });
