@@ -1,12 +1,12 @@
-import React from "react";
+import AlertPage from "@AppBuilderShared/pages/misc/AlertPage";
 import {
 	MantineThemeComponent,
 	useComputedColorScheme,
 	useProps,
 } from "@mantine/core";
-import {ViewportCreateDto} from "../store/webgiViewportStore";
+import React from "react";
 import {useViewport} from "../hooks/useViewport";
-import AlertPage from "@AppBuilderShared/pages/misc/AlertPage";
+import {ViewportCreateDto} from "../store/webgiViewportStore";
 import classes from "./ViewportComponent.module.css";
 
 interface Props extends ViewportCreateDto {

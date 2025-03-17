@@ -1,6 +1,6 @@
 import {ShapeDiverResponseOutputContent} from "@shapediver/sdk.geometry-api-sdk-v2";
 import {ISessionApi, SessionOutputData} from "@shapediver/viewer.session";
-import {CoreViewerApp, MathUtils, IModel, Mesh, Sphere} from "webgi";
+import {CoreViewerApp, IModel, MathUtils, Mesh, Sphere} from "webgi";
 import {staticMaterialDatabase} from "./staticMaterialDatabase";
 
 const _models: Record<string, IModel[][]> = {};

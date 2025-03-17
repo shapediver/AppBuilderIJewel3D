@@ -1,9 +1,9 @@
-import {create} from "zustand";
-import {devtools} from "zustand/middleware";
-import {CoreViewerApp} from "webgi";
 import {devtoolsSettings} from "@AppBuilderShared/store/storeSettings";
 import {IEventTracking} from "@AppBuilderShared/types/eventTracking";
+import {CoreViewerApp} from "webgi";
 import {createViewport} from "webgi/utils/createViewport";
+import {create} from "zustand";
+import {devtools} from "zustand/middleware";
 
 // #region Type aliases (1)
 

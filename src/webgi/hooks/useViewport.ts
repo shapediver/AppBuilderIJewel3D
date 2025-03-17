@@ -1,12 +1,12 @@
+import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
+import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/store/useShapeDiverStoreViewportAccessFunctions";
 import {useEffect, useRef, useState} from "react";
+import {CanvasSnipperPlugin} from "webgi";
 import {useShallow} from "zustand/react/shallow";
 import {
 	useWebGiStoreViewport,
 	ViewportCreateDto,
 } from "../store/webgiViewportStore";
-import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
-import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/store/useShapeDiverStoreViewportAccessFunctions";
-import {CanvasSnipperPlugin} from "webgi";
 
 /**
  * Hook for creating a viewport of the ShapeDiver 3D Viewer.

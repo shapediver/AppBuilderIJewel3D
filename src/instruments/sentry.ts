@@ -1,10 +1,10 @@
-import * as Sentry from "@sentry/react";
-import packagejson from "../../package.json";
-import {CONFIG} from "../../sentryconfig";
 import {
 	getEnvironmentIdentifier,
 	isRunningInPlatform,
 } from "@AppBuilderShared/utils/platform/environment";
+import * as Sentry from "@sentry/react";
+import packagejson from "../../package.json";
+import {CONFIG} from "../../sentryconfig";
 
 export const SENTRY_RELEASE = `${packagejson.version}+${CONFIG.SENTRY_RELEASE_TIMESTAMP}`;
 
