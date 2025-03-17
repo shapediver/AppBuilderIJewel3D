@@ -1,12 +1,4 @@
-import "instruments/sentry";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import AppBuilderBase from "AppBuilderBase";
 import RootComponent from "@AppBuilderShared/components/RootComponent";
-import {PlausibleTracker} from "instruments/plausible";
-import {setupWebVitalsTracking} from "instruments/webvitals";
-import {IComponentContext} from "@AppBuilderShared/types/context/componentcontext";
-import {PARAMETER_TYPE, EXPORT_TYPE} from "@shapediver/viewer.session";
 import ExportButtonComponent from "@AppBuilderShared/components/shapediver/exports/ExportButtonComponent";
 import ParameterBooleanComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterBooleanComponent";
 import ParameterColorComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterColorComponent";
@@ -14,6 +6,14 @@ import ParameterFileInputComponent from "@AppBuilderShared/components/shapediver
 import ParameterSelectComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSelectComponent";
 import ParameterSliderComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSliderComponent";
 import ParameterStringComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterStringComponent";
+import {IComponentContext} from "@AppBuilderShared/types/context/componentcontext";
+import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
+import AppBuilderBase from "AppBuilderBase";
+import {PlausibleTracker} from "instruments/plausible";
+import "instruments/sentry";
+import {setupWebVitalsTracking} from "instruments/webvitals";
+import React from "react";
+import ReactDOM from "react-dom/client";
 import ViewportComponent from "webgi/components/ViewportComponent";
 
 const root = ReactDOM.createRoot(

@@ -3,5 +3,8 @@
 	"useTabs": true,
 	"semi": true,
 	"endOfLine": "auto",
-	"bracketSpacing": false
+	"bracketSpacing": false,
+	"plugins": [
+		"prettier-plugin-organize-imports"
+	]
 }

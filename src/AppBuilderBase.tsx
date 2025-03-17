@@ -1,24 +1,14 @@
-import "@mantine/core/styles.css";
-import "@mantine/notifications/styles.css";
+import NotificationWrapper from "@AppBuilderShared/components/ui/NotificationWrapper";
+import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
+import {useCustomTheme} from "@AppBuilderShared/hooks/ui/useCustomTheme";
+import AppBuilderPage from "@AppBuilderShared/pages/appbuilder/AppBuilderPage";
+import {useShapeDiverStoreSession} from "@AppBuilderShared/store/useShapeDiverStoreSession";
 import "@mantine/charts/styles.css";
 import {MantineProvider} from "@mantine/core";
-import React, {useCallback, useEffect, useRef, useState} from "react";
-import * as ShapeDiverViewerSession from "@shapediver/viewer.session";
-import AppBuilderPage from "@AppBuilderShared/pages/appbuilder/AppBuilderPage";
-import {useCustomTheme} from "@AppBuilderShared/hooks/ui/useCustomTheme";
-import packagejson from "../package.json";
+import "@mantine/core/styles.css";
 import {Notifications} from "@mantine/notifications";
-import "AppBuilderBase.css";
-import NotificationWrapper from "@AppBuilderShared/components/ui/NotificationWrapper";
-import {SessionUpdateCallbackHandler} from "@AppBuilderShared/hooks/shapediver/viewer/useSessionUpdateCallback";
-import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
-import {useShapeDiverStoreSession} from "@AppBuilderShared/store/useShapeDiverStoreSession";
-import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
-import {useWebGiStoreViewport} from "webgi/store/webgiViewportStore";
-import {
-	processMaterialDatabase,
-	processOutputs,
-} from "webgi/utils/webGiProcessingUtils";
+import "@mantine/notifications/styles.css";
+import * as ShapeDiverViewerSession from "@shapediver/viewer.session";
 import {
 	addListener,
 	EventResponseMapping,
@@ -27,6 +17,15 @@ import {
 	removeListener,
 	TASK_TYPE,
 } from "@shapediver/viewer.session";
+import "AppBuilderBase.css";
+import React, {useCallback, useEffect, useRef} from "react";
+import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
+import {useWebGiStoreViewport} from "webgi/store/webgiViewportStore";
+import {
+	processMaterialDatabase,
+	processOutputs,
+} from "webgi/utils/webGiProcessingUtils";
+import packagejson from "../package.json";
 
 console.log(`ShapeDiver App Builder SDK v${packagejson.version}`);
 
@@ -48,6 +47,33 @@ export default function AppBuilderBase() {
 		(store) => store.viewports[viewportId],
 	);
 	const viewportRef = useRef<CoreViewerApp | undefined>(viewport);
+	const sessions = useShapeDiverStoreSession((store) => store.sessions);
+
+	const callback = useCallback(
+		(newNode?: ShapeDiverViewerSession.ITreeNode) => {
+			if (!viewportRef.current || !newNode) return;
+
+			const sessionApiData = newNode.data.find(
+				(data) =>
+					data instanceof ShapeDiverViewerSession.SessionApiData,
+			) as ShapeDiverViewerSession.SessionApiData;
+			if (!sessionApiData) return;
+
+			const sessionApi = sessionApiData.api;
+
+			// process the material database
+			processMaterialDatabase(sessionApi);
+
+			// disable rendering while loading the model
+			if (viewportRef.current) viewportRef.current.renderEnabled = false;
+
+			processOutputs(viewportRef.current, sessionApi);
+
+			// enable rendering again
+			if (viewportRef.current) viewportRef.current.renderEnabled = true;
+		},
+		[],
+	);
 
 	useEffect(() => {
 		viewportRef.current = viewport;
@@ -78,6 +104,10 @@ export default function AppBuilderBase() {
 							LoadingScreenPlugin as any,
 						)! as LoadingScreenPlugin
 					).hide();
+
+					Object.values(sessions).forEach((sessionApi) => {
+						callback(sessionApi.node);
+					});
 				}
 			},
 		);
@@ -97,8 +127,7 @@ export default function AppBuilderBase() {
 		);
 
 		Object.values(sessions).forEach((sessionApi) => {
-			if (sessionApi.updateCallback)
-				sessionApi.updateCallback(sessionApi.node, sessionApi.node);
+			callback(sessionApi.node);
 		});
 
 		return () => {
@@ -108,53 +137,6 @@ export default function AppBuilderBase() {
 		};
 	}, [viewport]);
 
-	const callback = useCallback(
-		(newNode?: ShapeDiverViewerSession.ITreeNode) => {
-			if (!viewportRef.current || !newNode) return;
-
-			const sessionApiData = newNode.data.find(
-				(data) =>
-					data instanceof ShapeDiverViewerSession.SessionApiData,
-			) as ShapeDiverViewerSession.SessionApiData;
-			if (!sessionApiData) return;
-
-			const sessionApi = sessionApiData.api;
-
-			// process the material database
-			processMaterialDatabase(sessionApi);
-
-			// disable rendering while loading the model
-			if (viewportRef.current) viewportRef.current.renderEnabled = false;
-
-			processOutputs(viewportRef.current, sessionApi);
-
-			// enable rendering again
-			if (viewportRef.current) viewportRef.current.renderEnabled = true;
-		},
-		[],
-	);
-
-	const sessions = useShapeDiverStoreSession((store) => store.sessions);
-	const [sessionUpdateCallbackHandlers, setSessionUpdateCallbackHandlers] =
-		useState<JSX.Element[]>([]);
-
-	useEffect(() => {
-		const sessionUpdateCallbackHandlers: JSX.Element[] = [];
-
-		Object.keys(sessions).forEach((sessionId) => {
-			sessionUpdateCallbackHandlers.push(
-				<SessionUpdateCallbackHandler
-					key={sessionId}
-					sessionId={sessionId}
-					callbackId={sessionId}
-					updateCallback={callback}
-				/>,
-			);
-		});
-
-		setSessionUpdateCallbackHandlers(sessionUpdateCallbackHandlers);
-	}, [sessions]);
-
 	return (
 		<MantineProvider
 			defaultColorScheme="auto"
@@ -162,7 +144,6 @@ export default function AppBuilderBase() {
 			theme={theme}
 			cssVariablesResolver={resolver}
 		>
-			{sessionUpdateCallbackHandlers}
 			<Notifications />
 			<NotificationWrapper>
 				<AppBuilderPage />
