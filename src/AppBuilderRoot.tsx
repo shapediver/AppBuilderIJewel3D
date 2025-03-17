@@ -11,6 +11,7 @@ import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
 import AppBuilderBase from "AppBuilderBase";
 import {PlausibleTracker} from "instruments/plausible";
 import "instruments/sentry";
+import {SentryErrorReportingContext} from "instruments/sentry";
 import {setupWebVitalsTracking} from "instruments/webvitals";
 import React from "react";
 import ReactDOM from "react-dom/client";
@@ -88,6 +89,7 @@ root.render(
 	<RootComponent
 		useStrictMode={false}
 		tracker={PlausibleTracker}
+		errorReporting={SentryErrorReportingContext}
 		componentContext={components}
 	>
 		<AppBuilderBase />
