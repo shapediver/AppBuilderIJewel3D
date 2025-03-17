@@ -17,7 +17,7 @@
     "@shapediver/sdk.platform-api-sdk-v1": "^2.27.1",
     "@shapediver/viewer.session": "3.8.15",
     "@shapediver/viewer.utils.mime-type": "~1.1.0",
-    "@tabler/icons-react": "^3.17.0",
+    "@tabler/icons-react": "3.17.0",
     "gl-matrix": "^3.4.3",
     "immer": "^10.1.1",
     "langfuse": "^3.35.3",

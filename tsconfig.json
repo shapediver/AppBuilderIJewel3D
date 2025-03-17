@@ -2,10 +2,17 @@
   "compilerOptions": {
     "target": "es5",
     "baseUrl": "src",
-    "types": ["vite/client", "vite-plugin-svgr/client"],
+    "types": [
+      "vite/client",
+      "vite-plugin-svgr/client"
+    ],
     "paths": {
-      "@AppBuilderShared/*": ["./shared/*"],
-      "~/*": ["./*"]
+      "@AppBuilderShared/*": [
+        "./shared/*"
+      ],
+      "~/*": [
+        "./*"
+      ]
     },
     "lib": [
       "dom",
