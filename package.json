@@ -6,6 +6,7 @@
   "homepage": "./",
   "dependencies": {
     "@emotion/react": "^11.13.3",
+    "@mantine/carousel": "^7.17.2",
     "@mantine/charts": "^7.12.2",
     "@mantine/core": "^7.12.2",
     "@mantine/hooks": "^7.12.2",
@@ -73,12 +74,12 @@
     ]
   },
   "devDependencies": {
-    "@shapediver/viewer.viewport": "3.8.15",
+    "@sentry/cli": "^2.36.6",
     "@shapediver/viewer.features.attribute-visualization": "3.8.15",
     "@shapediver/viewer.features.drawing-tools": "3.8.15",
     "@shapediver/viewer.features.gumball": "3.8.15",
     "@shapediver/viewer.features.interaction": "3.8.15",
-    "@sentry/cli": "^2.36.6",
+    "@shapediver/viewer.viewport": "3.8.15",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
