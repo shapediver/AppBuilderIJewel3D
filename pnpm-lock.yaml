@@ -10,7 +10,7 @@ dependencies:
     version: 11.13.3(@types/react@18.3.12)(react@18.3.1)
   '@mantine/carousel':
     specifier: ^7.17.2
-    version: 7.17.2(@mantine/core@7.14.1)(@mantine/hooks@7.14.1)(embla-carousel-react@8.5.2)(react-dom@18.3.1)(react@18.3.1)
+    version: 7.17.7(@mantine/core@7.14.1)(@mantine/hooks@7.14.1)(embla-carousel-react@8.6.0)(react-dom@18.3.1)(react@18.3.1)
   '@mantine/charts':
     specifier: ^7.12.2
     version: 7.14.1(@mantine/core@7.14.1)(@mantine/hooks@7.14.1)(react-dom@18.3.1)(react@18.3.1)(recharts@2.13.3)
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^2.27.1
     version: 2.27.4
   '@shapediver/viewer.session':
-    specifier: 3.8.15
-    version: 3.8.15
+    specifier: 3.9.9
+    version: 3.9.9
   '@shapediver/viewer.utils.mime-type':
     specifier: ~1.1.0
     version: 1.1.0
@@ -190,6 +190,9 @@ devDependencies:
   vite:
     specifier: ^6.0.7
     version: 6.2.2(@types/node@20.17.6)
+  vite-bundle-analyzer:
+    specifier: ^0.18.1
+    version: 0.18.1
   vite-plugin-svgr:
     specifier: ^4.3.0
     version: 4.3.0(rollup@2.79.2)(typescript@5.6.3)(vite@6.2.2)
@@ -2775,18 +2778,18 @@ packages:
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
     dev: false
 
-  /@mantine/carousel@7.17.2(@mantine/core@7.14.1)(@mantine/hooks@7.14.1)(embla-carousel-react@8.5.2)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-qoBQG5+ASHn3Xl7uyLsTHqCVE0j9QiUDyW0KyGsduQwD8rj55vutf6DmjX1+ofPlVqvwSfQ230tUgF0lcNLnog==}
+  /@mantine/carousel@7.17.7(@mantine/core@7.14.1)(@mantine/hooks@7.14.1)(embla-carousel-react@8.6.0)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-co1T99h7XSCjcv3NYjMRB4eNEfbYEIorJGZxBastrOQM+ldU3iIVb2dJaqwODEroVyrYF9bwGlTr9lXt7AFLHQ==}
     peerDependencies:
-      '@mantine/core': 7.17.2
-      '@mantine/hooks': 7.17.2
+      '@mantine/core': 7.17.7
+      '@mantine/hooks': 7.17.7
       embla-carousel-react: '>=7.0.0'
       react: ^18.x || ^19.x
       react-dom: ^18.x || ^19.x
     dependencies:
       '@mantine/core': 7.14.1(@mantine/hooks@7.14.1)(@types/react@18.3.12)(react-dom@18.3.1)(react@18.3.1)
       '@mantine/hooks': 7.14.1(react@18.3.1)
-      embla-carousel-react: 8.5.2(react@18.3.1)
+      embla-carousel-react: 8.6.0(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     dev: false
@@ -3445,6 +3448,19 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.api.general@3.9.9:
+    resolution: {integrity: sha512-8+p9HtQThB4tCPlqHZloLFGROi0KgwnjxW0fwTvoNTJACet9+0A2D9JoxmrhtKJACwBxUZ6N1TbN+RthehOb+Q==}
+    dependencies:
+      '@shapediver/viewer.data-engine.geometry-engine': 3.9.9
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.creation-control-center.session@3.8.15:
     resolution: {integrity: sha512-mMLuVuCilS3jSWxDdRLq7eFlGi6Zc3+chPa/eROpisg2eHmyo5X2l/GEuPIPpS2ILbwV+87HxxH/o67/h0VRdg==}
@@ -3456,6 +3472,19 @@ packages:
       '@shapediver/viewer.shared.types': 3.8.15
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.creation-control-center.session@3.9.9:
+    resolution: {integrity: sha512-hh1edakwuF+Xkqtgh8LnwLu/8b4KBSC1GV3qx1lz9pXs9W5tvWtYiAHZmcjz37lfSj9rEwHfZzhy0Eywc3WSRA==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.session-engine.session-engine': 3.9.9
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.creation-control-center.viewport@3.8.15:
     resolution: {integrity: sha512-PHOfXhCr9+hZVVPKaPp8LWZ6pX1fhxqWO1aCvXvFkzEoVzHccT0Rn6qIT38aaRPYhdapXglshcOkwCLh1TuRbg==}
@@ -3506,6 +3535,25 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.data-engine.geometry-engine@3.9.9:
+    resolution: {integrity: sha512-osoGG29YfI5Zt0+noA3XEmfzzCo7u3xuWQILSxW3NQJs/gPxNx6x0Vm4W/QKhdwvv3S2ZSPuFyPqIVvB18fB9w==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.data-engine.material-engine': 3.9.9
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.rendering-engine.camera-engine': 3.9.9
+      '@shapediver/viewer.rendering-engine.light-engine': 3.9.9
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      axios: 1.7.7
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.data-engine.gltf-converter@3.8.15:
     resolution: {integrity: sha512-UfS6v68PWFvtS4knNcpwRuNALFbRSM0Q7O5BjbrJ0FJFEI28umhdDRb6wjanI59pLflnfLXA09nS22FzDQZriA==}
@@ -3520,6 +3568,22 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.data-engine.gltf-converter@3.9.9:
+    resolution: {integrity: sha512-eYYBJraBTCx0TRzf46LDPcAQGr6bsvId2SLDxzISNeDBNowz3k/C4DHlDXPyCf+7coZMtoIcf/xwZsilW+C+EA==}
+    dependencies:
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@shapediver/viewer.shared.global-access-objects': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      axios: 1.7.7
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.data-engine.html-element-anchor-engine@3.8.15:
     resolution: {integrity: sha512-R8kJXLBzAuUW0sFMaVPYLeSEZSGvsPRW2URzV2IXBrOZL5une68AUl+2lkftEGmyPCGG8DMnSRFRko9ZVXsC2g==}
@@ -3548,6 +3612,21 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.data-engine.material-engine@3.9.9:
+    resolution: {integrity: sha512-jzNCJtgBy3v5/Gfv11zBWXIyVG0KpdKBQ7CtTW3cUhL1JVLHoFvpKMlwSxczTMeaya6aoa1h/R0Dg6bZO9eGcQ==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      axios: 1.7.7
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.data-engine.sdtf-engine@3.8.15:
     resolution: {integrity: sha512-cCfUSivyj3P4RIzGZcoGsT6mO5KWxNymJmD39UlDbW0ylrzDATNEw8ty6v1kuU7omx7h5lO6T7RP762vX9fdlg==}
@@ -3574,6 +3653,18 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.data-engine.shared-types@3.9.9:
+    resolution: {integrity: sha512-Pnsm4JfHWqt08h/JIHQwc9wFxNKDNKE5EmBgViYlgNp1zZy9+RgLNKPP9wsfecGv0sLhcA/e6LujAwA98fNcNA==}
+    dependencies:
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      axios: 1.7.7
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.data-engine.tag3d-engine@3.8.15:
     resolution: {integrity: sha512-ZIDPixdhSh6mJl1NGmY2ZJLhcuimasmilt7eNV7ZdOIf9b4QjrPmH7F58YaHLY8ZQbRtxlEss56eGKxAHwUWRQ==}
@@ -3686,6 +3777,23 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.rendering-engine.camera-engine@3.9.9:
+    resolution: {integrity: sha512-o6TMYX4xNGBzwJhHwJkJKDt3Sl11Et5NLChF80I6Hjp6zn4ejCgfNn1Yhvn+bhkBXaFlZuXkN4AnSoeF8g6HVw==}
+    dependencies:
+      '@shapediver/viewer.rendering-engine.rendering-engine': 3.9.9
+      '@shapediver/viewer.settings': 1.1.6
+      '@shapediver/viewer.shared.math': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      '@tweenjs/tween.js': 18.6.4
+      detect-it: 4.0.1
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.rendering-engine.canvas-engine@3.8.15:
     resolution: {integrity: sha512-/TYsibWTUVdaWAzbrUXyjfiL6+sqZ8+KAqeOANFT5+VUbtlllnbzNJAnMiy24RKMD/tcvgC2m3t5RkQC7Q/Vwg==}
@@ -3741,6 +3849,20 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.rendering-engine.light-engine@3.9.9:
+    resolution: {integrity: sha512-pHwQAtWoOMJToSGwmfWJqoMTTTUWNzRfqLGM1VlK1lsJ5k5fXeJcqlVBhGiMbaSC57dANN+GSkxfeeohaO3P7Q==}
+    dependencies:
+      '@shapediver/viewer.rendering-engine.rendering-engine': 3.9.9
+      '@shapediver/viewer.settings': 1.1.6
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.rendering-engine.rendering-engine-threejs@3.8.15:
     resolution: {integrity: sha512-Q2PSfJIohg+tQ0LqSKS71foLuAZtI9lM4ie7DkhhihMfyD/lhKitMkeB+QJgnR25bLsINyrVp3QG3PNKxhlbWg==}
@@ -3781,6 +3903,19 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.rendering-engine.rendering-engine@3.9.9:
+    resolution: {integrity: sha512-Cxo+akqFXQTl7nUdLFYO4ykIZgt+NDasZkJV7GvcEDA6UKeSzCHqAAu7kCDcZzNBqv74kO1djsKiXRMRQN9c0g==}
+    dependencies:
+      '@shapediver/viewer.shared.math': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.session-engine.session-engine@3.8.15:
     resolution: {integrity: sha512-PLBrn+lC3/eIOyn0ze18YME/srr5jF5s1qv2gT+kT1mEMJi86KFTvyuyCwlfjBpgmkAgIhvacDJb6+SPKehAYw==}
@@ -3798,6 +3933,25 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.session-engine.session-engine@3.9.9:
+    resolution: {integrity: sha512-8uirJDNEv3HorfMrxWfcWjJuZ46k7GZCUG7hnX12GZstUIb8P23jI+otAj7EE3a+3qAQQnd4QjM2ARHPjFceOA==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.settings': 1.1.6
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@shapediver/viewer.shared.global-access-objects': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+      '@shapediver/viewer.utils.mime-type': 1.1.0
+      axios: 1.7.7
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.session@3.8.15:
     resolution: {integrity: sha512-gBP5vX/MN+CuuRkBq6tgj1cX9hoZWyFx1PPKcNN4Sa7DGOnhdwFj/5KWW1elGenSKNNGgC7L6G/Au392yWZTTw==}
@@ -3814,6 +3968,24 @@ packages:
       '@shapediver/viewer.shared.types': 3.8.15
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.session@3.9.9:
+    resolution: {integrity: sha512-uVLcudm6Pftx/ZeYU63csJrM5XiX5C/8ZlZ+op2p7XHRzZpd0+O30PYiER+3RhtZzxxTMHCnTC8V/qUMn0AVLA==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.api.general': 3.9.9
+      '@shapediver/viewer.creation-control-center.session': 3.9.9
+      '@shapediver/viewer.data-engine.gltf-converter': 3.9.9
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.session-engine.session-engine': 3.9.9
+      '@shapediver/viewer.shared.math': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      '@shapediver/viewer.shared.types': 3.9.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.settings@1.1.6:
     resolution: {integrity: sha512-0gSNUmwBOIrX1rycL3PZXTcsqpomQ9GaEzsgKyqzlhM6RGS+yVlX3BYGQCa5qV1pqxmr3RVjxFcSesdwECaG6g==}
@@ -3823,6 +3995,11 @@ packages:
 
   /@shapediver/viewer.shared.build-data@3.8.15:
     resolution: {integrity: sha512-FaE9QLonGlI/bgv+heupGl/x9YNxmdjTP0flLro8zov8KTj26ypH6TNNeV+phblvLesJqa90nU4paiuMR1lnMg==}
+    dev: true
+
+  /@shapediver/viewer.shared.build-data@3.9.9:
+    resolution: {integrity: sha512-nMcpSKAzmq4FpF3xv15Bn3kqjsVKhZlaDPKGbkjiMDl/17HCMRIfmVZcCg28eDHnUhMjJSbERgNk5rD5kOd3GQ==}
+    dev: false
 
   /@shapediver/viewer.shared.global-access-objects@3.8.15:
     resolution: {integrity: sha512-iFtax5yYswtlz3bay6WdbAllAX277eLdkzHZBOPNqGAR5HSGr7pruK2zyu4Xtnxk724AFjlWfhgPOPmvZU4Zdg==}
@@ -3832,6 +4009,17 @@ packages:
       '@shapediver/viewer.shared.node-tree': 3.8.15
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.shared.global-access-objects@3.9.9:
+    resolution: {integrity: sha512-FMtJv19IlrOFeCxU918tSek6s52BX6Im0e6fLj+yrbkaJl4bD4m1hcgd6WrnF3Kssxsw26GElMtGEQqAPY34EA==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.data-engine.shared-types': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.shared.math@3.8.15:
     resolution: {integrity: sha512-H/1McB584dC7Wfuhu4ZBSLLUJ8lzPZ7xmuGGnM6bGSKQWzY880pQlPGKLqHDA7Rlw1r16VCYabwzwF4IF+kUMg==}
@@ -3840,6 +4028,16 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.shared.math@3.9.9:
+    resolution: {integrity: sha512-pWJJNobpjv5o2m38kAUARP7AzzVGxQeezCqIQtI3aqSg6kUq050KDrMw4eHLAbHV59b81f5xCP2YSXFfgwcOzQ==}
+    dependencies:
+      '@shapediver/viewer.shared.services': 3.9.9
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.shared.node-tree@3.8.15:
     resolution: {integrity: sha512-15+xTVox62/3npxGrxAFOp0ss7IppQcbLac4RSrUDIJRIzKF7WZker0Vg9XLgoZTqR6B+1b6oFr66Amlj2LDcw==}
@@ -3849,6 +4047,17 @@ packages:
       gl-matrix: 3.3.0
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.shared.node-tree@3.9.9:
+    resolution: {integrity: sha512-7PIH4yTQBEMUqt5pjaFObG2d3Faufy1xh9To9jqGzEk9aHXOk3GXw4x80sRQZCDkk34uk6gNTqipHrwp0mMDJw==}
+    dependencies:
+      '@shapediver/viewer.shared.math': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      gl-matrix: 3.3.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.shared.services@3.8.15:
     resolution: {integrity: sha512-XsSmzICCvUvXDAolP+HwJBiAkQNpp9zypy8kJUh/IgU9CiV6dqU+LN66rKJJwFptk3sA9dPvL8g2TNv8ynkLPw==}
@@ -3867,6 +4076,26 @@ packages:
       uuid: 9.0.1
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.shared.services@3.9.9:
+    resolution: {integrity: sha512-tM9TRXaowQTiVPH7rJitIv+kLeyAvby5Dks+hj+xG5IAt1HwISB0rJpH/IOyNrI+1dABTfUwNP44nH3p6EQw1Q==}
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/viewer.settings': 1.1.6
+      '@shapediver/viewer.shared.build-data': 3.9.9
+      '@types/dompurify': 2.4.0
+      '@types/ua-parser-js': 0.7.39
+      '@types/uuid': 9.0.8
+      axios: 1.7.7
+      dompurify: 2.5.7
+      gl-matrix: 3.3.0
+      ua-parser-js: 0.7.39
+      uuid: 9.0.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.shared.types@3.8.15:
     resolution: {integrity: sha512-dQUyk0JHnfaW8KGHbrkHvOd50vi1DKJO8/dXiMPiI5O17FtV1GRD9+DwlTST2My4a4/kFaW5F9KflAoYCaEHUg==}
@@ -3880,6 +4109,21 @@ packages:
       zod: 3.23.8
     transitivePeerDependencies:
       - debug
+    dev: true
+
+  /@shapediver/viewer.shared.types@3.9.9:
+    resolution: {integrity: sha512-G/mQdrmIBNnCiP7xGfJjQYotGHPn0V6F9c5JpiordDaOomGE01hKsr8mQPcY0+C/1yD4S210Uq9EnGUA84YRUQ==}
+    dependencies:
+      '@shapediver/sdk.geometry-api-sdk-v2': 1.12.2
+      '@shapediver/sdk.sdtf-v1': 1.5.3
+      '@shapediver/viewer.shared.math': 3.9.9
+      '@shapediver/viewer.shared.node-tree': 3.9.9
+      '@shapediver/viewer.shared.services': 3.9.9
+      gl-matrix: 3.3.0
+      zod: 3.23.8
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@shapediver/viewer.utils.mime-type@1.1.0:
     resolution: {integrity: sha512-KssQEsaUYiLkMCtbW/vd0CxjmP/8REAUejKL+fvjOrp1Z98MED31wYPeVbOXstFOtrCOdhMGM6mFIN2I4DMzfw==}
@@ -6922,26 +7166,26 @@ packages:
   /electron-to-chromium@1.5.62:
     resolution: {integrity: sha512-t8c+zLmJHa9dJy96yBZRXGQYoiCEnHYgFwn1asvSPZSUdVxnB62A4RASd7k41ytG3ErFBA0TpHlKg9D9SQBmLg==}
 
-  /embla-carousel-react@8.5.2(react@18.3.1):
-    resolution: {integrity: sha512-Tmx+uY3MqseIGdwp0ScyUuxpBgx5jX1f7od4Cm5mDwg/dptEiTKf9xp6tw0lZN2VA9JbnVMl/aikmbc53c6QFA==}
+  /embla-carousel-react@8.6.0(react@18.3.1):
+    resolution: {integrity: sha512-0/PjqU7geVmo6F734pmPqpyHqiM99olvyecY7zdweCw+6tKEXnrE90pBiBbMMU8s5tICemzpQ3hi5EpxzGW+JA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.1 || ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     dependencies:
-      embla-carousel: 8.5.2
-      embla-carousel-reactive-utils: 8.5.2(embla-carousel@8.5.2)
+      embla-carousel: 8.6.0
+      embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)
       react: 18.3.1
     dev: false
 
-  /embla-carousel-reactive-utils@8.5.2(embla-carousel@8.5.2):
-    resolution: {integrity: sha512-QC8/hYSK/pEmqEdU1IO5O+XNc/Ptmmq7uCB44vKplgLKhB/l0+yvYx0+Cv0sF6Ena8Srld5vUErZkT+yTahtDg==}
+  /embla-carousel-reactive-utils@8.6.0(embla-carousel@8.6.0):
+    resolution: {integrity: sha512-fMVUDUEx0/uIEDM0Mz3dHznDhfX+znCCDCeIophYb1QGVM7YThSWX+wz11zlYwWFOr74b4QLGg0hrGPJeG2s4A==}
     peerDependencies:
-      embla-carousel: 8.5.2
+      embla-carousel: 8.6.0
     dependencies:
-      embla-carousel: 8.5.2
+      embla-carousel: 8.6.0
     dev: false
 
-  /embla-carousel@8.5.2:
-    resolution: {integrity: sha512-xQ9oVLrun/eCG/7ru3R+I5bJ7shsD8fFwLEY7yPe27/+fDHCNj0OT5EoG5ZbFyOxOcG6yTwW8oTz/dWyFnyGpg==}
+  /embla-carousel@8.6.0:
+    resolution: {integrity: sha512-SjWyZBHJPbqxHOzckOfo8lHisEaJWmwd23XppYFYVh10bU66/Pn5tkVkbkCMZVdbUE5eTCI2nD8OyIP4Z+uwkA==}
     dev: false
 
   /emittery@0.10.2:
@@ -14347,6 +14591,11 @@ packages:
       d3-time: 3.1.0
       d3-timer: 3.0.1
     dev: false
+
+  /vite-bundle-analyzer@0.18.1:
+    resolution: {integrity: sha512-VQgrvxRuiZuOhM61p85lGpxzWR3TUbgn1LYtCBL09LUVoKy+yoxPwWTq+ihuPqT5L4tp0Jiiaa/dGYIRF8Guag==}
+    hasBin: true
+    dev: true
 
   /vite-plugin-svgr@4.3.0(rollup@2.79.2)(typescript@5.6.3)(vite@6.2.2):
     resolution: {integrity: sha512-Jy9qLB2/PyWklpYy0xk0UU3TlU0t2UMpJXZvf+hWII1lAmRHrOUKi11Uw8N3rxoNk7atZNYO3pR3vI1f7oi+6w==}

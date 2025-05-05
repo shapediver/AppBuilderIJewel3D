@@ -1,19 +1,26 @@
-import { sentryVitePlugin } from "@sentry/vite-plugin";
-import { defineConfig } from "vite";
+import {sentryVitePlugin} from "@sentry/vite-plugin";
 import react from "@vitejs/plugin-react";
-import viteTsconfigPaths from "vite-tsconfig-paths";
+import path, {resolve} from "path";
+import {defineConfig} from "vite";
+import {analyzer} from "vite-bundle-analyzer";
 import svgrPlugin from "vite-plugin-svgr";
-import { resolve } from "path";
-import { CONFIG } from "./sentryconfig";
-import path from "path";
+import viteTsconfigPaths from "vite-tsconfig-paths";
+import {CONFIG} from "./sentryconfig";
 
+const isDev = process.env.NODE_ENV === "development";
 const plugins = [react(), viteTsconfigPaths(), svgrPlugin()];
 if (CONFIG.SENTRY_ORG && CONFIG.SENTRY_PROJECT) {
-	plugins.push(sentryVitePlugin({
-		org: CONFIG.SENTRY_ORG,
-		project: CONFIG.SENTRY_PROJECT,
-		authToken: process.env.SENTRY_AUTH_TOKEN,
-	}));
+	plugins.push(
+		sentryVitePlugin({
+			org: CONFIG.SENTRY_ORG,
+			project: CONFIG.SENTRY_PROJECT,
+			authToken: process.env.SENTRY_AUTH_TOKEN,
+		}),
+	);
+}
+
+if (isDev) {
+	plugins.push(analyzer());
 }
 
 // https://vitejs.dev/config/
@@ -23,10 +30,15 @@ export default defineConfig({
 		open: true,
 		port: 3000,
 	},
+	optimizeDeps: {
+		include: ["@tabler/icons-react"],
+	},
 	build: {
 		rollupOptions: {
 			input: {
 				appbuilder: resolve(__dirname, "index.html"),
+				example: resolve(__dirname, "example.html"),
+				library: resolve(__dirname, "library.html"),
 			},
 			output: {
 				manualChunks: {
@@ -36,9 +48,7 @@ export default defineConfig({
 						"@mantine/hooks",
 						"@mantine/notifications",
 					],
-					mantineCharts: [
-						"@mantine/charts",
-					],
+					mantineCharts: ["@mantine/charts"],
 					shapediver: [
 						"@shapediver/api.geometry-api-dto-v2",
 						"@shapediver/sdk.geometry-api-sdk-v2",
@@ -46,12 +56,13 @@ export default defineConfig({
 					],
 					shapediverViewer: [
 						"@shapediver/viewer.session",
+						"@shapediver/viewer.viewport",
 					],
 					shapediverViewerMisc: [
 						"@shapediver/viewer.utils.mime-type",
-					],
-					ijewel3d: [
-						"webgi"
+						"@shapediver/viewer.features.drawing-tools",
+						"@shapediver/viewer.features.gumball",
+						"@shapediver/viewer.features.interaction",
 					],
 					utils: ["immer", "zustand", "zod", "uuid", "gl-matrix"],
 					markdown: [
@@ -61,16 +72,15 @@ export default defineConfig({
 						"unist-util-visit",
 					],
 					agent: ["openai", "langfuse"],
-					icons: ["@tabler/icons-react"],
-				}
-			}
+				},
+			},
 		},
-		sourcemap: true
+		sourcemap: true,
 	},
 	resolve: {
 		alias: {
 			"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
 			"~": path.resolve(__dirname, "./src"),
 		},
-	}
+	},
 });
