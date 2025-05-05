@@ -37,8 +37,6 @@ export default defineConfig({
 		rollupOptions: {
 			input: {
 				appbuilder: resolve(__dirname, "index.html"),
-				example: resolve(__dirname, "example.html"),
-				library: resolve(__dirname, "library.html"),
 			},
 			output: {
 				manualChunks: {
@@ -54,16 +52,11 @@ export default defineConfig({
 						"@shapediver/sdk.geometry-api-sdk-v2",
 						"@shapediver/sdk.platform-api-sdk-v1",
 					],
-					shapediverViewer: [
-						"@shapediver/viewer.session",
-						"@shapediver/viewer.viewport",
-					],
+					shapediverViewer: ["@shapediver/viewer.session"],
 					shapediverViewerMisc: [
 						"@shapediver/viewer.utils.mime-type",
-						"@shapediver/viewer.features.drawing-tools",
-						"@shapediver/viewer.features.gumball",
-						"@shapediver/viewer.features.interaction",
 					],
+					ijewel3d: ["webgi"],
 					utils: ["immer", "zustand", "zod", "uuid", "gl-matrix"],
 					markdown: [
 						"react-markdown",
@@ -72,6 +65,7 @@ export default defineConfig({
 						"unist-util-visit",
 					],
 					agent: ["openai", "langfuse"],
+					icons: ["@tabler/icons-react"],
 				},
 			},
 		},
