@@ -6,6 +6,7 @@ import ParameterFileInputComponent from "@AppBuilderShared/components/shapediver
 import ParameterSelectComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSelectComponent";
 import ParameterSliderComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSliderComponent";
 import ParameterStringComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterStringComponent";
+import ViewportOverlayWrapper from "@AppBuilderShared/components/shapediver/viewport/ViewportOverlayWrapper";
 import {IComponentContext} from "@AppBuilderShared/types/context/componentcontext";
 import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
 import AppBuilderBase from "AppBuilderBase";
@@ -23,6 +24,7 @@ const root = ReactDOM.createRoot(
 
 const components: IComponentContext = {
 	viewportComponent: {component: ViewportComponent},
+	viewportOverlayWrapper: {component: ViewportOverlayWrapper},
 	parameters: {
 		[PARAMETER_TYPE.INT]: {
 			component: ParameterSliderComponent,
