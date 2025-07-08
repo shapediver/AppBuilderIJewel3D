@@ -1,6 +1,6 @@
 {
   "name": "shapediver-app-builder-ijewel3d",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "private": true,
   "type": "module",
   "homepage": "./",
@@ -16,7 +16,8 @@
     "@shapediver/api.geometry-api-dto-v2": "^1.24.0",
     "@shapediver/sdk.geometry-api-sdk-v2": "^1.12.2",
     "@shapediver/sdk.platform-api-sdk-v1": "^2.27.1",
-    "@shapediver/viewer.session": "3.9.9",
+    "@shapediver/sdk.stargate-sdk-v1": "^1.6.1",
+    "@shapediver/viewer.session": "3.11.10",
     "@shapediver/viewer.utils.mime-type": "~1.1.0",
     "@tabler/icons-react": "3.17.0",
     "gl-matrix": "^3.4.3",
