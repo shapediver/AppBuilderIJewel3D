@@ -1,6 +1,6 @@
 # ShapeDiver App Builder - iJewel3D Version
 
-This repository contains the code of the single page application (SPA) which serves as the frontend of [ShapeDiver App Builder](https://help.shapediver.com/doc/shapediver-app-builder) in a special version which uses [iJewel3D](https://www.ijewel3d.com/). 
+This repository contains the code of the single page application (SPA) which serves as the frontend of [ShapeDiver App Builder](https://help.shapediver.com/doc/shapediver-app-builder) in a special version which uses [iJewel3D](https://www.ijewel3d.com/). Read more about this integration [here](https://help.shapediver.com/doc/shapediver-ijewel3d-integration). 
 
 > [!NOTE] 
 > You can find the latest deployed version of this code here:
