@@ -1,7 +1,7 @@
 import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
 import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/store/useShapeDiverStoreViewportAccessFunctions";
 import {useEffect, useRef, useState} from "react";
-import {CanvasSnipperPlugin} from "webgi";
+import {AssetExporterPlugin, CanvasSnipperPlugin} from "webgi";
 import {useShallow} from "zustand/react/shallow";
 import {
 	useWebGiStoreViewport,
@@ -55,6 +55,16 @@ export function useViewport(props: ViewportCreateDto) {
 						} as any);
 
 						return snapshot;
+					},
+					convertToGlTF: async () => {
+						const exporter = viewport.getPlugin(
+							AssetExporterPlugin as any,
+						)! as AssetExporterPlugin;
+						return (await exporter.exportScene({
+							...exporter.exportOptions,
+							viewerConfig: true, // export with vjson embedded
+							compress: false, // disable draco compression
+						})) as Blob;
 					},
 				});
 		});

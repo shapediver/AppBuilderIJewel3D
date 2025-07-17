@@ -1,4 +1,5 @@
 import {
+	AssetExporterPlugin,
 	AssetManagerPlugin,
 	CanvasSnipperPlugin,
 	CoreViewerApp,
@@ -20,6 +21,9 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 	});
 
 	viewport.addPluginSync(CanvasSnipperPlugin as any);
+	// Add the AssetExporterPlugin to the viewport
+	// This plugin allows you to export the scene as a glTF file
+	await viewport.addPlugin(AssetExporterPlugin);
 
 	if (scene) {
 		viewport.addPluginSync(AssetManagerPlugin as any);
