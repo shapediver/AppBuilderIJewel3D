@@ -76,5 +76,16 @@ export const createViewport = async (dto: ViewportCreateDto) => {
 		window.devicePixelRatio,
 	);
 
+	// Stop event propagation in the viewer to prevent flickery from dragging
+	viewport.container.addEventListener("pointerdown", (e) =>
+		e.stopPropagation(),
+	);
+	viewport.container.addEventListener("touchstart", (e) =>
+		e.stopPropagation(),
+	);
+	viewport.container.addEventListener("mousedown", (e) =>
+		e.stopPropagation(),
+	);
+
 	return viewport;
 };
