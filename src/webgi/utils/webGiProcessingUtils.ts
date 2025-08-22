@@ -1,4 +1,4 @@
-import {ShapeDiverResponseOutputContent} from "@shapediver/sdk.geometry-api-sdk-v2";
+import {ResOutputContent} from "@shapediver/sdk.geometry-api-sdk-v2";
 import {ISessionApi, SessionOutputData} from "@shapediver/viewer.session";
 import {CoreViewerApp, IModel, MathUtils, Mesh, Sphere} from "webgi";
 import {staticMaterialDatabase} from "./staticMaterialDatabase";
@@ -126,7 +126,7 @@ const loadGlbContent = async (
 	viewport: CoreViewerApp | undefined,
 	outputName: string,
 	outputUid: string | undefined,
-	content: ShapeDiverResponseOutputContent,
+	content: ResOutputContent,
 	index: number,
 ): Promise<void> => {
 	if (!viewport) return;
