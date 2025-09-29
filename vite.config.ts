@@ -30,9 +30,6 @@ export default defineConfig({
 		open: true,
 		port: 3000,
 	},
-	optimizeDeps: {
-		include: ["@tabler/icons-react"],
-	},
 	build: {
 		rollupOptions: {
 			input: {
@@ -64,7 +61,6 @@ export default defineConfig({
 						"unist-util-visit",
 					],
 					agent: ["openai", "langfuse"],
-					icons: ["@tabler/icons-react"],
 				},
 			},
 		},
