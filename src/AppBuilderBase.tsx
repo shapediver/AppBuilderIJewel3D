@@ -17,15 +17,15 @@ import {
 	removeListener,
 	TASK_TYPE,
 } from "@shapediver/viewer.session";
-import "AppBuilderBase.css";
-import React, {useCallback, useEffect, useRef} from "react";
-import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
-import {useWebGiStoreViewport} from "webgi/store/webgiViewportStore";
+import {useWebGiStoreViewport} from "@webgi/store/webgiViewportStore";
 import {
 	processMaterialDatabase,
 	processOutputs,
-} from "webgi/utils/webGiProcessingUtils";
+} from "@webgi/utils/webGiProcessingUtils";
+import React, {useCallback, useEffect, useRef} from "react";
+import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import packagejson from "../package.json";
+import "./AppBuilderBase.css";
 
 console.log(`ShapeDiver App Builder SDK v${packagejson.version}`);
 

@@ -1,3 +1,4 @@
+import {ViewportCreateDto} from "@webgi/store/webgiViewportStore";
 import {
 	AssetExporterPlugin,
 	AssetManagerPlugin,
@@ -8,7 +9,6 @@ import {
 	LoadingScreenPlugin,
 	mobileAndTabletCheck,
 } from "webgi";
-import {ViewportCreateDto} from "webgi/store/webgiViewportStore";
 
 export const createViewport = async (dto: ViewportCreateDto) => {
 	const parameters = new URLSearchParams(window.location.search);

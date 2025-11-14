@@ -1,7 +1,7 @@
 import {devtoolsSettings} from "@AppBuilderShared/store/storeSettings";
 import {IEventTracking} from "@AppBuilderShared/types/eventTracking";
+import {createViewport} from "@webgi/utils/createViewport";
 import {CoreViewerApp} from "webgi";
-import {createViewport} from "webgi/utils/createViewport";
 import {create} from "zustand";
 import {devtools} from "zustand/middleware";
 

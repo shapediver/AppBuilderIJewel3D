@@ -4,7 +4,8 @@
     "baseUrl": "src",
     "types": [
       "vite/client",
-      "vite-plugin-svgr/client"
+      "vite-plugin-svgr/client",
+      "node"
     ],
     "paths": {
       "@AppBuilderShared/*": [
@@ -13,7 +14,10 @@
       "~/*": [
         "./*"
       ],
-      "@modelstorage": ["../modelstorage.ts"]
+      "@modelstorage": ["../modelstorage.ts"],
+      "@webgi/*": [
+        "./webgi/*"
+      ]
     },
     "lib": [
       "dom",
@@ -36,6 +40,6 @@
     "strictNullChecks": true,
   },
   "include": [
-    "src"
-  ]
+    "src/AppBuilderRoot.tsx"
+  ],
 }

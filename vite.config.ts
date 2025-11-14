@@ -82,6 +82,7 @@ export default defineConfig({
 			"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
 			"~": path.resolve(__dirname, "./src"),
 			"@modelstorage": modelStoragePath,
+			"@webgi": path.resolve(__dirname, "./src/webgi"),
 		},
 	},
 });
