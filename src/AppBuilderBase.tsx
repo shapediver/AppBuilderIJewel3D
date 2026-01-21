@@ -2,6 +2,7 @@ import NotificationWrapper from "@AppBuilderShared/components/ui/NotificationWra
 import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
 import {useCustomTheme} from "@AppBuilderShared/hooks/ui/useCustomTheme";
 import AppBuilderPage from "@AppBuilderShared/pages/appbuilder/AppBuilderPage";
+import {useShapeDiverStoreProcessManager} from "@AppBuilderShared/store/useShapeDiverStoreProcessManager";
 import {useShapeDiverStoreSession} from "@AppBuilderShared/store/useShapeDiverStoreSession";
 import "@mantine/charts/styles.css";
 import {MantineProvider} from "@mantine/core";
@@ -14,15 +15,21 @@ import {
 	EventResponseMapping,
 	EVENTTYPE_TASK,
 	IEvent,
+	ITreeNode,
 	removeListener,
+	SessionApiData,
+	SessionData,
+	SessionOutputData,
+	TASK_CATEGORY,
 	TASK_TYPE,
 } from "@shapediver/viewer.session";
 import {useWebGiStoreViewport} from "@webgi/store/webgiViewportStore";
 import {
+	processInstances,
 	processMaterialDatabase,
 	processOutputs,
 } from "@webgi/utils/webGiProcessingUtils";
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import packagejson from "../package.json";
 import "./AppBuilderBase.css";
@@ -48,32 +55,75 @@ export default function AppBuilderBase() {
 	);
 	const viewportRef = useRef<CoreViewerApp | undefined>(viewport);
 	const sessions = useShapeDiverStoreSession((store) => store.sessions);
-
-	const callback = useCallback(
-		(newNode?: ShapeDiverViewerSession.ITreeNode) => {
-			if (!viewportRef.current || !newNode) return;
-
-			const sessionApiData = newNode.data.find(
-				(data) =>
-					data instanceof ShapeDiverViewerSession.SessionApiData,
-			) as ShapeDiverViewerSession.SessionApiData;
-			if (!sessionApiData) return;
-
-			const sessionApi = sessionApiData.api;
-
-			// process the material database
-			processMaterialDatabase(sessionApi);
-
-			// disable rendering while loading the model
-			if (viewportRef.current) viewportRef.current.renderEnabled = false;
-
-			processOutputs(viewportRef.current, sessionApi);
-
-			// enable rendering again
-			if (viewportRef.current) viewportRef.current.renderEnabled = true;
-		},
-		[],
+	const sessionsRef = useRef(sessions);
+	const processManagers = useShapeDiverStoreProcessManager(
+		(store) => store.processManagers,
 	);
+
+	const [initialFitToView, setInitialFitToView] = useState(true);
+	const [processingCount, setProcessingCount] = useState(0);
+
+	useEffect(() => {
+		sessionsRef.current = sessions;
+	}, [sessions]);
+
+	useEffect(() => {
+		const parameters = new URLSearchParams(window.location.search);
+		const zoomTo = parameters.get("webgiZoomTo");
+		if (
+			viewportRef.current &&
+			viewportRef.current.renderEnabled === true &&
+			Object.keys(processManagers).length === 0 &&
+			(initialFitToView || zoomTo === "true")
+		) {
+			viewportRef.current.fitToView();
+			setInitialFitToView(false);
+		}
+	}, [
+		processManagers,
+		initialFitToView,
+		processingCount,
+		viewportRef.current?.renderEnabled,
+	]);
+
+	const callback = useCallback(async (newNode?: ITreeNode) => {
+		if (!viewportRef.current || !newNode) return;
+
+		const sessionApiData = newNode.data.find(
+			(data) => data instanceof SessionApiData,
+		) as SessionApiData;
+		if (!sessionApiData) return;
+
+		// disable rendering while loading the model
+		if (viewportRef.current) viewportRef.current.renderEnabled = false;
+
+		const sessionApi = sessionApiData.api;
+
+		// process the material database
+		await processMaterialDatabase(sessionApi);
+
+		// find all SessionOutputData of the outputs
+		const outputs: {[key: string]: SessionOutputData} = {};
+		for (const outputId in sessionApi.outputs) {
+			const output = sessionApi.outputs[outputId];
+			const sessionOutputData = output.node?.data.find(
+				(d) => d instanceof SessionOutputData,
+			) as SessionOutputData;
+			if (sessionOutputData) outputs[outputId] = sessionOutputData;
+		}
+
+		await processOutputs(viewportRef.current, outputs);
+		await processInstances(viewportRef.current, sessionApi);
+
+		// enable rendering again
+		if (viewportRef.current) viewportRef.current.renderEnabled = true;
+
+		newNode.updateCallback = () => {
+			callback(newNode);
+		};
+
+		setProcessingCount((count) => count - 1);
+	}, []);
 
 	useEffect(() => {
 		viewportRef.current = viewport;
@@ -84,7 +134,14 @@ export default function AppBuilderBase() {
 			(e: IEvent) => {
 				const event =
 					e as EventResponseMapping[EVENTTYPE_TASK.TASK_START];
-				if (event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				if (
+					event.type === TASK_TYPE.SESSION_CUSTOMIZATION &&
+					(event.category ===
+						TASK_CATEGORY.SESSION_CUSTOMIZATION.CUSTOMIZE ||
+						event.category ===
+							TASK_CATEGORY.SESSION_CUSTOMIZATION
+								.CUSTOMIZE_VIA_EXPORTS)
+				) {
 					(
 						viewportRef.current!.getPlugin(
 							LoadingScreenPlugin as any,
@@ -98,15 +155,29 @@ export default function AppBuilderBase() {
 			(e: IEvent) => {
 				const event =
 					e as EventResponseMapping[EVENTTYPE_TASK.TASK_END];
-				if (event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				if (
+					event.type === TASK_TYPE.SESSION_CUSTOMIZATION &&
+					(event.category ===
+						TASK_CATEGORY.SESSION_CUSTOMIZATION.CUSTOMIZE ||
+						event.category ===
+							TASK_CATEGORY.SESSION_CUSTOMIZATION
+								.CUSTOMIZE_VIA_EXPORTS)
+				) {
 					(
 						viewportRef.current!.getPlugin(
 							LoadingScreenPlugin as any,
 						)! as LoadingScreenPlugin
 					).hide();
 
-					Object.values(sessions).forEach((sessionApi) => {
-						callback(sessionApi.node);
+					Object.values(sessionsRef.current).forEach((sessionApi) => {
+						const sessionData = sessionApi.node.data.find(
+							(data) => data instanceof SessionData,
+						);
+						if (
+							sessionData !== undefined &&
+							sessionData.instance !== true
+						)
+							callback(sessionApi.node);
 					});
 				}
 			},
@@ -116,7 +187,14 @@ export default function AppBuilderBase() {
 			(e: IEvent) => {
 				const event =
 					e as EventResponseMapping[EVENTTYPE_TASK.TASK_CANCEL];
-				if (event.type === TASK_TYPE.SESSION_CUSTOMIZATION) {
+				if (
+					event.type === TASK_TYPE.SESSION_CUSTOMIZATION &&
+					(event.category ===
+						TASK_CATEGORY.SESSION_CUSTOMIZATION.CUSTOMIZE ||
+						event.category ===
+							TASK_CATEGORY.SESSION_CUSTOMIZATION
+								.CUSTOMIZE_VIA_EXPORTS)
+				) {
 					(
 						viewportRef.current!.getPlugin(
 							LoadingScreenPlugin as any,
@@ -126,8 +204,13 @@ export default function AppBuilderBase() {
 			},
 		);
 
-		Object.values(sessions).forEach((sessionApi) => {
-			callback(sessionApi.node);
+		Object.values(sessionsRef.current).forEach((sessionApi) => {
+			const sessionData = sessionApi.node.data.find(
+				(data) => data instanceof SessionData,
+			);
+
+			if (sessionData !== undefined && sessionData.instance !== true)
+				callback(sessionApi.node);
 		});
 
 		return () => {
