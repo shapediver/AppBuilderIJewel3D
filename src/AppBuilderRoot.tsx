@@ -1,3 +1,4 @@
+import {IComponentContext} from "@AppBuilderLib/shared/lib/ComponentContext.types";
 import RootComponent from "@AppBuilderShared/components/RootComponent";
 import ExportButtonComponent from "@AppBuilderShared/components/shapediver/exports/ExportButtonComponent";
 import ParameterBooleanComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterBooleanComponent";
@@ -7,7 +8,6 @@ import ParameterSelectComponent from "@AppBuilderShared/components/shapediver/pa
 import ParameterSliderComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSliderComponent";
 import ParameterStringComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterStringComponent";
 import ViewportOverlayWrapper from "@AppBuilderShared/components/shapediver/viewport/ViewportOverlayWrapper";
-import {IComponentContext} from "@AppBuilderShared/types/context/componentcontext";
 import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
 import AppBuilderBase from "AppBuilderBase";
 import {PlausibleTracker} from "instruments/plausible";

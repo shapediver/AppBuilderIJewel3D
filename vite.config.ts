@@ -59,10 +59,13 @@ export default defineConfig({
 						"@shapediver/sdk.geometry-api-sdk-v2",
 						"@shapediver/sdk.platform-api-sdk-v1",
 					],
-					shapediverViewer: ["@shapediver/viewer.session"],
+					shapediverViewer: [
+						"@shapediver/viewer.session",
+					],
 					shapediverViewerMisc: [
 						"@shapediver/viewer.utils.mime-type",
 					],
+					stargate: ["@shapediver/sdk.stargate-sdk-v1"],
 					ijewel3d: ["webgi"],
 					utils: ["immer", "zustand", "zod", "uuid", "gl-matrix"],
 					markdown: [
@@ -80,6 +83,7 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
+			"@AppBuilderLib": path.resolve(__dirname, "./src/shared"),
 			"~": path.resolve(__dirname, "./src"),
 			"@modelstorage": modelStoragePath,
 			"@webgi": path.resolve(__dirname, "./src/webgi"),

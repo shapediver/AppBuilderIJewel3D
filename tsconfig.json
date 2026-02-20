@@ -1,45 +1,42 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "baseUrl": "src",
-    "types": [
-      "vite/client",
-      "vite-plugin-svgr/client",
+	"compilerOptions": {
+		"target": "es5",
+		"baseUrl": "src",
+		"types": [
+			"vite/client",
+			"vite-plugin-svgr/client",
       "node"
-    ],
-    "paths": {
-      "@AppBuilderShared/*": [
-        "./shared/*"
-      ],
-      "~/*": [
-        "./*"
-      ],
-      "@modelstorage": ["../modelstorage.ts"],
+		],
+		"paths": {
+			"@AppBuilderShared/*": ["./shared/*"],
+			"@AppBuilderLib/*": ["./shared/*"],
+			"~/*": ["./*"],
+			"@modelstorage": ["../modelstorage.ts"],
       "@webgi/*": [
         "./webgi/*"
       ]
-    },
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react",
-    "strictNullChecks": true,
-  },
-  "include": [
-    "src/AppBuilderRoot.tsx"
-  ],
+		},
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noFallthroughCasesInSwitch": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noEmit": true,
+		"jsx": "react",
+		"strictNullChecks": true
+	},
+	"include": [
+    "src/AppBuilderRoot.tsx",
+	]
 }
