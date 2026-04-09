@@ -150,7 +150,7 @@ deploying_branch=1
 if [ "$branch" == "development" ] || [ "$branch" == "staging" ]; then
     deploying_branch=1
     version=$branch
-    
+
     # And we create a new tag with the name "AppBuilder@branch"
     git tag -fa "AppBuilder@$branch" -m "Release of branch $branch"
     git push origin "AppBuilder@$branch" --force
@@ -167,7 +167,7 @@ elif [[ $branch == "master" ]]; then
         deploying_branch=1
     elif [ $version_type == "version" ]; then
         # Ask if we should increase the "major", "minor" or "patch" version
-        echo "Do you want to increase the major, minor or patch version?" 
+        echo "Do you want to increase the major, minor or patch version?"
         read -p "Enter 'major', 'minor' or 'patch': " version_type
         if [ "$version_type" == "major" ] || [ "$version_type" == "minor" ] || [ "$version_type" == "patch" ]; then
             npm version $version_type --no-git-tag-version --ignore-scripts
@@ -192,7 +192,7 @@ elif [[ $branch == "master" ]]; then
         echo "Unsupported input."
         exit 1
     fi
-else 
+else
     echo "Unsupported branch name."
     exit 1
 fi

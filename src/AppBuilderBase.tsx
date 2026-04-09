@@ -1,15 +1,14 @@
-import NotificationWrapper from "@AppBuilderShared/components/ui/NotificationWrapper";
+import NotificationWrapper from "@AppBuilderLib/features/notifications/ui/NotificationWrapper";
 import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
-import {useCustomTheme} from "@AppBuilderShared/hooks/ui/useCustomTheme";
+import {useCustomTheme} from "@AppBuilderLib/shared/ui/theme/useCustomTheme";
 import AppBuilderPage from "@AppBuilderShared/pages/appbuilder/AppBuilderPage";
-import {useShapeDiverStoreProcessManager} from "@AppBuilderShared/store/useShapeDiverStoreProcessManager";
-import {useShapeDiverStoreSession} from "@AppBuilderShared/store/useShapeDiverStoreSession";
 import "@mantine/charts/styles.css";
 import {MantineProvider} from "@mantine/core";
 import "@mantine/core/styles.css";
 import {Notifications} from "@mantine/notifications";
 import "@mantine/notifications/styles.css";
 import * as ShapeDiverViewerSession from "@shapediver/viewer.session";
+import * as ShapeDiverViewerViewport from "@shapediver/viewer.viewport";
 import {
 	addListener,
 	EventResponseMapping,
@@ -34,17 +33,23 @@ import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import packagejson from "../package.json";
 import "./AppBuilderBase.css";
 
+// log the SDK version directly to the console
+// this is independent of the logger settings within the app
 console.log(`ShapeDiver App Builder SDK v${packagejson.version}`);
 
 declare global {
 	interface Window {
-		SDV: typeof ShapeDiverViewerSession;
+		SDV: typeof ShapeDiverViewerSession & typeof ShapeDiverViewerViewport;
 	}
 }
 
 export default function AppBuilderBase() {
 	useEffect(() => {
-		window.SDV = ShapeDiverViewerSession;
+		window.SDV = Object.assign(
+			{},
+			ShapeDiverViewerSession,
+			ShapeDiverViewerViewport,
+		);
 	}, []);
 
 	const {theme, resolver} = useCustomTheme();

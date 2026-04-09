@@ -175,6 +175,11 @@ Install dependencies:
 
 ```npm i```
 
+Install submodule:
+
+```git submodule init```
+```git submodule update```
+
 Start local development server: 
 
 ```npm run start```
