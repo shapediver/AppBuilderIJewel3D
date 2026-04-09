@@ -1,10 +1,3 @@
-import ExportButtonComponent from "@AppBuilderShared/components/shapediver/exports/ExportButtonComponent";
-import ParameterBooleanComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterBooleanComponent";
-import ParameterColorComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterColorComponent";
-import ParameterFileInputComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterFileInputComponent";
-import ParameterSelectComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSelectComponent";
-import ParameterSliderComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterSliderComponent";
-import ParameterStringComponent from "@AppBuilderShared/components/shapediver/parameter/ParameterStringComponent";
 import ViewportAnchor2d, {
 	ViewportAnchor2dThemeProps,
 } from "@AppBuilderLib/entities/viewport-anchor/ui/ViewportAnchor2d";
@@ -33,6 +26,15 @@ import {SentryErrorReportingContext} from "./instruments/sentry";
 import {
 	ParameterRectangleTransformComponent,
 } from "./shared/entities/parameter/ui";
+import {
+	ParameterBooleanComponent,
+	ParameterColorComponent,
+	ParameterFileInputComponent,
+	ParameterSelectComponent,
+	ParameterSliderComponent,
+	ParameterStringComponent,
+} from "~/shared/entities/parameter";
+import {ExportButtonComponent} from "~/shared/entities/export";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
