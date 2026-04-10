@@ -81,6 +81,11 @@
   },
   "devDependencies": {
     "@feature-sliced/eslint-config": "0.1.1",
+    "@shapediver/viewer.features.attribute-visualization": "3.16.0-rc.43",
+    "@shapediver/viewer.features.drawing-tools": "3.16.0-rc.43",
+    "@shapediver/viewer.features.interaction": "3.16.0-rc.43",
+    "@shapediver/viewer.features.transformation-tools": "3.16.0-rc.43",
+    "@shapediver/viewer.viewport": "3.16.0-rc.43",
     "@sentry/cli": "2.58.4",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/react": "16.3.2",
@@ -133,5 +138,10 @@
       "json",
       "node"
     ]
-  }
+  },
+	"peerDependenciesMeta": {
+		"@shapediver/viewer.features.attribute-visualization": {
+			"optional": true
+		}
+	}
 }
