@@ -23,34 +23,19 @@ import AppBuilderBase from "~/AppBuilderBase";
 import {PlausibleTracker} from "~/instruments/plausible";
 import {setupWebVitalsTracking} from "~/instruments/webvitals";
 import {SentryErrorReportingContext} from "./instruments/sentry";
-import {
-	ParameterRectangleTransformComponent,
-} from "./shared/entities/parameter/ui";
-import {
-	ParameterBooleanComponent,
-	ParameterColorComponent,
-	ParameterFileInputComponent,
-	ParameterSelectComponent,
-	ParameterSliderComponent,
-	ParameterStringComponent,
-} from "~/shared/entities/parameter";
-import {ExportButtonComponent} from "~/shared/entities/export";
+import ExportButtonComponent from "@AppBuilderLib/entities/export/ui/ExportButtonComponent";
+import ParameterBooleanComponent from "@AppBuilderLib/entities/parameter/ui/ParameterBooleanComponent";
+import ParameterColorComponent from "@AppBuilderLib/entities/parameter/ui/ParameterColorComponent";
+import ParameterFileInputComponent from "@AppBuilderLib/entities/parameter/ui/ParameterFileInputComponent";
+import ParameterSelectComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSelectComponent";
+import ParameterSliderComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSliderComponent";
+import ParameterStringComponent from "@AppBuilderLib/entities/parameter/ui/ParameterStringComponent";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
 );
 
 const components: IComponentContext = {
-	viewportAnchors: {
-		[AppBuilderContainerNameType.Anchor2d]: {
-			component: ViewportAnchor2d,
-			themeProps: ViewportAnchor2dThemeProps,
-		},
-		[AppBuilderContainerNameType.Anchor3d]: {
-			component: ViewportAnchor3d,
-			themeProps: ViewportAnchor3dThemeProps,
-		},
-	},
 	viewportComponent: {component: ViewportComponent},
 	viewportOverlayWrapper: {component: ViewportOverlayWrapper},
 	parameters: {
@@ -108,7 +93,7 @@ const components: IComponentContext = {
 				extraBottomPadding: false,
 			},
 			rectangleTransform: {
-				component: ParameterRectangleTransformComponent,
+				component: ParameterStringComponent,
 				extraBottomPadding: false,
 			},
 		},
