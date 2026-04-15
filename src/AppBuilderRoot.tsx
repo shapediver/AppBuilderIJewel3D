@@ -1,14 +1,7 @@
-import ViewportAnchor2d, {
-	ViewportAnchor2dThemeProps,
-} from "@AppBuilderLib/entities/viewport-anchor/ui/ViewportAnchor2d";
-import ViewportAnchor3d, {
-	ViewportAnchor3dThemeProps,
-} from "@AppBuilderLib/entities/viewport-anchor/ui/ViewportAnchor3d";
 import ViewportComponent from "@AppBuilderLib/entities/viewport/ui/ViewportComponent";
 import ViewportOverlayWrapper from "@AppBuilderLib/entities/viewport/ui/ViewportOverlayWrapper";
 import {IComponentContext} from "@AppBuilderLib/features/appbuilder/config/ComponentContext.types";
 import {
-	AppBuilderContainerNameType,
 	isCameraAction,
 } from "@AppBuilderLib/features/appbuilder/config/appbuilder";
 import AppBuilderActionCameraComponent from "@AppBuilderLib/features/appbuilder/ui/AppBuilderActionCameraComponent";
