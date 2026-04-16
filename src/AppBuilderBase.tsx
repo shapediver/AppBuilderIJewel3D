@@ -1,9 +1,6 @@
-import NotificationWrapper from "@AppBuilderShared/components/ui/NotificationWrapper";
-import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
-import {useCustomTheme} from "@AppBuilderShared/hooks/ui/useCustomTheme";
+import NotificationWrapper from "@AppBuilderLib/features/notifications/ui/NotificationWrapper";
+import {useCustomTheme} from "@AppBuilderLib/shared/ui/theme/useCustomTheme";
 import AppBuilderPage from "@AppBuilderShared/pages/appbuilder/AppBuilderPage";
-import {useShapeDiverStoreProcessManager} from "@AppBuilderShared/store/useShapeDiverStoreProcessManager";
-import {useShapeDiverStoreSession} from "@AppBuilderShared/store/useShapeDiverStoreSession";
 import "@mantine/charts/styles.css";
 import {MantineProvider} from "@mantine/core";
 import "@mantine/core/styles.css";
@@ -33,7 +30,12 @@ import React, {useCallback, useEffect, useRef, useState} from "react";
 import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import packagejson from "../package.json";
 import "./AppBuilderBase.css";
+import {useViewportId} from "~/shared/entities/viewport";
+import {useShapeDiverStoreSession} from "~/shared/entities/session";
+import {useShapeDiverStoreProcessManager} from "~/shared/shared/model";
 
+// log the SDK version directly to the console
+// this is independent of the logger settings within the app
 console.log(`ShapeDiver App Builder SDK v${packagejson.version}`);
 
 declare global {

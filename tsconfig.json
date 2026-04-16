@@ -5,16 +5,16 @@
 		"types": [
 			"vite/client",
 			"vite-plugin-svgr/client",
-      "node"
+      		"node"
 		],
 		"paths": {
 			"@AppBuilderShared/*": ["./shared/*"],
 			"@AppBuilderLib/*": ["./shared/*"],
 			"~/*": ["./*"],
 			"@modelstorage": ["../modelstorage.ts"],
-      "@webgi/*": [
-        "./webgi/*"
-      ]
+			"@webgi/*": [
+				"./webgi/*"
+			]
 		},
 		"lib": [
 			"dom",
@@ -37,6 +37,6 @@
 		"strictNullChecks": true
 	},
 	"include": [
-    "src/AppBuilderRoot.tsx",
+    	"src/AppBuilderRoot.tsx",
 	]
 }
