@@ -15,12 +15,12 @@
     "@mantine/notifications": "8.3.14",
     "@sentry/react": "8.55.0",
     "@sentry/vite-plugin": "2.23.1",
-    "@shapediver/sdk.geometry-api-sdk-v2": "3.1.0",
-    "@shapediver/sdk.platform-api-sdk-v1": "2.29.5",
+    "@shapediver/sdk.geometry-api-sdk-v2": "3.4.0",
+    "@shapediver/sdk.platform-api-sdk-v1": "2.29.10",
     "@shapediver/sdk.stargate-sdk-v1": "1.6.2",
-    "@shapediver/viewer.session": "3.16.0-rc.43",
-    "@shapediver/viewer.shared.types": "3.16.0-rc.43",
-    "@shapediver/viewer.shared.global-access-objects": "3.16.0-rc.43",
+    "@shapediver/viewer.session": "3.16.9",
+    "@shapediver/viewer.shared.types": "3.16.9",
+    "@shapediver/viewer.shared.global-access-objects": "3.16.9",
     "@shapediver/viewer.utils.mime-type": "1.1.0",
     "@tanstack/match-sorter-utils": "8.19.4",
     "@tanstack/react-table": "8.21.3",
@@ -42,7 +42,7 @@
     "unist-util-visit": "5.1.0",
     "uuid": "10.0.0",
     "webgi": "https://dist.pixotronics.com/webgi/runtime/bundle-0.12.0.tgz",
-    "zod": "3.25.76",
+    "zod": "4.4.3",
     "zustand": "4.5.7"
   },
   "scripts": {
@@ -134,9 +134,9 @@
       "node"
     ]
   },
-	"pnpm": {
-		"overrides": {
-			"axios": "1.15.2"
-		}
-	}
+  "pnpm": {
+    "overrides": {
+      "axios": "1.15.2"
+    }
+  }
 }
