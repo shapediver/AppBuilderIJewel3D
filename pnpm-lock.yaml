@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  axios: 1.15.2
+
 importers:
 
   .:
@@ -3052,8 +3055,8 @@ packages:
     resolution: {integrity: sha512-BASOg+YwO2C+346x3LZOeoovTIoTrRqEsqMa6fmfAV0P+U9mFr9NsyOEpiYvFjbc64NMrSswhV50WdXzdb/Z5A==}
     engines: {node: '>=4'}
 
-  axios@1.13.5:
-    resolution: {integrity: sha512-cz4ur7Vb0xS4/KUN0tPWe44eqxrIu31me+fbang3ijiNscE129POzipJJA6zniq2C/Z6sJCjMimjS8Lc/GAs8Q==}
+  axios@1.15.2:
+    resolution: {integrity: sha512-wLrXxPtcrPTsNlJmKjkPnNPK2Ihe0hn0wGSaTEiHRPxwjvJwT3hKmXF4dpqxmPO9SoNb2FsYXj/xEo0gHN+D5A==}
 
   axobject-query@4.1.0:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
@@ -6559,6 +6562,10 @@ packages:
 
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+
+  proxy-from-env@2.1.0:
+    resolution: {integrity: sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==}
+    engines: {node: '>=10'}
 
   psl@1.15.0:
     resolution: {integrity: sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w==}
@@ -10176,13 +10183,13 @@ snapshots:
 
   '@shapediver/sdk.geometry-api-sdk-v2@2.10.0':
     dependencies:
-      axios: 1.13.5
+      axios: 1.15.2
     transitivePeerDependencies:
       - debug
 
   '@shapediver/sdk.geometry-api-sdk-v2@3.1.0':
     dependencies:
-      axios: 1.13.5
+      axios: 1.15.2
     transitivePeerDependencies:
       - debug
 
@@ -10190,7 +10197,7 @@ snapshots:
     dependencies:
       '@shapediver/api.platform-api-dto-v1': 2.29.5
       '@shapediver/sdk.geometry-api-sdk-v2': 2.10.0
-      axios: 1.13.5
+      axios: 1.15.2
       jwt-decode: 3.1.2
     transitivePeerDependencies:
       - debug
@@ -10211,7 +10218,7 @@ snapshots:
       '@shapediver/sdk.sdtf-core': 1.7.0
       '@shapediver/sdk.sdtf-geometry': 1.7.0
       '@shapediver/sdk.sdtf-primitives': 1.7.0
-      axios: 1.13.5
+      axios: 1.15.2
       browser-or-node: 3.0.0
     transitivePeerDependencies:
       - debug
@@ -10626,7 +10633,7 @@ snapshots:
       '@shapediver/viewer.shared.types': 3.16.0-rc.43
       '@types/ua-parser-js': 0.7.39
       '@types/uuid': 9.0.8
-      axios: 1.13.5
+      axios: 1.15.2
       dompurify: 3.3.1
       gl-matrix: 3.3.0
       ua-parser-js: 0.7.41
@@ -11800,11 +11807,11 @@ snapshots:
 
   axe-core@4.11.1: {}
 
-  axios@1.13.5:
+  axios@1.15.2:
     dependencies:
       follow-redirects: 1.15.11
       form-data: 4.0.5
-      proxy-from-env: 1.1.0
+      proxy-from-env: 2.1.0
     transitivePeerDependencies:
       - debug
 
@@ -16239,6 +16246,8 @@ snapshots:
       ipaddr.js: 1.9.1
 
   proxy-from-env@1.1.0: {}
+
+  proxy-from-env@2.1.0: {}
 
   psl@1.15.0:
     dependencies:

@@ -133,5 +133,10 @@
       "json",
       "node"
     ]
-  }
+  },
+	"pnpm": {
+		"overrides": {
+			"axios": "1.15.2"
+		}
+	}
 }
