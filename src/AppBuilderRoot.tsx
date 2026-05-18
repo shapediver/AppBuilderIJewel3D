@@ -1,21 +1,3 @@
-import ViewportComponent from "@AppBuilderLib/entities/viewport/ui/ViewportComponent";
-import ViewportOverlayWrapper from "@AppBuilderLib/entities/viewport/ui/ViewportOverlayWrapper";
-import {IComponentContext} from "@AppBuilderLib/features/appbuilder/config/ComponentContext.types";
-import {
-	isCameraAction,
-} from "@AppBuilderLib/features/appbuilder/config/appbuilder";
-import AppBuilderActionCameraComponent from "@AppBuilderLib/features/appbuilder/ui/AppBuilderActionCameraComponent";
-import RootComponent from "@AppBuilderLib/shared/ui/root/RootComponent";
-import AppBuilderContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderContainerComponent";
-import AppBuilderFallbackContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderFallbackContainerComponent";
-import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
-import "instruments/sentry";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import AppBuilderBase from "~/AppBuilderBase";
-import {PlausibleTracker} from "~/instruments/plausible";
-import {setupWebVitalsTracking} from "~/instruments/webvitals";
-import {SentryErrorReportingContext} from "./instruments/sentry";
 import ExportButtonComponent from "@AppBuilderLib/entities/export/ui/ExportButtonComponent";
 import ParameterBooleanComponent from "@AppBuilderLib/entities/parameter/ui/ParameterBooleanComponent";
 import ParameterColorComponent from "@AppBuilderLib/entities/parameter/ui/ParameterColorComponent";
@@ -23,6 +5,20 @@ import ParameterFileInputComponent from "@AppBuilderLib/entities/parameter/ui/Pa
 import ParameterSelectComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSelectComponent";
 import ParameterSliderComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSliderComponent";
 import ParameterStringComponent from "@AppBuilderLib/entities/parameter/ui/ParameterStringComponent";
+import ViewportOverlayWrapper from "@AppBuilderLib/entities/viewport/ui/ViewportOverlayWrapper";
+import {IComponentContext} from "@AppBuilderLib/features/appbuilder/config/ComponentContext.types";
+import RootComponent from "@AppBuilderLib/shared/ui/root/RootComponent";
+import AppBuilderContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderContainerComponent";
+import AppBuilderFallbackContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderFallbackContainerComponent";
+import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
+import "instruments/sentry";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import ViewportComponent from "webgi/components/ViewportComponent";
+import AppBuilderBase from "~/AppBuilderBase";
+import {PlausibleTracker} from "~/instruments/plausible";
+import {setupWebVitalsTracking} from "~/instruments/webvitals";
+import {SentryErrorReportingContext} from "./instruments/sentry";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
@@ -94,12 +90,6 @@ const components: IComponentContext = {
 	exports: {
 		[EXPORT_TYPE.DOWNLOAD]: {component: ExportButtonComponent},
 		[EXPORT_TYPE.EMAIL]: {component: ExportButtonComponent},
-	},
-	actions: {
-		camera: {
-			isAction: isCameraAction,
-			component: AppBuilderActionCameraComponent,
-		},
 	},
 	containerComponent: AppBuilderContainerComponent,
 	fallbackContainerComponent: AppBuilderFallbackContainerComponent,

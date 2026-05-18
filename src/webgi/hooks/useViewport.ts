@@ -1,5 +1,5 @@
-import {useViewportId} from "@AppBuilderShared/hooks/shapediver/viewer/useViewportId";
-import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/store/useShapeDiverStoreViewportAccessFunctions";
+import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/entities/viewport/model/useShapeDiverStoreViewportAccessFunctions";
+import {useViewportId} from "@AppBuilderShared/entities/viewport/model/useViewportId";
 import {useEffect, useRef, useState} from "react";
 import {AssetExporterPlugin, CanvasSnipperPlugin} from "webgi";
 import {useShallow} from "zustand/react/shallow";
@@ -12,7 +12,6 @@ import {
  * Hook for creating a viewport of the ShapeDiver 3D Viewer.
  * Typically, you want to directly use the {@link ViewportComponent} instead
  * of calling this hook yourself.
- * @see {@link useShapeDiverStoreViewport} to access the API of the viewport.
  * @param props
  * @returns
  */
@@ -43,6 +42,7 @@ export function useViewport(props: ViewportCreateDto) {
 
 			if (viewport)
 				addViewportAccessFunctions(_props.id, {
+					dto: _props,
 					getScreenshot: async () => {
 						const snapshot = await (
 							viewport.getPlugin(
