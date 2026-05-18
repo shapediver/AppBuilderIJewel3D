@@ -28,11 +28,11 @@ import {
 } from "@webgi/utils/webGiProcessingUtils";
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
+import {useShapeDiverStoreSession} from "~/shared/entities/session/model/useShapeDiverStoreSession";
+import {useViewportId} from "~/shared/entities/viewport/model/useViewportId";
+import {useShapeDiverStoreProcessManager} from "~/shared/shared/model/useShapeDiverStoreProcessManager";
 import packagejson from "../package.json";
 import "./AppBuilderBase.css";
-import {useViewportId} from "~/shared/entities/viewport";
-import {useShapeDiverStoreSession} from "~/shared/entities/session";
-import {useShapeDiverStoreProcessManager} from "~/shared/shared/model";
 
 // log the SDK version directly to the console
 // this is independent of the logger settings within the app

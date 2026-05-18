@@ -1,9 +1,9 @@
-import { devtoolsSettings } from "@AppBuilderShared/shared/config/storeSettings";
+import {devtoolsSettings} from "@AppBuilderShared/shared/config/storeSettings";
 import {createViewport} from "@webgi/utils/createViewport";
 import {CoreViewerApp} from "webgi";
 import {create} from "zustand";
 import {devtools} from "zustand/middleware";
-import {IEventTracking} from "~/shared/shared";
+import {IEventTracking} from "~/shared/shared/config/eventTracking";
 
 // #region Type aliases (1)
 
