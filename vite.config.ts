@@ -5,11 +5,10 @@ import path, {resolve} from "path";
 import {defineConfig} from "vite";
 import {analyzer} from "vite-bundle-analyzer";
 import svgrPlugin from "vite-plugin-svgr";
-import viteTsconfigPaths from "vite-tsconfig-paths";
 import {CONFIG} from "./sentryconfig";
 
 const isDev = process.env.NODE_ENV === "development";
-const plugins = [react(), viteTsconfigPaths(), svgrPlugin()];
+const plugins = [react(), svgrPlugin()];
 if (CONFIG.SENTRY_ORG && CONFIG.SENTRY_PROJECT) {
 	plugins.push(
 		sentryVitePlugin({
@@ -89,29 +88,70 @@ export default defineConfig(async () => {
 			},
 		},
 		build: {
-			rollupOptions: {
+			rolldownOptions: {
 				input: {
 					appbuilder: resolve(__dirname, "index.html"),
 				},
 				output: {
-					manualChunks: {
-						react: ["react", "react-dom", "react-router-dom"],
-						mantine: [
-							"@mantine/core",
-							"@mantine/hooks",
-							"@mantine/notifications",
-						],
-						mantineCharts: ["@mantine/charts"],
-						shapediver: [
-							"@shapediver/sdk.geometry-api-sdk-v2",
-							"@shapediver/sdk.platform-api-sdk-v1",
-						],
-						shapediverViewer: ["@shapediver/viewer.session"],
-						shapediverViewerMisc: [
-							"@shapediver/viewer.utils.mime-type",
+					codeSplitting: {
+						groups: [
+							{
+								name: "react",
+								test: /node_modules[\\/](react|react-dom|react-router-dom)([\\/]|$)/,
+								priority: 30,
+							},
+							{
+								name: "mantine",
+								test: /node_modules[\\/]@mantine[\\/](core|hooks|notifications)([\\/]|$)/,
+								priority: 29,
+							},
+							{
+								name: "mantineCharts",
+								test: /node_modules[\\/]@mantine[\\/]charts([\\/]|$)/,
+								priority: 28,
+							},
+							{
+								name: "shapediver",
+								test: /node_modules[\\/]@shapediver[\\/]sdk\.(geometry-api-sdk-v2|platform-api-sdk-v1)([\\/]|$)/,
+								priority: 27,
+							},
+							{
+								name: "shapediverViewer",
+								test: /node_modules[\\/]@shapediver[\\/]viewer\.(session)([\\/]|$)/,
+								priority: 26,
+							},
+							{
+								name: "shapediverViewerMisc",
+								test: /node_modules[\\/]@shapediver[\\/]viewer\.(utils\.mime-type)([\\/]|$)/,
+								priority: 25,
+							},
+							{
+								name: "stargate",
+								test: /node_modules[\\/]@shapediver[\\/]sdk\.stargate-sdk-v1([\\/]|$)/,
+								priority: 24,
+							},
+							{
+								name: "utils",
+								test: /node_modules[\\/](immer|zustand|zod|gl-matrix)([\\/]|$)/,
+								priority: 23,
+							},
+							{
+								name: "markdown",
+								test: /node_modules[\\/](react-markdown|remark-directive|remark-gfm|unist-util-visit)([\\/]|$)/,
+								priority: 22,
+							},
+							{
+								name: "agent",
+								test: /node_modules[\\/](openai|langfuse)([\\/]|$)/,
+								priority: 21,
+							},
+							{
+								name: "ijewel3d",
+								test: /node_modules[\\/](webgi)([\\/]|$)/,
+								priority: 20,
+							},
 						],
 						stargate: ["@shapediver/sdk.stargate-sdk-v1"],
-						ijewel3d: ["webgi"],
 						utils: ["immer", "zustand", "zod", "uuid", "gl-matrix"],
 						markdown: [
 							"react-markdown",
@@ -122,7 +162,6 @@ export default defineConfig(async () => {
 						agent: ["openai", "langfuse"],
 					},
 				},
-				sourcemap: true,
 			},
 			sourcemap: true,
 		},
@@ -140,6 +179,7 @@ export default defineConfig(async () => {
 				}
 			: {},
 		resolve: {
+			tsconfigPaths: true,
 			alias: {
 				"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
 				"@AppBuilderLib": path.resolve(__dirname, "./src/shared"),
