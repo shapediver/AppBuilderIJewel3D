@@ -50,12 +50,20 @@ export const processMaterialDatabase = async (sessionApi: ISessionApi) => {
 		const outputApi = sessionApi.outputs[materialDatabaseOutput];
 
 		if (_loadedMaterialOutputVersion !== outputApi.version) {
-			// update the dynamic material database
-			_dynamicMaterialDatabase = (
-				outputApi.node?.data.find(
+			if (outputApi.node) {
+				const sessionOutputData = outputApi.node.data.find(
 					(d) => d instanceof SessionOutputData,
-				) as SessionOutputData
-			).responseOutput.content?.[0].data;
+				) as SessionOutputData | undefined;
+				if (
+					sessionOutputData &&
+					sessionOutputData.responseOutput.content &&
+					sessionOutputData.responseOutput.content.length > 0
+				) {
+					// update the dynamic material database
+					_dynamicMaterialDatabase =
+						sessionOutputData.responseOutput.content[0].data;
+				}
+			}
 
 			// clear the loaded output versions so that the new material definitions are applied
 			_loadedOutputVersions = {};
