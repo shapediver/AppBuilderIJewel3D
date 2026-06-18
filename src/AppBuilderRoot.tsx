@@ -12,7 +12,6 @@ import AppBuilderContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/A
 import AppBuilderFallbackContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderFallbackContainerComponent";
 import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
 import "instruments/sentry";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import ViewportComponent from "webgi/components/ViewportComponent";
 import AppBuilderBase from "~/AppBuilderBase";
