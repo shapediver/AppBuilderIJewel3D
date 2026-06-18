@@ -40,7 +40,7 @@
 		"remark-gfm": "4.0.1",
 		"unist-util-visit": "5.1.0",
 		"uuid": "14.0.0",
-		"webgi": "https://dist.pixotronics.com/webgi/runtime/bundle-0.12.0.tgz",
+		"webgi": "https://dist.pixotronics.com/webgi/runtime/bundle-0.17.0.tgz",
 		"zod": "4.4.3",
 		"zustand": "4.5.7"
 	},
@@ -97,7 +97,7 @@
 		"@types/react": "18.3.28",
 		"@types/react-dom": "18.3.7",
 		"@types/uuid": "10.0.0",
-		"@types/webgi": "https://dist.pixotronics.com/webgi/runtime/bundle-types-0.12.0.tgz",
+		"@types/webgi": "https://dist.pixotronics.com/webgi/runtime/bundle-types-0.17.0.tgz",
 		"@typescript-eslint/eslint-plugin": "8.55.0",
 		"@typescript-eslint/parser": "8.55.0",
 		"@vitejs/plugin-react": "5.1.4",
