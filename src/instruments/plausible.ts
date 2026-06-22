@@ -6,7 +6,6 @@ import {Logger} from "@AppBuilderLib/shared/lib/logger";
 import {roundToBracket} from "@AppBuilderLib/shared/lib/numerics";
 import {isRunningInPlatform} from "@AppBuilderLib/shared/lib/platform/environment";
 import {
-	combineTrackers,
 	DelayedTrackerPropsAwaiter,
 	setDefaultTrackerProps,
 } from "@AppBuilderLib/shared/lib/TrackerContext";
@@ -14,19 +13,26 @@ import {ITrackerContext} from "@AppBuilderLib/shared/lib/TrackerContext.types";
 import {
 	PlausibleConfig,
 	init as PlausibleInit,
+	PlausibleRequestPayload,
 	track,
 } from "@plausible-analytics/tracker";
 
 // default tracking domain
+
 const domain = isRunningInPlatform()
 	? "appbuilder.platform"
 	: "appbuilder.shapediver.com";
 const apiHost = isRunningInPlatform()
 	? window.location.origin
 	: "https://appbuilder.shapediver.com";
-const hashBasedRouting = false;
-const captureOnLocalhost = false;
-
+const defaultOptions: PlausibleConfig = {
+	endpoint: `${apiHost}/api/event`,
+	hashBasedRouting: false,
+	captureOnLocalhost: false,
+	bindToWindow: true,
+	autoCapturePageviews: false,
+	domain,
+};
 const mapMetricToBracket = {
 	CLS: 0.1,
 	FCP: 250,
@@ -79,15 +85,6 @@ function createPlausibleTracker(options: PlausibleConfig): ITrackerContext {
 	};
 }
 
-// default plausible tracker
-let tracker = createPlausibleTracker({
-	captureOnLocalhost,
-	domain,
-	endpoint: `${apiHost}/api/event`,
-	hashBasedRouting,
-});
-
-// default properties to be tracked
 const defaultProps: {[key: string]: any} = {};
 const params = new URLSearchParams(window.location.search);
 DEFAULT_TRACKING_PARAMS.forEach((p) => {
@@ -96,19 +93,31 @@ DEFAULT_TRACKING_PARAMS.forEach((p) => {
 	}
 });
 
-// optional secondary plausible tracker
-if (params.get(QUERYPARAM_TRACKING_DOMAIN)) {
-	const domain2nd = params.get(QUERYPARAM_TRACKING_DOMAIN);
-	if (domain2nd && domain2nd !== domain) {
-		const plausible2nd = createPlausibleTracker({
-			captureOnLocalhost,
-			domain: domain2nd,
-			endpoint: `${apiHost}/api/event`,
-			hashBasedRouting,
-		});
-		tracker = combineTrackers([tracker, plausible2nd]);
-	}
-}
+// plausible tracker options
+const domainFromParams = params.get(QUERYPARAM_TRACKING_DOMAIN);
+const domain2nd =
+	domainFromParams && domainFromParams !== domain ? domainFromParams : null;
+const options = domain2nd
+	? {
+			...defaultOptions,
+			transformRequest: (payload: PlausibleRequestPayload) => {
+				const payload2nd = {
+					...payload,
+					d: domain2nd,
+				};
+				fetch(`${apiHost}/api/event`, {
+					method: "POST",
+					body: JSON.stringify(payload2nd),
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}).catch(() => undefined);
+
+				return payload;
+			},
+		}
+	: defaultOptions;
+const tracker = createPlausibleTracker(options);
 
 // assign default properties to tracker
 export const PlausibleTracker: ITrackerContext = setDefaultTrackerProps(
