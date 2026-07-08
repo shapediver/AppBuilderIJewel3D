@@ -165,10 +165,9 @@ export default defineConfig(async () => {
 			},
 			sourcemap: true,
 		},
-		// When using local viewer source, force the optimizer to pre-bundle the aliased
-		// packages in full bundler mode. This correctly handles `export type` stripping
-		// across files, avoiding "does not provide an export named X" runtime errors
-		// that occur when Vite transforms TypeScript files individually.
+		// With local Viewer source enabled, exclude the aliased Viewer packages from
+		// dependency optimization so Vite serves the linked source files directly
+		// instead of pre-bundling them through Rolldown.
 		optimizeDeps: useLocalViewer
 			? {
 					include: [
@@ -180,6 +179,7 @@ export default defineConfig(async () => {
 			: {},
 		resolve: {
 			tsconfigPaths: true,
+			dedupe: ["three", "postprocessing"],
 			alias: {
 				"@AppBuilderShared": path.resolve(__dirname, "./src/shared"),
 				"@AppBuilderLib": path.resolve(__dirname, "./src/shared"),
