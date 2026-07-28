@@ -71,8 +71,8 @@ export default async function globalSetup() {
 
 	const TEST_BRANCH = process.env.TEST_BRANCH ?? "testing";
 	// Tag name written by build-appbuilder.sh: "AppBuilder${MAIN_TARGET^}@$branch"
-	// MAIN_TARGET="main" → "AppBuilderMain@testing"
-	const DEPLOY_TAG = `AppBuilderMain@${TEST_BRANCH}`;
+	// MAIN_TARGET="main" → "AppBuilderIJewel3D@testing"
+	const DEPLOY_TAG = `AppBuilderIJewel3D@${TEST_BRANCH}`;
 
 	const currentCommit = execFileSync("git", ["rev-parse", "HEAD"], {
 		encoding: "utf8",
@@ -168,7 +168,9 @@ export default async function globalSetup() {
 		});
 
 		if (process.env.APPBUILDER_E2E_SKIP_INSTALL === "1" || isCi) {
-			console.log("[global-setup] Skipping dependency install in global setup.");
+			console.log(
+				"[global-setup] Skipping dependency install in global setup.",
+			);
 		} else {
 			// Install dependencies so the build uses the correct package versions for
 			// local legacy runs. CI installs dependencies in the workflow before tests.

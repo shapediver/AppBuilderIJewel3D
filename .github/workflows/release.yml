@@ -18,11 +18,6 @@ on:
           - patch
           - minor
           - major
-      release_notes_file:
-        description: Required for minor/major version releases, e.g. .github/release-notes/app-builder-1.10.md.
-        required: false
-        type: string
-
 permissions:
   contents: read
 
@@ -46,15 +41,10 @@ jobs:
         env:
           RELEASE_TARGET: ${{ inputs.release_target }}
           VERSION_BUMP: ${{ inputs.version_bump }}
-          RELEASE_NOTES_FILE: ${{ inputs.release_notes_file }}
         run: |
           case "$RELEASE_TARGET" in latest|version) ;; *) echo "Invalid release_target: $RELEASE_TARGET" >&2; exit 1;; esac
           if [[ "$RELEASE_TARGET" == "version" ]]; then
             case "$VERSION_BUMP" in patch|minor|major) ;; *) echo "version_bump is required for version releases." >&2; exit 1;; esac
-            if [[ "$VERSION_BUMP" != "patch" && -z "$RELEASE_NOTES_FILE" ]]; then
-              echo "release_notes_file is required for minor and major AppBuilder releases." >&2
-              exit 1
-            fi
           fi
 
       - name: Create GitHub App token
@@ -131,13 +121,6 @@ jobs:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: us-east-1
 
-      - name: Parse release notes
-        id: release-notes
-        if: inputs.release_target == 'version' && inputs.version_bump != 'patch'
-        env:
-          RELEASE_NOTES_FILE: ${{ inputs.release_notes_file }}
-        run: node scripts/release/read-appbuilder-release-notes.mjs "$RELEASE_NOTES_FILE"
-
       - name: Notify Slack release started
         continue-on-error: true
         shell: bash
@@ -190,16 +173,6 @@ jobs:
         run: |
           VERSION="$(node -p "require('./package.json').version")"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
-
-      - name: Publish GitHub release
-        if: inputs.release_target == 'version' && inputs.version_bump != 'patch'
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
-        with:
-          tag_name: AppBuilderMain@${{ steps.version.outputs.version }}
-          name: ${{ steps.release-notes.outputs.title }}
-          generate_release_notes: true
-          body_path: ${{ steps.release-notes.outputs.body_path }}
-          token: ${{ steps.app-token.outputs.token }}
 
       - name: Collect release failure artifacts
         if: failure()
