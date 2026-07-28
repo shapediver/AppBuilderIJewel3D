@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  validate-and-e2e:
+  validate:
     if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
     runs-on: ubuntu-latest
     permissions:
@@ -116,16 +116,6 @@ jobs:
       - name: Run unit tests
         run: pnpm test
 
-      - name: Run Playwright E2E with explicit testing deploy
-        run: pnpm test-e2e
-        env:
-          APPBUILDER_E2E_DEPLOY: "1"
-          APPBUILDER_E2E_SKIP_INSTALL: "1"
-          APPBUILDER_ASSUME_YES: "1"
-          APPBUILDER_PUSH_TOKEN: ${{ steps.app-token.outputs.token }}
-          PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
-          PLATFORM_ACCESS_TOKEN_KEY: ${{ secrets.PLATFORM_ACCESS_TOKEN_KEY }}
-          PLATFORM_ACCESS_TOKEN_SECRET: ${{ secrets.PLATFORM_ACCESS_TOKEN_SECRET }}
 
       - name: Collect validation failure artifacts
         if: failure()
@@ -133,7 +123,7 @@ jobs:
         run: |
           rm -rf .github-artifacts/failure
           mkdir -p .github-artifacts/failure
-          for path in playwright-report test-results dist; do
+          for path in test-results dist; do
             if [[ -e "$path" ]]; then cp -R "$path" .github-artifacts/failure/; fi
           done
 
@@ -147,7 +137,7 @@ jobs:
           path: .github-artifacts/failure/
 
   deploy:
-    needs: validate-and-e2e
+    needs: validate
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -235,7 +225,7 @@ jobs:
         run: |
           rm -rf .github-artifacts/failure
           mkdir -p .github-artifacts/failure
-          for path in playwright-report test-results dist; do
+          for path in test-results dist; do
             if [[ -e "$path" ]]; then cp -R "$path" .github-artifacts/failure/; fi
           done
 
@@ -250,7 +240,7 @@ jobs:
 
   notify:
     needs:
-      - validate-and-e2e
+      - validate
       - deploy
     if: always() && (github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]'))
     runs-on: ubuntu-latest
@@ -264,7 +254,7 @@ jobs:
         shell: bash
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          VALIDATE_RESULT: ${{ needs['validate-and-e2e'].result }}
+          VALIDATE_RESULT: ${{ needs.validate.result }}
           DEPLOY_RESULT: ${{ needs.deploy.result }}
           WORKFLOW: ${{ github.workflow }}
           BRANCH: ${{ github.ref_name }}

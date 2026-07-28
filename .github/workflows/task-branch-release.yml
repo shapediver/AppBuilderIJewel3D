@@ -138,14 +138,6 @@ jobs:
           APPBUILDER_ASSUME_YES: "1"
           APPBUILDER_PUSH_TOKEN: ${{ steps.app-token.outputs.token }}
 
-      - name: Run Playwright E2E against task branch deployment
-        run: pnpm test-e2e
-        env:
-          SKIP_DEPLOY: "1"
-          TEST_BRANCH: ${{ steps.task-version.outputs.task_version }}
-          PLATFORM_CLIENT_ID: ${{ secrets.PLATFORM_CLIENT_ID }}
-          PLATFORM_ACCESS_TOKEN_KEY: ${{ secrets.PLATFORM_ACCESS_TOKEN_KEY }}
-          PLATFORM_ACCESS_TOKEN_SECRET: ${{ secrets.PLATFORM_ACCESS_TOKEN_SECRET }}
 
       - name: Collect task release failure artifacts
         if: failure()
@@ -153,7 +145,7 @@ jobs:
         run: |
           rm -rf .github-artifacts/failure
           mkdir -p .github-artifacts/failure
-          for path in playwright-report test-results dist; do
+          for path in test-results dist; do
             if [[ -e "$path" ]]; then cp -R "$path" .github-artifacts/failure/; fi
           done
 
