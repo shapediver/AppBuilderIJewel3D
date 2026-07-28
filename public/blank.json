@@ -1,0 +1,22 @@
+{
+    "version": "1.0",
+    "settings": {
+        "disableFallbackUi": true
+    },
+    "themeOverrides": {
+        "components": {
+            "ViewportIcons": {
+                "defaultProps": {
+					"enableArBtn": false,
+					"enableCamerasBtn": false,
+					"enableFullscreenBtn": false,
+					"enableFullscreenBtn3States": false,
+					"enableZoomBtn": false,
+					"enableHistoryButtons": false,
+					"enableResetButton": false,
+					"enableHistoryMenuButton": false
+				}
+            }
+        }
+    }
+}
