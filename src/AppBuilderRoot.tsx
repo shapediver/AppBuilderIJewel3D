@@ -1,12 +1,6 @@
-import ExportButtonComponent from "@AppBuilderLib/entities/export/ui/ExportButtonComponent";
-import ParameterBooleanComponent from "@AppBuilderLib/entities/parameter/ui/ParameterBooleanComponent";
-import ParameterColorComponent from "@AppBuilderLib/entities/parameter/ui/ParameterColorComponent";
-import ParameterFileInputComponent from "@AppBuilderLib/entities/parameter/ui/ParameterFileInputComponent";
-import ParameterSelectComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSelectComponent";
-import ParameterSliderComponent from "@AppBuilderLib/entities/parameter/ui/ParameterSliderComponent";
-import ParameterStringComponent from "@AppBuilderLib/entities/parameter/ui/ParameterStringComponent";
 import ViewportOverlayWrapper from "@AppBuilderLib/entities/viewport/ui/ViewportOverlayWrapper";
 import {IComponentContext} from "@AppBuilderLib/features/appbuilder/config/ComponentContext.types";
+import AppBuilderToolbarLayer from "@AppBuilderLib/features/appbuilder/ui/AppBuilderToolbarLayer";
 import RootComponent from "@AppBuilderLib/shared/ui/root/RootComponent";
 import AppBuilderContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderContainerComponent";
 import AppBuilderFallbackContainerComponent from "@AppBuilderLib/widgets/appbuilder/ui/AppBuilderFallbackContainerComponent";
@@ -18,6 +12,13 @@ import AppBuilderBase from "~/AppBuilderBase";
 import {PlausibleTracker} from "~/instruments/plausible";
 import {setupWebVitalsTracking} from "~/instruments/webvitals";
 import {SentryErrorReportingContext} from "./instruments/sentry";
+import ParameterSliderComponent from "@AppBuilderShared/entities/parameter/ui/ParameterSliderComponent";
+import ExportButtonComponent from "@AppBuilderShared/entities/export/ui/ExportButtonComponent";
+import ParameterBooleanComponent from "@AppBuilderShared/entities/parameter/ui/ParameterBooleanComponent";
+import ParameterColorComponent from "@AppBuilderShared/entities/parameter/ui/ParameterColorComponent";
+import ParameterFileInputComponent from "@AppBuilderShared/entities/parameter/ui/ParameterFileInputComponent";
+import ParameterSelectComponent from "@AppBuilderShared/entities/parameter/ui/ParameterSelectComponent";
+import ParameterStringComponent from "@AppBuilderShared/entities/parameter/ui/ParameterStringComponent";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
@@ -26,6 +27,7 @@ const root = ReactDOM.createRoot(
 const components: IComponentContext = {
 	viewportComponent: {component: ViewportComponent},
 	viewportOverlayWrapper: {component: ViewportOverlayWrapper},
+	appBuilderToolbarLayer: {component: AppBuilderToolbarLayer},
 	parameters: {
 		[PARAMETER_TYPE.INT]: {
 			component: ParameterSliderComponent,
