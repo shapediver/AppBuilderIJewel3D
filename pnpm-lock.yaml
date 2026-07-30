@@ -1549,11 +1549,11 @@ packages:
     resolution: {integrity: sha512-jIBvWWShCvlBqBNIZt0KAshWpvSjhkwkEu4ZUcASoAvhmrgAUI2t1dXrjSL4xXVLB4FznPrIsX3nKXFl/Dt4vA==}
 
   '@types/three@https://github.com/repalash/three-ts-types/releases/download/v0.157.1003/package.tgz':
-    resolution: {tarball: https://github.com/repalash/three-ts-types/releases/download/v0.157.1003/package.tgz}
+    resolution: {integrity: sha512-zE6QGPd9EgQZ6n4toKKTbBHrNdwo+bDiWadKFBWAxu3pStzqKLSylDGe0RGuDwzjz5bUMVrKihZcsz69E0pWUg==, tarball: https://github.com/repalash/three-ts-types/releases/download/v0.157.1003/package.tgz}
     version: 0.157.1003
 
   '@types/three@https://github.com/repalash/three-ts-types/releases/download/v0.160.1001/package.tgz':
-    resolution: {tarball: https://github.com/repalash/three-ts-types/releases/download/v0.160.1001/package.tgz}
+    resolution: {integrity: sha512-XCULgrO1EXGuOWUc9Fyf67TTxsSL78d+nx+buc8ZcWaURwB0NY+Pn5KPhIkGjkfQqFjXEfjEfG4U6QA/V8iFGw==, tarball: https://github.com/repalash/three-ts-types/releases/download/v0.160.1001/package.tgz}
     version: 0.160.1001
 
   '@types/tough-cookie@4.0.5':
@@ -1578,7 +1578,7 @@ packages:
     resolution: {integrity: sha512-7gqG38EyHgyP1S+7+xomFtL+ZNHcKv6DwNaCZmJmo1vgMugyF3TCnXVg4t1uk89mLNwnLtnY3TpOpCOyp1/xHQ==}
 
   '@types/webgi@https://dist.pixotronics.com/webgi/runtime/bundle-types-0.17.0.tgz':
-    resolution: {tarball: https://dist.pixotronics.com/webgi/runtime/bundle-types-0.17.0.tgz}
+    resolution: {integrity: sha512-5rozwMx1WvZn3bmdv7+nRmwy8IUMkjfUtnsgoVeFolyFLla8qfIddQwek1LZxSiuNkGn5EihnehVZ1vao0llJg==, tarball: https://dist.pixotronics.com/webgi/runtime/bundle-types-0.17.0.tgz}
     version: 0.17.0
 
   '@types/webxr@0.5.24':
@@ -2731,8 +2731,8 @@ packages:
       picomatch:
         optional: true
 
-  fflate@0.6.10:
-    resolution: {integrity: sha512-IQrh3lEPM93wVCEczc9SaAOvkmcoQn/G8Bo1e8ZPlY3X3bnAxWaBdvTdvM1hP62iZp0BXWDy4vTAy4fF0+Dlpg==}
+  fflate@0.6.11:
+    resolution: {integrity: sha512-3JyEFWGjFn7zHmoa9+zG1BmW7X2okcmAB+0Cnu9UFbVs/jCBnl2A8o065ZlXiw145K3eBM3uLuzrYXC0RK7eDg==}
 
   file-entry-cache@8.0.0:
     resolution: {integrity: sha512-XXTUwCvisa5oacNGRP9SfNtYBNAMi+RPwBFmblZEF7N7swHYQS6/Zfk7SRwx4D5j3CH211YNRco1DEMNVfZCnQ==}
@@ -4923,7 +4923,7 @@ packages:
     resolution: {integrity: sha512-r4DIlprAGwJ7YM11VZp4R884m0Vmgr6EAKe3P+kO0PPj3Unqyvv59rczf6UiGcb9Z8QxZVcqKNwv/g0WNdWwsw==}
 
   webgi@https://dist.pixotronics.com/webgi/runtime/bundle-0.17.0.tgz:
-    resolution: {tarball: https://dist.pixotronics.com/webgi/runtime/bundle-0.17.0.tgz}
+    resolution: {integrity: sha512-kndqaekp89mfuPR7fPGss8PB7DMHo2zG7e15tddfhLu0WixK6OCVvoZpMJvSVxKj2m8oLQw6SLBw7b444xdyxQ==, tarball: https://dist.pixotronics.com/webgi/runtime/bundle-0.17.0.tgz}
     version: 0.17.0
 
   webidl-conversions@3.0.1:
@@ -6645,14 +6645,14 @@ snapshots:
 
   '@types/three@https://github.com/repalash/three-ts-types/releases/download/v0.157.1003/package.tgz':
     dependencies:
-      fflate: 0.6.10
+      fflate: 0.6.11
       meshoptimizer: 0.18.1
 
   '@types/three@https://github.com/repalash/three-ts-types/releases/download/v0.160.1001/package.tgz':
     dependencies:
       '@types/stats.js': 0.17.4
       '@types/webxr': 0.5.24
-      fflate: 0.6.10
+      fflate: 0.6.11
       meshoptimizer: 0.18.1
 
   '@types/tough-cookie@4.0.5': {}
@@ -8016,7 +8016,7 @@ snapshots:
     optionalDependencies:
       picomatch: 4.0.5
 
-  fflate@0.6.10: {}
+  fflate@0.6.11: {}
 
   file-entry-cache@8.0.0:
     dependencies:
