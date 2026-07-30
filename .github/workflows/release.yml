@@ -170,16 +170,6 @@ jobs:
           VERSION="$(node -p "require('./package.json').version")"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Publish GitHub release
-        if: (inputs.release_target == 'version' || inputs.release_target == 'version-and-latest') && inputs.version_bump != 'patch'
-        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
-        with:
-          tag_name: AppBuilderMain@${{ steps.version.outputs.version }}
-          name: ${{ steps.release-notes.outputs.title }}
-          generate_release_notes: true
-          body: ${{ steps.release-notes.outputs.body }}
-          token: ${{ steps.app-token.outputs.token }}
-
       - name: Collect release failure artifacts
         if: failure()
         shell: bash
@@ -215,7 +205,6 @@ jobs:
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           RELEASE_RESULT: ${{ needs.release.result }}
-          POST_RELEASE_RESULT: ${{ needs.post-release.result }}
           VERSION: ${{ needs.release.outputs.version }}
           WORKFLOW: ${{ github.workflow }}
           TARGET: ${{ inputs.release_target }}
@@ -228,14 +217,7 @@ jobs:
             echo "SLACK_WEBHOOK_URL not configured; skipping Slack notification."
             exit 0
           fi
-          if [[ "${RELEASE_RESULT}" == "success" && ("${POST_RELEASE_RESULT}" == "success" || "${POST_RELEASE_RESULT}" == "skipped") ]]; then
-            STATUS="success"
-          elif [[ "${RELEASE_RESULT}" == "cancelled" || "${POST_RELEASE_RESULT}" == "cancelled" ]]; then
-            STATUS="cancelled"
-          else
-            STATUS="failure"
-          fi
-          case "$STATUS" in success) COLOR="#36a64f"; EMOJI=":white_check_mark:"; STATUS_LABEL="Succeeded";; cancelled) COLOR="#808080"; EMOJI=":warning:"; STATUS_LABEL="Cancelled";; *) COLOR="#cc0000"; EMOJI=":x:"; STATUS_LABEL="Failed";; esac
+          case "$RELEASE_RESULT" in success) COLOR="#36a64f"; EMOJI=":white_check_mark:"; STATUS_LABEL="Succeeded";; cancelled) COLOR="#808080"; EMOJI=":warning:"; STATUS_LABEL="Cancelled";; *) COLOR="#cc0000"; EMOJI=":x:"; STATUS_LABEL="Failed";; esac
           SHORT_SHA="${SHA:0:7}"
           LABEL="$TARGET${BUMP:+/$BUMP}${VERSION:+ ($VERSION)}"
           PAYLOAD="$(jq -cn --arg color "$COLOR" --arg emoji "$EMOJI" --arg statusLabel "$STATUS_LABEL" --arg workflow "$WORKFLOW" --arg label "$LABEL" --arg commitUrl "$COMMIT_URL" --arg shortSha "$SHORT_SHA" --arg runUrl "$RUN_URL" '{attachments:[{color:$color,blocks:[{type:"section",text:{type:"mrkdwn",text:($emoji + " *AppBuilder IJewel3D production release finished*")}},{type:"section",fields:[{type:"mrkdwn",text:("*Status:*\n" + $statusLabel)},{type:"mrkdwn",text:("*Workflow:*\n" + $workflow)},{type:"mrkdwn",text:("*Release:*\n`" + $label + "`")},{type:"mrkdwn",text:("*Commit:*\n<" + $commitUrl + "|`" + $shortSha + "`>")} ]},{type:"actions",elements:[{type:"button",text:{type:"plain_text",text:"View Run"},url:$runUrl}]}]}]}')"
