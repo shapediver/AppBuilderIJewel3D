@@ -4,13 +4,12 @@ on:
   workflow_dispatch:
     inputs:
       release_target:
-        description: Choose whether to deploy only latest, only a version, or both.
+        description: Choose whether to deploy latest or only a version.
         required: true
         type: choice
         options:
           - latest
           - version
-          - version-and-latest
       version_bump:
         description: Version increment for version releases. If the current package version is a prerelease, its stable base version is released.
         required: false
@@ -43,8 +42,8 @@ jobs:
           RELEASE_TARGET: ${{ inputs.release_target }}
           VERSION_BUMP: ${{ inputs.version_bump }}
         run: |
-          case "$RELEASE_TARGET" in latest|version|version-and-latest) ;; *) echo "Invalid release_target: $RELEASE_TARGET" >&2; exit 1;; esac
-          if [[ "$RELEASE_TARGET" == "version" || "$RELEASE_TARGET" == "version-and-latest" ]]; then
+          case "$RELEASE_TARGET" in latest|version) ;; *) echo "Invalid release_target: $RELEASE_TARGET" >&2; exit 1;; esac
+          if [[ "$RELEASE_TARGET" == "version" ]]; then
             case "$VERSION_BUMP" in patch|minor|major) ;; *) echo "version_bump is required for version releases." >&2; exit 1;; esac
           fi
 
