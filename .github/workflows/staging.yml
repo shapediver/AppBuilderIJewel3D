@@ -121,7 +121,6 @@ jobs:
       - name: Run unit tests
         run: pnpm test
 
-
       - name: Collect validation failure artifacts
         if: failure()
         shell: bash

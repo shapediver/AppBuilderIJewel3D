@@ -153,7 +153,6 @@ jobs:
 
       - name: Run unit tests
         run: pnpm test
-
       - name: Deploy production
         run: pnpm run publish
         env:
