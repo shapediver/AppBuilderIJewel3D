@@ -1,0 +1,45 @@
+---
+description: AppBuilderIJewel3D / AppBuilderWebGI identity vs AppBuilderSdk. Read this instead of re-mapping the repo.
+alwaysApply: true
+---
+
+# This is not AppBuilderSdk
+
+GitHub origin is **[AppBuilderWebGI](https://github.com/shapediver/AppBuilderWebGI)**. Local folder is `AppBuilderIJewel3D`. It is a **host fork** of AppBuilderSdk that renders with **iJewel3D / Pixotronics WebGI**.
+
+| | This repo | Sibling `../appbuildersdk` (AppBuilderSdk) |
+|---|---|---|
+| Origin | `shapediver/AppBuilderWebGI` | `shapediver/AppBuilderSdk` |
+| Upstream remote | `upstream` → AppBuilderSdk | (is upstream) |
+| Viewport | WebGI (`webgi` + `src/webgi/`) | `@shapediver/viewer.viewport` |
+| Deploy | `v1/ijewel3d` | `v1/main` |
+| Entries | `index.html` → `AppBuilderRoot.tsx` only | also `example.html`, `library.html` |
+| `tsconfig` `include` | `src/AppBuilderRoot.tsx` (entry + imports) | all of `src` |
+| E2E | **none** | Playwright smoke/visual/API specs |
+
+Do **not** copy SDK `AppBuilderRoot` wiring (anchors, AR/camera/fullscreen, drawing/gumball/selection UI, attribute visualization, scene tree, interaction slot listeners). Those need `@shapediver/viewer.features.*` and `@shapediver/viewer.viewport`, which this host **does not depend on**.
+
+## Two git repos
+
+- Root records the host app, `public/`, Jest mocks in `tests/jest/`, and the **submodule pointer**. **No e2e** — do not add Playwright.
+- `src/shared` is **AppBuilderShared** (`git -C src/shared ...`). Same shared library as SDK. Shared here is often **behind** SDK `development`.
+- New worktrees: follow `.cursor/rules/worktree-shared-repo.mdc`.
+
+## Where to change what
+
+- **Host-only:** `src/webgi/**`, `src/AppBuilderRoot.tsx`, `src/AppBuilderBase.tsx` (session → WebGI scene), `@webgi` alias, `webgi` / `@types/webgi` in `package.json`, Vite `ijewel3d` chunk, publish scripts `v1/ijewel3d`.
+- **Shared:** `src/shared/**` is consumed by SDK and other hosts. No `webgi` imports. No iJewel-only hacks. Do not shrink parameter/appbuilder barrels; the host uses **deep imports**. Prefer additive shared APIs.
+
+## Host capabilities (intentional gaps)
+
+No ShapeDiver AR, selection/hover/drag/gumball/drawing UI, attribute visualization, or HTML viewport anchors. DRAWING and INTERACTION parameters are stubbed as `ParameterStringComponent`.
+
+Materials: Grasshopper **material name** → iJewel static DB (`src/webgi/utils/staticMaterialDatabase.ts`) then dynamic `MaterialDatabase` output. See README.
+
+## Aliases
+
+`@AppBuilderLib` / `@AppBuilderShared` → `src/shared`. `@webgi` → `src/webgi`. `~` → `src`.
+
+## Do not re-evaluate
+
+Repo layout, host vs shared split, and WebGI vs ShapeDiver viewer are documented here and in `ijewel-host.mdc`. Do not spend a session rediscovering them. When you learn a durable fact, add it to the matching `.mdc` file.

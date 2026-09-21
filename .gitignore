@@ -7,9 +7,6 @@
 
 # testing
 /coverage
-/playwright-report
-/test-results
-tests/config/.app-links.json
 
 # production
 /build

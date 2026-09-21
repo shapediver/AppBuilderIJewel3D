@@ -1,0 +1,35 @@
+---
+description: Parameter store, reset values, selection stack. Shared semantics — this host stubs interaction UI.
+globs:
+  - "**/entities/parameter/**"
+  - "**/entities/session/**"
+  - "**/entities/viewport/**"
+  - "**/*[Ss]election*"
+  - "**/*[Ii]nteraction*"
+  - "**/useParameterComponentCommons*"
+alwaysApply: false
+---
+
+# Parameters and selection (shared)
+
+`src/shared` still contains ShapeDiver selection/gumball/drawing. **This iJewel host does not register those components** (see `ijewel-host.mdc`). Edit the shared code for SDK compatibility; do not wire it into `AppBuilderRoot` without adding `viewer.features.*`.
+
+## Parameter store (`entities/parameter/model/useShapeDiverStoreParameters.ts`)
+
+One zustand store per parameter, per namespace.
+
+| Field / action | Role |
+|---|---|
+| `uiValue` | Draft |
+| `commitValue` | Baseline for pending changes; used by the **next** execution |
+| `execValue` | Last executed value |
+| `execute` | Queues into `parameterChanges[namespace]`; one PUT for all queued values |
+| `setExecutedValue` | Value executed elsewhere; applies the reset value |
+| `setCommittedValue` | Commit without execution (no reset value) |
+| `setResetValue` | Dynamic reset override with "follow" rules |
+
+Every PUT carries **all** parameter values. Reset values (`settings.resetValue`, or `value` from the model) are committed after an execution **without** another execution. `execValue` and `commitValue` then differ **on purpose**.
+
+## Session store
+
+Output update callbacks receive `(newNode, oldNode)`. `output.node` may lag. The store caches the latest node and **never** promotes `undefined` or a replaced node. Output processing order is **not deterministic**.

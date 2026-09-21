@@ -1,0 +1,24 @@
+---
+description: Reproducing and diagnosing the iJewel/WebGI App Builder in the browser. Use when debugging UI or the viewport.
+alwaysApply: false
+---
+
+# Browser diagnosis (iJewel / WebGI)
+
+## Dev server
+
+- `pnpm start --port 3000` → `http://localhost:3000/?slug=<slug>`. Slug data in `modelstorage.local.ts`.
+- Platform token expires **hourly**; run `pnpm run convert-slug-data` when a session fails to load.
+- Testing-account models do **not** whitelist localhost — use the deployed URL (`v1/ijewel3d`).
+- Settings/theme: `?g=<file>` from `public/`.
+- WebGI extras: `?webgiScene=`, `?webgiDiamondPlugin=`, `?webgiZoomTo=true`.
+
+This is **not** the ShapeDiver viewport. Do not use SDK diagnosis that depends on `SDV.viewports`, `EVENTTYPE_INTERACTION`, `useSelection`, or pulse highlights.
+
+## In-page (`window.SDV`)
+
+`window.SDV` is **`@shapediver/viewer.session` only** (parameters, outputs, customize, task events). There is no merged `viewer.viewport` API.
+
+WebGI viewer: `useWebGiStoreViewport` / `CoreViewerApp` (fitToView, plugins, scene). Session customize TASK_START/END drives the loading screen and `processOutputs`.
+
+Count computations from the Network tab (`PUT` `/output`), or from session task events on `window.SDV`. There is **no Playwright e2e** in this repo.

@@ -1,0 +1,26 @@
+---
+description: FSD layout and migration for AppBuilderShared under src/shared. Host src/webgi is not FSD.
+globs:
+  - src/shared/**/*
+alwaysApply: false
+---
+
+# Feature-sliced design (`src/shared`)
+
+All FSD layers live under `src/shared/` (the AppBuilderShared submodule). Alias `@AppBuilderLib/` → `src/shared/`. Host code in `src/webgi/` and `src/AppBuilder*.tsx` is **not** FSD.
+
+| Layer | Purpose |
+|---|---|
+| `shared/` | Reusable code with no business logic (ui, lib, config) |
+| `entities/` | Business entities (session, parameter, viewport types, …) |
+| `features/` | User-facing features with business logic |
+| `widgets/` | Composite UI blocks |
+| `pages/` | Full page compositions |
+
+Segments: `ui/` (React), `model/` (zustand/hooks), `api/`, `lib/` (pure), `config/` (types/constants).
+
+Cross-slice imports: `@AppBuilderLib/{layer}/{slice}/{segment}/{file}`. Intra-slice: relative. Do **not** create new slice `index.ts` barrels; import concrete modules. This host already uses deep imports to avoid pulling `@shapediver/viewer.features.*`.
+
+## Migration
+
+If asked to migrate a file into FSD: show a FROM/TO plan and **wait for confirmation**. Move with `git -C src/shared mv` (never copy+delete). Update all imports. One file at a time. Preserve filenames.

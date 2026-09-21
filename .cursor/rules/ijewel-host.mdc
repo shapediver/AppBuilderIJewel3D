@@ -1,0 +1,48 @@
+---
+description: iJewel/WebGI host wiring — AppBuilderRoot, AppBuilderBase, src/webgi. Do not register ShapeDiver viewer UI.
+globs:
+  - src/AppBuilderRoot.tsx
+  - src/AppBuilderBase.tsx
+  - src/webgi/**/*
+alwaysApply: false
+---
+
+# iJewel host (WebGI)
+
+## `AppBuilderRoot.tsx`
+
+`IComponentContext` is **minimal**. Register:
+
+- `viewportComponent` → `webgi/components/ViewportComponent` (not `@AppBuilderLib/entities/viewport/ui/ViewportComponent`)
+- Shared overlay wrapper, standard parameter UIs (slider/bool/string/select/color/file), export buttons, container + fallback
+
+**Stubs (keep):** `PARAMETER_TYPE.DRAWING` and `INTERACTION.{selection,gumball,dragging,rectangleTransform}` → `ParameterStringComponent`.
+
+**Omit:** `viewportAnchors`, `appBuilderToolbarLayer`, `widgets.attributeVisualization` / `sceneTreeExplorer`, `actions.ar|camera|fullscreen`, `interactionSlotListeners`.
+
+Import parameter UI from **concrete files** (`@AppBuilderLib/entities/parameter/ui/ParameterStringComponent`), never from `entities/parameter` or `.../ui` barrels — barrels pull `@shapediver/viewer.features.*`.
+
+Do not add those packages to this host `package.json` unless the product is explicitly gaining ShapeDiver interaction.
+
+## `AppBuilderBase.tsx`
+
+Unlike SDK (theme + `AppBuilderPage` only), this host:
+
+- Puts **session-only** APIs on `window.SDV` (`@shapediver/viewer.session`). There is no `viewer.viewport` merge.
+- Subscribes to session customize TASK_START/END/CANCEL, shows WebGI `LoadingScreenPlugin`, then `processMaterialDatabase` → `processOutputs` → `processInstances`.
+- Fits the WebGI camera (`fitToView`) after first load; `?webgiZoomTo=true` refits later.
+
+Viewport instance comes from `useWebGiStoreViewport`, not `useShapeDiverStoreViewport`.
+
+## `src/webgi/`
+
+| File | Role |
+|---|---|
+| `components/ViewportComponent.tsx` | Canvas + `useViewport`; `useProps("ViewportComponent")` / `ViewportBranding` |
+| `hooks/useViewport.ts` | Creates/closes the WebGI viewer |
+| `store/webgiViewportStore.ts` | Zustand map of `CoreViewerApp` by id |
+| `utils/createViewport.ts` | `CoreViewerApp` init, HDR, diamond plugin (`?webgiDiamondPlugin=`), optional `?webgiScene=` |
+| `utils/webGiProcessingUtils.ts` | glTF from session outputs → WebGI; material name lookup |
+| `utils/staticMaterialDatabase.ts` | Built-in name → iJewel material JSON |
+
+Query params: `webgiScene`, `webgiDiamondPlugin`, `webgiZoomTo`.

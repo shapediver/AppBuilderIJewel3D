@@ -5,7 +5,6 @@ export default {
 
 	testMatch: ["**/*.(test|spec).(ts|tsx)"],
 	testPathIgnorePatterns: [
-		"<rootDir>/tests/specs/",
 		"<rootDir>/src/shared/features/appbuilder/config/__tests__/themeRegistryDocParity.test.ts",
 	],
 

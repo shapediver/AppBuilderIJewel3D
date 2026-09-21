@@ -1,0 +1,42 @@
+---
+description: Git workflow, CRLF, checks, and how to work in this repo.
+alwaysApply: true
+---
+
+# Git, line endings, checks
+
+## Git
+
+- Branches: `task/SS-{number}` or `task/SS-{number}-{kebab-name}`.
+- Commit messages: `SS-{number}: {description}`.
+- Do **not** open PRs unless asked. The user creates them.
+- Commits are SSH-signed via 1Password; **signing often fails from an agent shell**. Stage and describe; **let the user commit** unless they explicitly ask you to.
+- Shared: `git -C src/shared ...`. Bump the root submodule pointer only after shared is committed.
+- `git checkout -- <file>` restores from the index; use `git checkout HEAD --` when files are staged.
+- English for code comments and Markdown in this repo.
+
+## Line endings
+
+Working tree is CRLF; git stores LF. eslint `linebreak-style: windows`.
+
+**Never** `sed -i` or plain Python writes on source — they produce LF and hundreds of lint errors. Use the Edit/Write tools, or Python with `newline=''` and `\r\n`.
+
+## Checks (only files you changed)
+
+```bash
+npx prettier --check <files>
+npx eslint <files>
+npx tsc --noEmit -p .          # host tsconfig: AppBuilderRoot + transitive imports
+npx jest --config jest.config.mjs src/shared/<path>
+```
+
+IDE `ReadLints` is not a substitute for root `tsc`. This host does **not** typecheck unused shared modules that import `@shapediver/viewer.features.*`.
+
+Import Zod from `@AppBuilderLib/shared/lib/zod`, not `zod` / `zod/v4` (eslint restricted).
+
+## Working preferences
+
+- Explain root cause before proposing a fix.
+- This host has **no e2e**. Do not add Playwright. Jest in `src/shared` is the automated test surface.
+- After a batch: prettier, eslint, tsc, affected jest, then one targeted browser verify if UI changed.
+- Do not edit `src/` while a browser run is active (HMR). Do not edit a file the user is currently editing.
