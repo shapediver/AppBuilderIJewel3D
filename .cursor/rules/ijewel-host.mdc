@@ -34,7 +34,7 @@ Unlike SDK (theme + `AppBuilderPage` only), this host:
 
 Viewport instance comes from `useWebGiStoreViewport`, not `useShapeDiverStoreViewport`.
 
-`AppBuilderPage` always loads agent tools. Shared agent tools must not import `useShapeDiverStoreViewport` / `@shapediver/viewer.viewport`. Camera goes through host `componentContext.actions.camera.run` (this host omits that key). Screenshot/zoom use `useShapeDiverStoreViewportAccessFunctions`.
+`AppBuilderPage` always loads agent tools, application action slots, and the e-commerce connector. Shared modules on that path (`waitForAppBuilderViewport`, `resolveViewportIdFromStore`, agent tools) must not import `useShapeDiverStoreViewport` / `@shapediver/viewer.viewport`. ShapeDiver `waitUntilReady` lives in `entities/viewport/lib/waitUntilReady` and is registered from ShapeDiver `useViewport`. Camera goes through host `componentContext.actions.camera.run` (this host omits that key). Screenshot/zoom use `useShapeDiverStoreViewportAccessFunctions`.
 
 ## `src/webgi/`
 
