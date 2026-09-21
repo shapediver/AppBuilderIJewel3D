@@ -6,6 +6,7 @@ globs:
   - "**/entities/viewport/**"
   - "**/*[Ss]election*"
   - "**/*[Ii]nteraction*"
+  - "**/*Toolbar*"
   - "**/useParameterComponentCommons*"
 alwaysApply: false
 ---
@@ -16,20 +17,37 @@ alwaysApply: false
 
 ## Parameter store (`entities/parameter/model/useShapeDiverStoreParameters.ts`)
 
-One zustand store per parameter, per namespace.
+One zustand store per parameter, per namespace (session id or generic namespace).
 
 | Field / action | Role |
 |---|---|
 | `uiValue` | Draft |
 | `commitValue` | Baseline for pending changes; used by the **next** execution |
 | `execValue` | Last executed value |
-| `execute` | Queues into `parameterChanges[namespace]`; one PUT for all queued values |
+| `setUiValue` | Pending |
+| `execute` | Queues into `parameterChanges[namespace]`; `changes.accept` sends **one PUT** for all queued values |
 | `setExecutedValue` | Value executed elsewhere; applies the reset value |
 | `setCommittedValue` | Commit without execution (no reset value) |
 | `setResetValue` | Dynamic reset override with "follow" rules |
 
-Every PUT carries **all** parameter values. Reset values (`settings.resetValue`, or `value` from the model) are committed after an execution **without** another execution. `execValue` and `commitValue` then differ **on purpose**.
+Every PUT carries **all** parameter values. A value committed without execution reaches the model on the **next** execution of any parameter (`param.value = value` for session params; commit callback into `customParameterValues` for custom params).
 
-## Session store
+**Reset values** (`settings.resetValue`, or `value` from the model via App Builder output) are committed after an execution **without** another execution. `execValue` and `commitValue` then differ **on purpose**.
 
-Output update callbacks receive `(newNode, oldNode)`. `output.node` may lag. The store caches the latest node and **never** promotes `undefined` or a replaced node. Output processing order is **not deterministic**.
+Effective interaction settings come from **AppBuilder JSON**, not viewer `param.settings` (min/max selection, `activeMode`, `presentation`, `nameFilter` may be overridden).
+
+## Session store (`entities/session/model/useShapeDiverStoreSession.ts`)
+
+Output update callbacks receive `(newNode, oldNode)`. `output.node` may lag or be `undefined` while the viewer processes a response. The store caches the latest node seen by the callback and **never** promotes `undefined` or a replaced node.
+
+Output processing order is **not deterministic**: candidates of one output may update before or after the store commits the response. Logic that depends on that order is a race.
+
+## Selection stack (shared only)
+
+`useSelection` → `ParameterSelectionComponent`. Gumball, rectangle transform, anchor, and attribute visualization reuse `useSelection` but commit only on **explicit Confirm**. This host stubs those UIs as `ParameterStringComponent`.
+
+## Ownership and toolbar (shared only)
+
+- `interactionOwnership`: user-requested claims displace non-always-active owners; automatic claims retry on every ownership change.
+- While an active request exists, the toolbar popover is dismissal-blocked: only **pointerdown on the canvas** closes it.
+- `AppBuilderToolbar`, `resolveRuntimeToolbarGroups` (Confirm/Cancel aggregate by `aggregationId`).
