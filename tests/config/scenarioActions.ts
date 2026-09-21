@@ -401,6 +401,189 @@ export const scenarioActions: ScenarioActionConfig[] = [
 			await takeSnapshot(page, `${slug}-done`);
 		},
 	},
+
+	{
+		// The app has three unlabeled tabs; Playwright indices are zero-based.
+		slug: "7a-attributevisualization-3-2",
+		actions: async (page, slug) => {
+			// open the attributes tab (fourth tab in this model)
+			const fourthTab = page.getByRole("tab").nth(3);
+			await fourthTab.click();
+			await expect(fourthTab).toHaveAttribute("aria-selected", "true");
+
+			await takeSnapshot(page, `${slug}-attributes-visible`);
+
+			// click on one of the attributes
+			const pos = await viewportCoords(page, 0.872, 0.545);
+			await page.mouse.click(pos.x, pos.y);
+			await takeSnapshot(page, `${slug}-attribute-clicked`);
+		},
+	},
+	{
+		slug: "textinput-resetvalue-3",
+		actions: async (page, slug) => {
+			const textarea = getParameterElement(page, "textInput").getByRole(
+				"textbox",
+			);
+			await waitForModelRecomputed(page, async () => {
+				await textarea.fill("Default\nExample\nTest");
+				await textarea.press("Tab");
+			});
+			await takeSnapshot(page, `${slug}-newValue`);
+		},
+	},
+
+	{
+		slug: "selectioninput-resetvalue-6",
+		actions: async (page, slug) => {
+			const pos = await viewportCoords(page, 0.64, 0.554);
+			await waitForModelRecomputed(page, async () => {
+				page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-select`);
+
+			await waitForModelRecomputed(page, async () => {
+				// change one of the color params
+				const colorParam = getParameterElement(
+					page,
+					"Box Color",
+				).getByRole("textbox");
+				await colorParam.fill("#ff0000");
+				await colorParam.press("Enter");
+			});
+			await takeSnapshot(page, `${slug}-changedColor`);
+		},
+	},
+
+	{
+		slug: "selectioninput-resetvalue-dynamic-3",
+		actions: async (page, slug) => {
+			const pos = await viewportCoords(page, 0.64, 0.554);
+			await waitForModelRecomputed(page, async () => {
+				page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-select`);
+
+			await waitForModelRecomputed(page, async () => {
+				// change one of the color params
+				const colorParam = getParameterElement(
+					page,
+					"Box Color",
+				).getByRole("textbox");
+				await colorParam.fill("#ff0000");
+				await colorParam.press("Enter");
+			});
+			await takeSnapshot(page, `${slug}-changedColor`);
+		},
+	},
+
+	{
+		// Modular cabinets (testing account). The "Edit Cabinets" selection is
+		// driven by reset values: adding a cabinet via the "+" of the "Add
+		// Cabinets" selection selects the new cabinet (reset value defined by the
+		// overrides of the reference), changing a dimension keeps the selection
+		// (the model stops sending the reset value), and adding another cabinet
+		// selects the new one again.
+		slug: "modularcabinets-test",
+		// Settings file (served from public/) replacing the pulsing interaction
+		// effects by plain colors, so that the snapshots are deterministic.
+		params: {g: "example-simple-interaction-colors.json"},
+		actions: async (page, slug) => {
+			// Coordinates refer to the 1280x720 viewport of the "Desktop Chrome"
+			// device used by the test project.
+			// right "+" of the initial cabinet: the new cabinet gets selected
+			let pos = await viewportCoords(page, 0.591, 0.464);
+			await waitForModelRecomputed(page, async () => {
+				await page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-added`);
+
+			// change the height of the selected cabinet: it stays selected
+			await waitForModelRecomputed(page, async () => {
+				const height = getParameterElement(page, "Height").getByRole(
+					"textbox",
+				);
+				await height.fill("600");
+				await height.press("Enter");
+			});
+			await takeSnapshot(page, `${slug}-height`);
+
+			// right "+" of the selected cabinet: the third cabinet gets selected
+			pos = await viewportCoords(page, 0.613, 0.169);
+			await waitForModelRecomputed(page, async () => {
+				await page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-added-second`);
+		},
+	},
+	{
+		slug: "selection-parameter-variations",
+		// Settings file (served from public/) replacing the pulsing interaction
+		// effects by plain colors, so that the snapshots are deterministic.
+		params: {g: "example-simple-interaction-colors.json"},
+		actions: async (page, slug) => {
+			// Coordinates refer to the 1280x720 viewport of the "Desktop Chrome"
+			// device used by the test project. Window rows from top to bottom:
+			// Floor_3 (y 0.181), Floor_1 (y 0.560), Floor_0 (y 0.751).
+			const toolbar = page.getByLabel("Interaction toolbar");
+			const menuButton = toolbar.getByRole("button", {
+				name: "Selection",
+				exact: true,
+			});
+			const confirmButton = toolbar.getByRole("button", {
+				name: "Confirm",
+			});
+			const menu = page.locator(".mantine-Popover-dropdown", {
+				hasText: /Selection \(/,
+			});
+			// Activates a selection parameter via the "Selection" menu of the
+			// interaction toolbar. While a selection is active, the menu can only
+			// be closed by clicking the canvas.
+			const activateSelection = async (name: string) => {
+				await menuButton.click();
+				await menu.getByText(new RegExp(`^${name}`)).click();
+				const canvas = await viewportCoords(page, 0.521, 0.417);
+				await page.mouse.click(canvas.x, canvas.y);
+				await menu.waitFor({state: "hidden"});
+			};
+
+			// Confirm/Cancel are not offered while no selection is being edited
+			await expect(confirmButton).toHaveCount(0);
+
+			// always-active "Window Selection" (max 1): the click is committed
+			// immediately
+			let pos = await viewportCoords(page, 0.395, 0.181);
+			await waitForModelRecomputed(page, async () => {
+				await page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-window`);
+
+			// "Ground Floor Selection" (min 2, max 4) via the toolbar menu: two
+			// windows, confirmed explicitly
+			await activateSelection("Ground Floor Selection");
+			await expect(confirmButton).toBeDisabled();
+			pos = await viewportCoords(page, 0.395, 0.751);
+			await page.mouse.click(pos.x, pos.y);
+			pos = await viewportCoords(page, 0.603, 0.751);
+			await page.mouse.click(pos.x, pos.y);
+			await expect(confirmButton).toBeEnabled();
+			await waitForModelRecomputed(page, async () => {
+				await confirmButton.click();
+			});
+			// the selection is deactivated after the confirmation
+			await expect(confirmButton).toHaveCount(0);
+			await takeSnapshot(page, `${slug}-ground-floor`);
+
+			// "First Floor Selection" (min 1, max 1) via the toolbar menu: the
+			// click is committed immediately
+			await activateSelection("First Floor Selection");
+			pos = await viewportCoords(page, 0.395, 0.56);
+			await waitForModelRecomputed(page, async () => {
+				await page.mouse.click(pos.x, pos.y);
+			});
+			await takeSnapshot(page, `${slug}-first-floor`);
+		},
+	},
 ];
 
 /** Fast lookup by slug */

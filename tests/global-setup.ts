@@ -49,6 +49,11 @@ export default async function globalSetup() {
 			`(${publicLinks.length} public, ${testingAccountLinks.length} testing-account).`,
 	);
 
+	deployCurrentHead();
+}
+
+/** Deploy the current commit for E2E tests when the environment opts in. */
+export function deployCurrentHead() {
 	if (process.env.SKIP_DEPLOY === "1") {
 		console.log("[global-setup] SKIP_DEPLOY=1 — skipping deploy.");
 		return;
