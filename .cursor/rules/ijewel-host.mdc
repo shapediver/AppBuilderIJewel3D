@@ -34,6 +34,8 @@ Unlike SDK (theme + `AppBuilderPage` only), this host:
 
 Viewport instance comes from `useWebGiStoreViewport`, not `useShapeDiverStoreViewport`.
 
+`AppBuilderPage` always loads agent tools. Shared agent tools must talk to the viewport only through `useShapeDiverStoreViewportAccessFunctions` (screenshot, zoom, optional `setCamera`) — never `useShapeDiverStoreViewport` / `@shapediver/viewer.viewport`. ShapeDiver's `entities/viewport/model/useViewport.ts` registers `setCamera`; this host may omit it.
+
 ## `src/webgi/`
 
 | File | Role |
