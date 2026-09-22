@@ -44,7 +44,8 @@ Viewport instance comes from `useWebGiStoreViewport`, not `useShapeDiverStoreVie
 | `hooks/useViewport.ts` | Creates/closes the WebGI viewer |
 | `store/webgiViewportStore.ts` | Zustand map of `CoreViewerApp` by id |
 | `utils/createViewport.ts` | `CoreViewerApp` init, HDR, diamond plugin (`?webgiDiamondPlugin=`), optional `?webgiScene=` |
+| `utils/getViewportScreenshot.ts` | Host `getScreenshot`: honor `contentType`/`quality`/`resolution`/`camera` (Shared defaults if omitted). Resolution always resizes the renderer and waits one frame. No 2D blit. |
 | `utils/webGiProcessingUtils.ts` | glTF from session outputs → WebGI; material name lookup |
 | `utils/staticMaterialDatabase.ts` | Built-in name → iJewel material JSON |
 
-Query params: `webgiScene`, `webgiDiamondPlugin`, `webgiZoomTo`.
+Query params: `webgiScene`, `webgiDiamondPlugin`, `webgiZoomTo`, `webgiScreenshot` (one capture after first fit; logs `[webgi screenshot]` timing).

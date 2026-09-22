@@ -1,12 +1,13 @@
 import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/entities/viewport/model/useShapeDiverStoreViewportAccessFunctions";
 import {useViewportId} from "@AppBuilderShared/entities/viewport/model/useViewportId";
 import {useEffect, useRef, useState} from "react";
-import {AssetExporterPlugin, CanvasSnipperPlugin} from "webgi";
+import {AssetExporterPlugin} from "webgi";
 import {useShallow} from "zustand/react/shallow";
 import {
 	useWebGiStoreViewport,
 	ViewportCreateDto,
 } from "../store/webgiViewportStore";
+import {getViewportScreenshot} from "../utils/getViewportScreenshot";
 
 /**
  * Hook for creating a viewport of the ShapeDiver 3D Viewer.
@@ -43,18 +44,8 @@ export function useViewport(props: ViewportCreateDto) {
 			if (viewport)
 				addViewportAccessFunctions(_props.id, {
 					dto: _props,
-					getScreenshot: async () => {
-						const snapshot = await (
-							viewport.getPlugin(
-								CanvasSnipperPlugin as any,
-							)! as CanvasSnipperPlugin
-						).getDataUrl({
-							mimeType: "image/png",
-							displayPixelRatio: 2, // quality
-							waitForProgressive: true,
-						} as any);
-
-						return snapshot;
+					getScreenshot: async (screenshotProps) => {
+						return getViewportScreenshot(viewport, screenshotProps);
 					},
 					convertToGlTF: async () => {
 						const exporter = viewport.getPlugin(
