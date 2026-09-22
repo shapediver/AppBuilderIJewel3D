@@ -31,6 +31,7 @@ import "AppBuilderBase.css";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import {useShapeDiverStoreSession} from "~/shared/entities/session/model/useShapeDiverStoreSession";
+import {useShapeDiverStoreViewportAccessFunctions} from "~/shared/entities/viewport/model/useShapeDiverStoreViewportAccessFunctions";
 import {useViewportId} from "~/shared/entities/viewport/model/useViewportId";
 import {useShapeDiverStoreProcessManager} from "~/shared/shared/model/useShapeDiverStoreProcessManager";
 import packagejson from "../package.json";
@@ -67,6 +68,7 @@ export default function AppBuilderBase() {
 
 	const [initialFitToView, setInitialFitToView] = useState(true);
 	const [processingCount, setProcessingCount] = useState(0);
+	const screenshotOnceRef = useRef(false);
 
 	useEffect(() => {
 		sessionsRef.current = sessions;
@@ -75,19 +77,33 @@ export default function AppBuilderBase() {
 	useEffect(() => {
 		const parameters = new URLSearchParams(window.location.search);
 		const zoomTo = parameters.get("webgiZoomTo");
-		if (
-			viewportRef.current &&
-			viewportRef.current.renderEnabled === true &&
-			Object.keys(processManagers).length === 0 &&
-			(initialFitToView || zoomTo === "true")
-		) {
-			viewportRef.current.fitToView();
+		const viewport = viewportRef.current;
+		const sceneReady =
+			!!viewport &&
+			viewport.renderEnabled === true &&
+			Object.keys(processManagers).length === 0;
+		if (sceneReady && (initialFitToView || zoomTo === "true")) {
+			viewport.fitToView();
 			setInitialFitToView(false);
+		}
+		if (
+			sceneReady &&
+			parameters.get("webgiScreenshot") === "true" &&
+			!screenshotOnceRef.current
+		) {
+			const getScreenshot =
+				useShapeDiverStoreViewportAccessFunctions.getState()
+					.viewportAccessFunctions[viewportId]?.getScreenshot;
+			if (getScreenshot) {
+				screenshotOnceRef.current = true;
+				void getScreenshot();
+			}
 		}
 	}, [
 		processManagers,
 		initialFitToView,
 		processingCount,
+		viewportId,
 		viewportRef.current?.renderEnabled,
 	]);
 

@@ -11,7 +11,7 @@ alwaysApply: false
 - Platform token expires **hourly**; run `pnpm run convert-slug-data` when a session fails to load.
 - Testing-account models do **not** whitelist localhost — use the deployed URL (`v1/ijewel3d`).
 - Settings/theme: `?g=<file>` from `public/`.
-- WebGI extras: `?webgiScene=`, `?webgiDiamondPlugin=`, `?webgiZoomTo=true`.
+- WebGI extras: `?webgiScene=`, `?webgiDiamondPlugin=`, `?webgiZoomTo=true`, `?webgiScreenshot=true` (one `getScreenshot` after first fit; timing in the console as `[webgi screenshot]`).
 
 This is **not** the ShapeDiver viewport. Do not use SDK diagnosis that depends on `SDV.viewports`, `EVENTTYPE_INTERACTION`, `useSelection`, or pulse highlights.
 
