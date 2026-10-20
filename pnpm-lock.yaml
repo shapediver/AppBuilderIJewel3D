@@ -1173,97 +1173,97 @@ packages:
     engines: {node: '>= 14'}
 
   '@shapediver/api.platform-api-dto-v1@3.0.1':
-    resolution: {integrity: sha512-+m1tSYUrNeIBn5xa4VlGpLdCvwT8SNpCUClZ6bNIFI4FNZsobaYU2sIhrhDfwGc++PqgXrcXWVimQjQX8aVlHg==}
+    resolution: {integrity: sha512-+m1tSYUrNeIBn5xa4VlGpLdCvwT8SNpCUClZ6bNIFI4FNZsobaYU2sIhrhDfwGc++PqgXrcXWVimQjQX8aVlHg==, tarball: https://npm.pkg.github.com/download/@shapediver/api.platform-api-dto-v1/3.0.1/a5fb74d1459e0207b93acbd04d6ea4668be9b2af}
 
   '@shapediver/sdk.geometry-api-sdk-v2@4.0.0':
-    resolution: {integrity: sha512-f8+nYUdjNUG9Hqzf+aLjuiEaeSA0g7Zx6qSoIql3D17aHmi/CM7zTFEx5rS9lhjdL0cO8+oJepziKhfoYp0+Ug==}
+    resolution: {integrity: sha512-f8+nYUdjNUG9Hqzf+aLjuiEaeSA0g7Zx6qSoIql3D17aHmi/CM7zTFEx5rS9lhjdL0cO8+oJepziKhfoYp0+Ug==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.geometry-api-sdk-v2/4.0.0/0d9866d799d65f6ceef2d36afc0b6b222d3d770f}
 
   '@shapediver/sdk.geometry-api-sdk-v2@4.2.2':
-    resolution: {integrity: sha512-Eqz3xuVFgeTiGncI5ZzjxLs39scaffndzEGv6dyT/4nULBlVR1pdU/d7SRAcawhl/5UcTFlJExVlorwv/d/Lug==}
+    resolution: {integrity: sha512-Eqz3xuVFgeTiGncI5ZzjxLs39scaffndzEGv6dyT/4nULBlVR1pdU/d7SRAcawhl/5UcTFlJExVlorwv/d/Lug==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.geometry-api-sdk-v2/4.2.2/66d485d9335fd510273a1d693b648a28288f934a}
 
   '@shapediver/sdk.platform-api-sdk-v1@3.0.1':
-    resolution: {integrity: sha512-FE8jW/Jjf3aJnrRWP2zZkzPJJe6SsTyn0fCW5cAvBUKFDj+FjQNrzxDqmylmkHq4oZE3/HmjO/E2xbIO8MEgeg==}
+    resolution: {integrity: sha512-FE8jW/Jjf3aJnrRWP2zZkzPJJe6SsTyn0fCW5cAvBUKFDj+FjQNrzxDqmylmkHq4oZE3/HmjO/E2xbIO8MEgeg==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.platform-api-sdk-v1/3.0.1/949751647bffdd4c9fec1dd4cd5ad967e04a4bfd}
     engines: {node: '>=18'}
 
   '@shapediver/sdk.sdtf-core@1.7.3':
-    resolution: {integrity: sha512-DhMZVbLw8ZNV5SWKofgZEENxTLnOjrr2VWlAYrqFBlfzFbkGUu/UWMoCaxmwhp2RNBLHmGFGvFr4H0ZOxAkclg==}
+    resolution: {integrity: sha512-DhMZVbLw8ZNV5SWKofgZEENxTLnOjrr2VWlAYrqFBlfzFbkGUu/UWMoCaxmwhp2RNBLHmGFGvFr4H0ZOxAkclg==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-core/1.7.3/485129232db22c32a41f277652b4fa40a7660d08}
 
   '@shapediver/sdk.sdtf-core@1.7.4':
-    resolution: {integrity: sha512-izDtWUa34fBqKoTNfBFMNPzkuvO6R9JbMCURxLY9VdseAhDdldMhLKf7Kyy/8Dhpxqwl2qkGrcMxVz3qpjs79g==}
+    resolution: {integrity: sha512-izDtWUa34fBqKoTNfBFMNPzkuvO6R9JbMCURxLY9VdseAhDdldMhLKf7Kyy/8Dhpxqwl2qkGrcMxVz3qpjs79g==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-core/1.7.4/e33ae6e56965d0c96947d47766bf8ed925ab203f}
 
   '@shapediver/sdk.sdtf-geometry@1.7.4':
-    resolution: {integrity: sha512-Lsh5KkBCW8FMhKi7/fjsfsFJU+1qHO32B5kWuwfLz9qDjTLnF4wf77WfEUonai8NHqysLC+m29FYLfJ+8YIavA==}
+    resolution: {integrity: sha512-Lsh5KkBCW8FMhKi7/fjsfsFJU+1qHO32B5kWuwfLz9qDjTLnF4wf77WfEUonai8NHqysLC+m29FYLfJ+8YIavA==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-geometry/1.7.4/d95bad3ebead30570fa815a1b38c2c90d39c14b4}
 
   '@shapediver/sdk.sdtf-primitives@1.7.3':
-    resolution: {integrity: sha512-jLSHRlFkHuosJ080FrYiEnEOlSwcmJs7GwXWgDkXtj7CG2lCGvVlwQP2Zd3jxvfW3oh9Gfyb7xIWAE17L9N1uQ==}
+    resolution: {integrity: sha512-jLSHRlFkHuosJ080FrYiEnEOlSwcmJs7GwXWgDkXtj7CG2lCGvVlwQP2Zd3jxvfW3oh9Gfyb7xIWAE17L9N1uQ==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-primitives/1.7.3/7ce86c5929d047a39f6ea3073d31b161281399dc}
 
   '@shapediver/sdk.sdtf-primitives@1.7.4':
-    resolution: {integrity: sha512-8e0yUxJf6oUbTdeqqVDA+hJA+0Ms8OcHcQLnpNyxHz0wsHLa0s1xRctcTm63HXhXIzXWdQAmoxQ3dzVcqaloNA==}
+    resolution: {integrity: sha512-8e0yUxJf6oUbTdeqqVDA+hJA+0Ms8OcHcQLnpNyxHz0wsHLa0s1xRctcTm63HXhXIzXWdQAmoxQ3dzVcqaloNA==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-primitives/1.7.4/f830560988fcf88da04f9459559716ea2102f719}
 
   '@shapediver/sdk.sdtf-v1@1.8.0':
-    resolution: {integrity: sha512-VKRjMKUAonwIsUCj+TGaCxVFE7SrfWg6Vm2uVU1e6lPOnJoLLVOD4gWC7C2VzonlzoD/EL02n5OUq+evDGjbDQ==}
+    resolution: {integrity: sha512-VKRjMKUAonwIsUCj+TGaCxVFE7SrfWg6Vm2uVU1e6lPOnJoLLVOD4gWC7C2VzonlzoD/EL02n5OUq+evDGjbDQ==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.sdtf-v1/1.8.0/0f27b9b10a313ecbe85afcc72d2deaf8b048ade1}
     engines: {node: '>=18'}
     hasBin: true
 
   '@shapediver/sdk.stargate-sdk-core@1.3.4':
-    resolution: {integrity: sha512-Pv8wWf1na29kGPKsIwxytmzcEi5bF7sJXybxR/hMG46d+uzniwM6l81JXdR5eJTntmpp1dQhallTaqO5Tu6ldQ==}
+    resolution: {integrity: sha512-Pv8wWf1na29kGPKsIwxytmzcEi5bF7sJXybxR/hMG46d+uzniwM6l81JXdR5eJTntmpp1dQhallTaqO5Tu6ldQ==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.stargate-sdk-core/1.3.4/363f77690b5f286a2ebd4ed037e7f2a97f83c3a7}
 
   '@shapediver/sdk.stargate-sdk-v1@1.6.4':
-    resolution: {integrity: sha512-YyRuDzkSxOjKklmHUhwsD2hqSt1XYl+p9SDMvncS57B8bqQvlWT3iZlqxYLSxpXsKpTYeE2qiruES2OHfdeTzw==}
+    resolution: {integrity: sha512-YyRuDzkSxOjKklmHUhwsD2hqSt1XYl+p9SDMvncS57B8bqQvlWT3iZlqxYLSxpXsKpTYeE2qiruES2OHfdeTzw==, tarball: https://npm.pkg.github.com/download/@shapediver/sdk.stargate-sdk-v1/1.6.4/95e79d17bff9e5b64f1f3047b8878b6279d278b8}
 
   '@shapediver/viewer.api.general@3.22.0':
-    resolution: {integrity: sha512-PvYOMehKA3kIvqlrgHWe8YQFlmmzyzQlpXtTNL1gD5ckIdsdduXq77ILrIi9kCuB0t/EHT0ZRbPyCgPsT+SBgA==}
+    resolution: {integrity: sha512-3QbIo6QGO1VYouYmT4vr0JDYpU55p2rjarVBYuvFMIVcwW2lu+g822GU3i/sk854mfLi8SzBTvJBaHSQWwzflA==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.api.general/3.22.0/23d8813752eadebe4bde171a61159b69142ae19f}
 
   '@shapediver/viewer.creation-control-center.session@3.22.0':
-    resolution: {integrity: sha512-+jT041xkCZjbkw7IIB+/uTZCbWNXi1EMdqnLC/Al++EPt+ruiOP2tmskfDgMMq2FGV1EIEGfPYwxSQ++sMPsjg==}
+    resolution: {integrity: sha512-+jT041xkCZjbkw7IIB+/uTZCbWNXi1EMdqnLC/Al++EPt+ruiOP2tmskfDgMMq2FGV1EIEGfPYwxSQ++sMPsjg==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.creation-control-center.session/3.22.0/2cbbaf2decbdd11a085fb8b11dd4485e86be48c5}
 
-  '@shapediver/viewer.data-engine.geometry-engine@3.22.0-next.25':
-    resolution: {integrity: sha512-tzuyOeWkcWMiVVEI4CXd34xNudIRuLGKGYUPVwJlISvAZRFmcHae/VtZcsKYwyMkwbLSGwc8bXw80WSKRkZWMQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.data-engine.geometry-engine/3.22.0-next.25/31965c5952a934756a60bdb288be0ab397c4da45}
+  '@shapediver/viewer.data-engine.geometry-engine@3.22.0':
+    resolution: {integrity: sha512-DfqEvWTjBt9RblDhrf9mb/187COCl8z0BRB3/dQdIGTov+BmKKr+NH3PMza0OzxJH0YAK5o74bjFXC6yPfxOyQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.data-engine.geometry-engine/3.22.0/d4eab0a3d1affeaa18b62850f4d1d0713ca44d07}
 
   '@shapediver/viewer.data-engine.gltf-converter@3.22.0':
-    resolution: {integrity: sha512-NckNQR/dbReFnUxVph+4TXzaIabrGM1XsZx8SVZqwiOEL0oYOt1fxsj2DRNEXapRwU32QfN2GHq7AWQIFDqHkg==}
+    resolution: {integrity: sha512-NckNQR/dbReFnUxVph+4TXzaIabrGM1XsZx8SVZqwiOEL0oYOt1fxsj2DRNEXapRwU32QfN2GHq7AWQIFDqHkg==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.data-engine.gltf-converter/3.22.0/5d324fb5c7378ae23ecde62d7826b8ff76e4d2b8}
 
-  '@shapediver/viewer.data-engine.material-engine@3.22.0-next.25':
-    resolution: {integrity: sha512-excrmztvsbBZ5FX7n+5Iq2JuPPTxMGI1aO9OU1w7H/zegAqG009J2Cv+SwQlQm47zdtn2LSVogiwJNLInfW5lQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.data-engine.material-engine/3.22.0-next.25/4eff8e12ddaaa7305e2f2c33c98de483be3786d5}
+  '@shapediver/viewer.data-engine.material-engine@3.22.0':
+    resolution: {integrity: sha512-kNMxnrsA7bqNyg6lkmZiEt9ckCy6sAffOqMDRmdJ+lCsxM1cO1ugfjbqyzLxWlENftRqM7KgjxSK9VurAy5EWQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.data-engine.material-engine/3.22.0/edffe16537fc20c76d4b8f10ba4770cf86940cbe}
 
-  '@shapediver/viewer.rendering-engine.camera-engine@3.22.0-next.25':
-    resolution: {integrity: sha512-cNyCieee6A+q0TJuJN9QaTP29paLOhMkBL7GbhbjejHXI0x4B9tsg7moO9ilv5bcE4kHTyK2dHXXTZMxeDn/lw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.camera-engine/3.22.0-next.25/712547e2b2ccbe9dcd6a7e63e89ba61551248050}
+  '@shapediver/viewer.rendering-engine.camera-engine@3.22.0':
+    resolution: {integrity: sha512-2MM3p4X8FxGfk6kSt/1S1WKP1BL1NkArEo3Pz5f4ltO8XM79JPBcHFSUWSxOe34DNDx7FRonpZcINpZWnHM2Tg==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.camera-engine/3.22.0/7d608e902122ec9f4ec088ee7c4bd5d9c5f06bab}
 
-  '@shapediver/viewer.rendering-engine.light-engine@3.22.0-next.25':
-    resolution: {integrity: sha512-r9ic1MJnZ6kCUn9huDiTYhVsebRQh1f13twYSCWv+LvndBcPH0PK8VKANoQAwI19e4VrUZMqNVEOYic4jGWD8Q==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.light-engine/3.22.0-next.25/59cd5ddf39a6bd706f6b75ae3957d589e7adf372}
+  '@shapediver/viewer.rendering-engine.light-engine@3.22.0':
+    resolution: {integrity: sha512-l5Id+VOQSG85djPvZH3NV505O5dzjUS59T4+ZNha8rBMyU4DKVy+bSxITquXGoMYyIx+2zap+Q0gclDAm0V3cw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.light-engine/3.22.0/d3e4fe5ba23bc6f7a8f39c30f53d1bed1b615026}
 
-  '@shapediver/viewer.rendering-engine.rendering-engine@3.22.0-next.25':
-    resolution: {integrity: sha512-ViUk1b2RT/kl+Za/pmX6AC7qNBoKHiKACdPDFKXogNi7Kn6lEZovLBjj+PECXDoP85o5jKA4NooUerq+vCf7+w==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.rendering-engine/3.22.0-next.25/fd722e88a24ccae2bd7be147cf5cd485591039ff}
+  '@shapediver/viewer.rendering-engine.rendering-engine@3.22.0':
+    resolution: {integrity: sha512-yeesCqqkyhpuak9+MiB5qTS5MIG0q065llw+/lfm3ED6kPBHdatgLLW7qd5e2t9YnbKsedv0XZ9OvM6aJfat/g==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.rendering-engine.rendering-engine/3.22.0/82631d470c3f81c3b45aa612d9b4f91e774340af}
 
   '@shapediver/viewer.session-engine.session-engine@3.22.0':
-    resolution: {integrity: sha512-LRqMBdRVI/I4Em/ekalppWDcTe6BHFVbSNvf7gZALcLtvRTcGjoiWVVPnEgeGOJa6z+GiL78WkWs9X1+n0eWxQ==}
+    resolution: {integrity: sha512-LRqMBdRVI/I4Em/ekalppWDcTe6BHFVbSNvf7gZALcLtvRTcGjoiWVVPnEgeGOJa6z+GiL78WkWs9X1+n0eWxQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.session-engine.session-engine/3.22.0/9a096d52d5515bcbef30291e1c7c081948968064}
 
   '@shapediver/viewer.session@3.22.0':
-    resolution: {integrity: sha512-tI5wcg0Bika2/qMdDjVbjeEh+tkoAIBjwn2XMra//dfRjsoTUDHL1YuXfxSH6+7rtfksepOsv4QNpcLSj7+e8g==}
+    resolution: {integrity: sha512-Bvg26hBxxUVmKUjIpHexDDPjX4Jx8bjcKkrUYfvCsIGqH8Gp25gAz7E3n7a1eoF1mt8UkjvRHdCgdLY1nQT+4Q==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.session/3.22.0/0dc384e338d612a30611ed0043fb7da1ca57b4ec}
 
   '@shapediver/viewer.settings@1.3.2':
-    resolution: {integrity: sha512-/+myX3AgRJ8yz+o3r01o3ec9jqH8b3VZtDSFjxMCFYX5+uDWS3Z0jYLJyXCgk/ROnMA69ZBZ/aaIx2VhU3XfsA==}
+    resolution: {integrity: sha512-/+myX3AgRJ8yz+o3r01o3ec9jqH8b3VZtDSFjxMCFYX5+uDWS3Z0jYLJyXCgk/ROnMA69ZBZ/aaIx2VhU3XfsA==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.settings/1.3.2/043a67d31c51073037838f6bc2acf8fe912bdc73}
 
   '@shapediver/viewer.shared.build-data@3.22.0':
-    resolution: {integrity: sha512-WT4UmPsgJgYvPlb0FjosyPPdxmld5piBUXm8lTAHKxuWtRqTw2GjXQWI+WHFtb/jb0SZG/6+QM4yDb68+cJYwA==}
+    resolution: {integrity: sha512-WT4UmPsgJgYvPlb0FjosyPPdxmld5piBUXm8lTAHKxuWtRqTw2GjXQWI+WHFtb/jb0SZG/6+QM4yDb68+cJYwA==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.build-data/3.22.0/9c3b5862f0fcd30503d798bb44462110cb3c4289}
 
   '@shapediver/viewer.shared.global-access-objects@3.22.0':
-    resolution: {integrity: sha512-tdw+Nm8bJ6IsFz5W7T0MIWwclTUpFlyL5qc9ymVwgBMCjwVWVgsxnaT4i11rflbuuTELITaCaCCuOrlOqAHtmw==}
+    resolution: {integrity: sha512-tdw+Nm8bJ6IsFz5W7T0MIWwclTUpFlyL5qc9ymVwgBMCjwVWVgsxnaT4i11rflbuuTELITaCaCCuOrlOqAHtmw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.global-access-objects/3.22.0/2c26fded4f7a425ed49ec363f567dbe14a24000c}
 
   '@shapediver/viewer.shared.math@3.22.0':
-    resolution: {integrity: sha512-dRdkB/mInAAygx6b6CZfO3kI7DzgY3ADr+dIglpEm0NEPJMKfGr4AFU1dJS17W+IQlU18gKHYjiFL5Xq45r9lw==}
+    resolution: {integrity: sha512-dRdkB/mInAAygx6b6CZfO3kI7DzgY3ADr+dIglpEm0NEPJMKfGr4AFU1dJS17W+IQlU18gKHYjiFL5Xq45r9lw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.math/3.22.0/95037b5a9d73f44dac6b82acd269538f0e354dc7}
 
   '@shapediver/viewer.shared.node-tree@3.22.0':
-    resolution: {integrity: sha512-9YWyfF2sARgwPDOPvim5EyTCIBavWI/+gkmUetOP/Ra090jwvlzJyYsVXd9guFCrVV9zErBnMe8MaMXdIq3ulA==}
+    resolution: {integrity: sha512-9YWyfF2sARgwPDOPvim5EyTCIBavWI/+gkmUetOP/Ra090jwvlzJyYsVXd9guFCrVV9zErBnMe8MaMXdIq3ulA==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.node-tree/3.22.0/4e8520f23edaf6228704378edc632a41e8cf39bf}
 
   '@shapediver/viewer.shared.services@3.22.0':
-    resolution: {integrity: sha512-f+OKtmQGslYPoRlO2yBqz70AF3RmK4fw6aeJtaAKBoEZ7+30Kelci5sYiaxaRvVYsyZPWswICvoxZvz5zNp4Iw==}
+    resolution: {integrity: sha512-f+OKtmQGslYPoRlO2yBqz70AF3RmK4fw6aeJtaAKBoEZ7+30Kelci5sYiaxaRvVYsyZPWswICvoxZvz5zNp4Iw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.services/3.22.0/bc320d48a6999ec1f7b9da9f6738614d7c61ecf2}
 
   '@shapediver/viewer.shared.types@3.22.0':
-    resolution: {integrity: sha512-dh6Mh+TNH0QUhLhVnOkReml18gh6MkxsfgtiNGE1XFBmvLK93PQY9/kdqFDjJw6oD6o0970fA6Y8mJdIghwKJQ==}
+    resolution: {integrity: sha512-dh6Mh+TNH0QUhLhVnOkReml18gh6MkxsfgtiNGE1XFBmvLK93PQY9/kdqFDjJw6oD6o0970fA6Y8mJdIghwKJQ==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.shared.types/3.22.0/7c9ab82df107421074ee8bd2d6a5721ff611d168}
 
   '@shapediver/viewer.utils.mime-type@1.1.0':
-    resolution: {integrity: sha512-KssQEsaUYiLkMCtbW/vd0CxjmP/8REAUejKL+fvjOrp1Z98MED31wYPeVbOXstFOtrCOdhMGM6mFIN2I4DMzfw==}
+    resolution: {integrity: sha512-KssQEsaUYiLkMCtbW/vd0CxjmP/8REAUejKL+fvjOrp1Z98MED31wYPeVbOXstFOtrCOdhMGM6mFIN2I4DMzfw==, tarball: https://npm.pkg.github.com/download/@shapediver/viewer.utils.mime-type/1.1.0/9bb9eb82ce3b2c71836a370d50aa570abcc65ec6}
 
   '@shikijs/engine-oniguruma@3.23.0':
     resolution: {integrity: sha512-1nWINwKXxKKLqPibT5f4pAFLej9oZzQTsby8942OTlsJzOBZ0MWKiwzMsd+jhzu8YPCHAswGnnN1YtQfirL35g==}
@@ -4267,9 +4267,6 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  set-cookie-parser@2.7.2:
-    resolution: {integrity: sha512-oeM1lpU/UvhTxw+g3cIfxXHyJRc/uidd3yK1P242gzHds0udQBYzs3y8j4gCCW+ZJ7ad0yctld8RYO+bdurlvw==}
-
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
     engines: {node: '>= 0.4'}
@@ -6082,7 +6079,7 @@ snapshots:
       '@shapediver/viewer.shared.services': 3.22.0
       '@shapediver/viewer.shared.types': 3.22.0
 
-  '@shapediver/viewer.data-engine.geometry-engine@3.22.0-next.25':
+  '@shapediver/viewer.data-engine.geometry-engine@3.22.0':
     dependencies:
       '@shapediver/sdk.geometry-api-sdk-v2': 4.2.2
       '@shapediver/viewer.data-engine.material-engine': 3.22.0
@@ -6103,7 +6100,7 @@ snapshots:
       '@shapediver/viewer.shared.types': 3.22.0
       gl-matrix: 3.4.4
 
-  '@shapediver/viewer.data-engine.material-engine@3.22.0-next.25':
+  '@shapediver/viewer.data-engine.material-engine@3.22.0':
     dependencies:
       '@shapediver/sdk.geometry-api-sdk-v2': 4.2.2
       '@shapediver/viewer.shared.node-tree': 3.22.0
@@ -6111,7 +6108,7 @@ snapshots:
       '@shapediver/viewer.shared.types': 3.22.0
       gl-matrix: 3.4.4
 
-  '@shapediver/viewer.rendering-engine.camera-engine@3.22.0-next.25':
+  '@shapediver/viewer.rendering-engine.camera-engine@3.22.0':
     dependencies:
       '@shapediver/viewer.rendering-engine.rendering-engine': 3.22.0
       '@shapediver/viewer.settings': 1.3.2
@@ -6123,7 +6120,7 @@ snapshots:
       detect-it: 4.0.1
       gl-matrix: 3.4.4
 
-  '@shapediver/viewer.rendering-engine.light-engine@3.22.0-next.25':
+  '@shapediver/viewer.rendering-engine.light-engine@3.22.0':
     dependencies:
       '@shapediver/viewer.rendering-engine.rendering-engine': 3.22.0
       '@shapediver/viewer.settings': 1.3.2
@@ -6132,7 +6129,7 @@ snapshots:
       '@shapediver/viewer.shared.types': 3.22.0
       gl-matrix: 3.4.4
 
-  '@shapediver/viewer.rendering-engine.rendering-engine@3.22.0-next.25':
+  '@shapediver/viewer.rendering-engine.rendering-engine@3.22.0':
     dependencies:
       '@shapediver/viewer.shared.math': 3.22.0
       '@shapediver/viewer.shared.node-tree': 3.22.0
