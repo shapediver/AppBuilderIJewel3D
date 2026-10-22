@@ -1,5 +1,6 @@
 import {useShapeDiverStoreViewportAccessFunctions} from "@AppBuilderShared/entities/viewport/model/useShapeDiverStoreViewportAccessFunctions";
 import {useViewportId} from "@AppBuilderShared/entities/viewport/model/useViewportId";
+import {CAMERA_TYPE} from "@shapediver/viewer.shared.types";
 import {useEffect, useRef, useState} from "react";
 import {AssetExporterPlugin} from "webgi";
 import {useShallow} from "zustand/react/shallow";
@@ -46,6 +47,27 @@ export function useViewport(props: ViewportCreateDto) {
 					dto: _props,
 					getScreenshot: async (screenshotProps) => {
 						return getViewportScreenshot(viewport, screenshotProps);
+					},
+					getCamera: () => {
+						const controller = viewport.scene.activeCamera;
+						const object = controller.cameraObject;
+						const isOrthographic =
+							"isOrthographicCamera" in object &&
+							object.isOrthographicCamera === true;
+						const {position, target} = controller;
+						return {
+							id: controller.uuid,
+							...(controller.name ? {name: controller.name} : {}),
+							type: isOrthographic
+								? CAMERA_TYPE.ORTHOGRAPHIC
+								: CAMERA_TYPE.PERSPECTIVE,
+							position: [position.x, position.y, position.z],
+							target: [target.x, target.y, target.z],
+							...("fov" in object &&
+							typeof object.fov === "number"
+								? {fov: object.fov}
+								: {}),
+						};
 					},
 					convertToGlTF: async () => {
 						const exporter = viewport.getPlugin(
