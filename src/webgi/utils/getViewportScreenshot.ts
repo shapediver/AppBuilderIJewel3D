@@ -169,8 +169,7 @@ async function captureDataUrl(
 	quality: number,
 ): Promise<string> {
 	const snipper = viewport.getPlugin(CanvasSnipperPlugin as any) as
-		| CanvasSnipperPlugin
-		| undefined;
+		CanvasSnipperPlugin | undefined;
 	if (!snipper) {
 		return viewport.canvas.toDataURL(contentType, quality);
 	}

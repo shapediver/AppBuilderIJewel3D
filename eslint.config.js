@@ -1,25 +1,20 @@
-import {FlatCompat} from "@eslint/eslintrc";
 import js from "@eslint/js";
 import prettierConfig from "eslint-config-prettier/flat";
 import prettierPlugin from "eslint-plugin-prettier";
 import reactPlugin from "eslint-plugin-react";
 import globals from "globals";
+import {createRequire} from "node:module";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
 import tseslint from "typescript-eslint";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const compat = new FlatCompat({baseDirectory: __dirname});
 
-/** @param {unknown} value */
-function normalizeEcmaVersion(value) {
-	if (value === "latest") {
-		return "latest";
-	}
-
-	const parsed = Number(value);
-	return Number.isFinite(parsed) ? parsed : "latest";
-}
+// eslint-plugin-react's version detection ("detect") uses context.getFilename(),
+// which ESLint 10 removed, so pass the installed React version explicitly.
+const reactVersion = createRequire(import.meta.url)(
+	"react/package.json",
+).version;
 
 export default tseslint.config(
 	{
@@ -37,7 +32,10 @@ export default tseslint.config(
 			"**/.vite-temp/**",
 			"**/coverage/**",
 			"eslint.config.js",
+			"**/*.local.ts",
 		],
+	},
+	{
 		linterOptions: {
 			reportUnusedDisableDirectives: "off",
 		},
@@ -60,10 +58,7 @@ export default tseslint.config(
 			},
 		},
 		settings: {
-			"import/resolver": {
-				typescript: {alwaysTryTypes: true},
-			},
-			react: {version: "detect"},
+			react: {version: reactVersion},
 		},
 		rules: {
 			"prettier/prettier": "error",
@@ -86,36 +81,6 @@ export default tseslint.config(
 				},
 			],
 			"no-debugger": "off",
-		},
-	},
-	...compat
-		.extends("@feature-sliced")
-		.filter((config) => !config.ignores)
-		.map((config) => {
-			const scoped = {
-				...config,
-				files: ["src/shared/**/*.{js,jsx,ts,tsx}"],
-			};
-
-			if (config.languageOptions) {
-				scoped.languageOptions = {
-					...config.languageOptions,
-
-					ecmaVersion: normalizeEcmaVersion(
-						config.languageOptions.ecmaVersion,
-					),
-				};
-			}
-
-			return scoped;
-		}),
-	{
-		files: ["src/shared/**/*.{js,jsx,ts,tsx}"],
-		rules: {
-			"@typescript-eslint/no-explicit-any": "off",
-			"import/order": "off",
-			"import/no-internal-modules": "off",
-			"boundaries/element-types": "off",
 		},
 	},
 	{
@@ -142,6 +107,13 @@ export default tseslint.config(
 		},
 	},
 	{
+		// TypeScript checks component props; the rule misreads render callbacks as components
+		files: ["**/*.{ts,tsx}"],
+		rules: {
+			"react/prop-types": "off",
+		},
+	},
+	{
 		files: ["src/**/*.{test,spec}.{ts,tsx}"],
 		languageOptions: {
 			globals: {
@@ -152,6 +124,24 @@ export default tseslint.config(
 				project: "./tsconfig.jest.json",
 				tsconfigRootDir: __dirname,
 			},
+		},
+	},
+	{
+		files: ["**/*.cjs"],
+		languageOptions: {
+			sourceType: "commonjs",
+			globals: globals.node,
+		},
+		rules: {
+			"@typescript-eslint/no-require-imports": "off",
+			"react/prop-types": "off",
+		},
+	},
+	{
+		files: ["**/*.mjs"],
+		languageOptions: {
+			sourceType: "module",
+			globals: globals.node,
 		},
 	},
 );

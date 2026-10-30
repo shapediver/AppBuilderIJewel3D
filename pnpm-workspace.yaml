@@ -1,17 +1,21 @@
 blockExoticSubdeps: false
 
 allowBuilds:
-  '@sentry/cli': true
-  core-js: true
-  core-js-pure: true
-  esbuild: true
-  unrs-resolver: true
+    "@parcel/watcher": false
+    "@sentry/cli": true
+    core-js: true
+    core-js-pure: true
+    esbuild: true
+    unrs-resolver: true
 onlyBuiltDependencies:
-  - '@sentry/cli'
-  - core-js
-  - core-js-pure
-  - esbuild
-  - unrs-resolver
+    - "@sentry/cli"
+    - core-js
+    - core-js-pure
+    - esbuild
+    - unrs-resolver
 minimumReleaseAgeExclude:
-  - '@shapediver/*'
-  - '@types/webgi'
+    - "@shapediver/*"
+    - "@types/webgi"
+peerDependencyRules:
+    allowedVersions:
+        eslint-plugin-react>eslint: "10"

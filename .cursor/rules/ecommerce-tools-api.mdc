@@ -3,7 +3,6 @@ description: E-commerce connector and tools CrossWindow APIs. Apply when changin
 globs:
     - "**/features/ecommerce/**"
     - "**/features/agent-tools/**"
-    - "**/tests/fixtures/cross-window/**"
     - "**/ecommerceapi*"
     - "**/toolsApi*"
 alwaysApply: false
@@ -13,7 +12,7 @@ alwaysApply: false
 
 Keep two typed CrossWindow facades. They share action cores. They do not share one RPC.
 
-Playwright parent/iframe setup is in `.cursor/rules/e2e-playwright.mdc`. Action-core behavior is in `.cursor/rules/appbuilder-actions.mdc`.
+Action-core behavior is in `.cursor/rules/appbuilder-actions.mdc`.
 
 ## Schemas
 

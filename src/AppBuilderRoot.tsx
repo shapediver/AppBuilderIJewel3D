@@ -11,11 +11,11 @@ import ParameterSelectComponent from "@AppBuilderShared/entities/parameter/ui/Pa
 import ParameterSliderComponent from "@AppBuilderShared/entities/parameter/ui/ParameterSliderComponent";
 import ParameterStringComponent from "@AppBuilderShared/entities/parameter/ui/ParameterStringComponent";
 import {EXPORT_TYPE, PARAMETER_TYPE} from "@shapediver/viewer.session";
-import "instruments/sentry";
+import ViewportComponent from "@webgi/components/ViewportComponent";
 import ReactDOM from "react-dom/client";
-import ViewportComponent from "webgi/components/ViewportComponent";
 import AppBuilderBase from "~/AppBuilderBase";
 import {PlausibleTracker} from "~/instruments/plausible";
+import "~/instruments/sentry";
 import {setupWebVitalsTracking} from "~/instruments/webvitals";
 import {SentryErrorReportingContext} from "./instruments/sentry";
 

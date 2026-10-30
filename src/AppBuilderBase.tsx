@@ -27,7 +27,6 @@ import {
 	processMaterialDatabase,
 	processOutputs,
 } from "@webgi/utils/webGiProcessingUtils";
-import "AppBuilderBase.css";
 import {useCallback, useEffect, useRef, useState} from "react";
 import {CoreViewerApp, LoadingScreenPlugin} from "webgi";
 import {useShapeDiverStoreSession} from "~/shared/entities/session/model/useShapeDiverStoreSession";

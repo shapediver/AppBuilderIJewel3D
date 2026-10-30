@@ -1,26 +1,15 @@
 {
 	"compilerOptions": {
 		"target": "es6",
-		"baseUrl": "src",
-		"types": [
-			"vite/client",
-			"vite-plugin-svgr/client",
-      		"node"
-		],
+		"types": ["vite/client", "vite-plugin-svgr/client", "node"],
 		"paths": {
-			"@AppBuilderShared/*": ["./shared/*"],
-			"@AppBuilderLib/*": ["./shared/*"],
-			"~/*": ["./*"],
-			"@modelstorage": ["../modelstorage.ts"],
-			"@webgi/*": [
-				"./webgi/*"
-			]
+			"@AppBuilderShared/*": ["./src/shared/*"],
+			"@AppBuilderLib/*": ["./src/shared/*"],
+			"~/*": ["./src/*"],
+			"@modelstorage": ["./modelstorage.ts"],
+			"@webgi/*": ["./src/webgi/*"]
 		},
-		"lib": [
-			"dom",
-			"dom.iterable",
-			"esnext"
-		],
+		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
@@ -29,21 +18,19 @@
 		"forceConsistentCasingInFileNames": true,
 		"noFallthroughCasesInSwitch": true,
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"strictNullChecks": true
 	},
-	"include": [
-    	"src/AppBuilderRoot.tsx"
-	],
+	"include": ["src/AppBuilderRoot.tsx"],
 	"exclude": [
 		"**/*.test.ts",
 		"**/*.test.tsx",
 		"**/*.spec.ts",
 		"**/*.spec.tsx"
 	],
-	"references": [{ "path": "./tsconfig.jest.json" }]
+	"references": [{"path": "./tsconfig.jest.json"}]
 }
