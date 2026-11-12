@@ -9,8 +9,8 @@ alwaysApply: true
 
 - Branches: `task/SS-{number}` or `task/SS-{number}-{kebab-name}`.
 - Commit messages: `SS-{number}: {description}`.
-- Do **not** open PRs unless asked. The user creates them.
-- Commits are SSH-signed via 1Password. Commit only when the user asks (or runs `/implement`), and load the agent signer first as the global `git-commits` rule describes. If signing still fails, stop and let the user commit.
+- Do **not** open PRs unless asked or `/implement` runs. The user creates them.
+- Commits are SSH-signed via 1Password. Commit only when the user asks (or runs `/implement`), and load the agent signer first as the 'Git commits' section of `~/.claude/CLAUDE.md` describes. If signing still fails, stop and let the user commit.
 - Shared: `git -C src/shared ...`. Bump the root submodule pointer only after shared is committed. Before changing shared, read `src/shared/.cursor/rules/host-compat.mdc` (once AppBuilderShared has it; otherwise `../AppBuilderSdk/src/shared/.cursor/rules/host-compat.mdc`).
 - `git checkout -- <file>` restores from the index; use `git checkout HEAD --` when files are staged.
 - English for code comments and Markdown in this repo.

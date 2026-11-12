@@ -26,6 +26,6 @@ All **code comments** and **project documentation** must be written in **English
 
 - **Branches:** `task/SS-{task_number}` or `task/SS-{task_number}-{kebab-name}`.
 - **Commits:** `SS-{task_number}: {commit_name}`.
-- **Pull requests:** The user creates pull requests. Do not open PRs unless explicitly asked.
+- **Pull requests:** The user creates pull requests. Do not open PRs unless explicitly asked or `/implement` runs.
 
 Durable agent context lives in `.cursor/rules/` (`ijewel-repo`, `ijewel-host`, `git-and-checks`, `worktree-shared-repo`). Update those files when you learn facts that should persist.
