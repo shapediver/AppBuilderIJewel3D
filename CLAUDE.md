@@ -10,7 +10,7 @@
 
 ## Topic rules
 
-`.cursor/rules/` holds the master copies, shared with teammates on Cursor. Edit rules there. `.claude/rules/` only points to them and loads by file path.
+Shared-library rules in `.claude/rules/` and the `custom-component` and `fsd-migrate` skills come from AppBuilderSdk unchanged through upstream merges (`merge-upstream` skill); change them there. IJewel-only rules live in `.cursor/rules/` (`ijewel-*.mdc`, `git-and-checks.mdc`, `browser-diagnosis.mdc`, `worktree-shared-repo.mdc`), shared with teammates on Cursor; `.claude/rules/ijewel-host.md` points to `ijewel-host.mdc` by file path.
 
 Read by hand when the task matches:
 

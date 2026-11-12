@@ -22,3 +22,7 @@ This is **not** the ShapeDiver viewport. Do not use SDK diagnosis that depends o
 WebGI viewer: `useWebGiStoreViewport` / `CoreViewerApp` (fitToView, plugins, scene). Session customize TASK_START/END drives the loading screen and `processOutputs`.
 
 Count computations from the Network tab (`PUT` `/output`), or from session task events on `window.SDV`. There is **no Playwright e2e** in this repo.
+
+## Who committed? (async stacks)
+
+Debounce in `handleChange` breaks stacks. Temporary `console.log("[diag] ...", new Error().stack)` in `useParameterComponentCommons.handleChange`, the custom parameter executor, and `batchParameterValueUpdate`; read the browser console; then `git checkout HEAD --` the instrumented files.

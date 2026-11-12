@@ -39,3 +39,6 @@ empty
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Personal Claude Code instructions
+CLAUDE.local.md

@@ -1,7 +1,17 @@
 ---
 paths:
-    - "**/shared/ui/icon/**"
-    - "**/isIconImageUrl.ts"
+  - "**/shared/ui/icon/**"
+  - "**/isIconImageUrl.ts"
 ---
 
-Before changing files that match these paths, read `.cursor/rules/appbuilder-icons.mdc`. It is the master copy, shared with Cursor; edit rules there, not here.
+# Icons
+
+`IAppBuilderIcon` and `iconType` accept:
+
+- an Iconify name
+- an image URL (`http`, `https`, data URI, or path; SVG and common rasters)
+- an inline Iconify object
+
+Detection and `<img>` rendering live in `shared/ui/icon/isIconImageUrl.ts` and `Icon.tsx`.
+
+A toolbar button must render a URL as an icon. It must not fall back to text.
