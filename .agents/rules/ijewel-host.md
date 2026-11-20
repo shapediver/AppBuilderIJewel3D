@@ -1,0 +1,48 @@
+# iJewel host (WebGI)
+
+Host wiring in `AppBuilderRoot.tsx`, `AppBuilderBase.tsx` and `src/webgi/`. Do not register ShapeDiver viewer UI.
+
+## `AppBuilderRoot.tsx`
+
+`IComponentContext` is **minimal**. Register:
+
+- `viewportComponent` → `webgi/components/ViewportComponent` (not `@AppBuilderLib/entities/viewport/ui/ViewportComponent`)
+- Shared overlay wrapper, standard parameter UIs (slider/bool/string/select/color/file), export buttons, container + fallback
+
+**Stubs (keep):** `PARAMETER_TYPE.DRAWING` and `INTERACTION.{selection,gumball,dragging,rectangleTransform}` → `ParameterStringComponent`.
+
+**Omit:** `viewportAnchors`, `appBuilderToolbarLayer`, `widgets.attributeVisualization` / `sceneTreeExplorer`, `actions.ar|camera|fullscreen`, `interactionSlotListeners`.
+
+Import parameter UI from **concrete files** (`@AppBuilderLib/entities/parameter/ui/ParameterStringComponent`), never from `entities/parameter` or `.../ui` barrels — barrels pull `@shapediver/viewer.features.*`.
+
+Do not add those packages to this host `package.json` unless the product is explicitly gaining ShapeDiver interaction.
+
+## Shared parameters and selection
+
+`src/shared` still contains ShapeDiver selection, gumball, dragging and drawing. This host does not register those components and stubs their UIs as `ParameterStringComponent`, so the guidance about them in `.agents/rules/parameters-and-selection.md` (selection stack, ownership and requests, toolbar) applies only to the shared code. Edit that code for SDK compatibility; don't wire it into `AppBuilderRoot` without adding `viewer.features.*`.
+
+## `AppBuilderBase.tsx`
+
+Unlike SDK (theme + `AppBuilderPage` only), this host:
+
+- Puts **session-only** APIs on `window.SDV` (`@shapediver/viewer.session`). There is no `viewer.viewport` merge.
+- Subscribes to session customize TASK_START/END/CANCEL, shows WebGI `LoadingScreenPlugin`, then `processMaterialDatabase` → `processOutputs` → `processInstances`.
+- Fits the WebGI camera (`fitToView`) after first load; `?webgiZoomTo=true` refits later.
+
+Viewport instance comes from `useWebGiStoreViewport`, not `useShapeDiverStoreViewport`.
+
+`AppBuilderPage` always loads agent tools, application action slots, and the e-commerce connector. Shared modules on that path (`waitForAppBuilderViewport`, `resolveViewportIdFromStore`, agent tools) must not import `useShapeDiverStoreViewport` / `@shapediver/viewer.viewport`. ShapeDiver `waitUntilReady` lives in `entities/viewport/lib/waitUntilReady` and is registered from ShapeDiver `useViewport`. Camera goes through host `componentContext.actions.camera.run` (this host omits that key). Screenshot/zoom use `useShapeDiverStoreViewportAccessFunctions`.
+
+## `src/webgi/`
+
+| File                               | Role                                                                                                                                                                            |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `components/ViewportComponent.tsx` | Canvas + `useViewport`; `useProps("ViewportComponent")` / `ViewportBranding`                                                                                                    |
+| `hooks/useViewport.ts`             | Creates/closes the WebGI viewer                                                                                                                                                 |
+| `store/webgiViewportStore.ts`      | Zustand map of `CoreViewerApp` by id                                                                                                                                            |
+| `utils/createViewport.ts`          | `CoreViewerApp` init, HDR, diamond plugin (`?webgiDiamondPlugin=`), optional `?webgiScene=`                                                                                     |
+| `utils/getViewportScreenshot.ts`   | Host `getScreenshot`: honor `contentType`/`quality`/`resolution`/`camera` (Shared defaults if omitted). Resolution always resizes the renderer and waits one frame. No 2D blit. |
+| `utils/webGiProcessingUtils.ts`    | glTF from session outputs → WebGI; material name lookup                                                                                                                         |
+| `utils/staticMaterialDatabase.ts`  | Built-in name → iJewel material JSON                                                                                                                                            |
+
+Query params: `webgiScene`, `webgiDiamondPlugin`, `webgiZoomTo`, `webgiScreenshot` (one capture after first fit; logs `[webgi screenshot]` timing).

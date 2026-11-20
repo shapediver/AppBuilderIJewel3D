@@ -1,18 +1,8 @@
----
-description: E-commerce connector and tools CrossWindow APIs. Apply when changing triggerAction, the tools client, addToCart, or the facades those APIs share with action cores.
-globs:
-    - "**/features/ecommerce/**"
-    - "**/features/agent-tools/**"
-    - "**/ecommerceapi*"
-    - "**/toolsApi*"
-alwaysApply: false
----
-
 # E-commerce connector and tools API
 
 Keep two typed CrossWindow facades. They share action cores. They do not share one RPC.
 
-Action-core behavior is in `.cursor/rules/appbuilder-actions.mdc`.
+Playwright parent/iframe setup is in `.agents/rules/e2e-playwright.md`. Action-core behavior is in `.agents/rules/appbuilder-actions.md`.
 
 ## Schemas
 

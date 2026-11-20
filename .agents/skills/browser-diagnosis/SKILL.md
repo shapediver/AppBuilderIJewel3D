@@ -1,6 +1,6 @@
 ---
-description: Reproducing and diagnosing the iJewel/WebGI App Builder in the browser. Use when debugging UI or the viewport.
-alwaysApply: false
+name: browser-diagnosis
+description: Reproduce and diagnose the iJewel/WebGI App Builder in a browser — dev server and slugs, WebGI query params, window.SDV (session only), counting PUT computations, finding who committed a value. Use when debugging UI or the viewport.
 ---
 
 # Browser diagnosis (iJewel / WebGI)
