@@ -6,7 +6,10 @@ export default {
 	testMatch: ["**/*.(test|spec).(ts|tsx)"],
 	testPathIgnorePatterns: [
 		"<rootDir>/src/shared/features/appbuilder/config/__tests__/themeRegistryDocParity.test.ts",
+		// Agent worktrees inside the repo are other checkouts with their own tests.
+		"<rootDir>/.claude/worktrees/",
 	],
+	modulePathIgnorePatterns: ["<rootDir>/.claude/worktrees/"],
 
 	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
 
